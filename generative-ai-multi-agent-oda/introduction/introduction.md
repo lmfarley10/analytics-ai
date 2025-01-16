@@ -2,13 +2,13 @@
 
 ## About this Workshop
 
-This workshop will help to configure multi-agent Generative AI powered chatbot (ATOM) on your own OCI tenancy.
-This workshop enables users to perform GenAI RAG on documents stored in different 23ai databases using the OCI Generative AI Agent Service.
-The users can then
+This workshop helps to configure and deploy a cutting-edge chatbot solution utilizing a multi-agent architecture to revolutionize conversational AI. Each Agent / API brings unique capabilities, combining to create an intelligent and versatile system.
 
-- Connect to OCI Generative AI Agent Service from OCI Digital Assistant Chatbot (hosted in OCI Visual Builder ATOM Application)
-- Get responses of their question (in natural language) from those custom documents.
-By following the workshop users can install this ATOM application in their own tenancy
+Using this workshop, the developers can create multiple OCI Generative AI RAG Agents (connected to OCI Object Storage or OCI Autonomous Database 23ai) and different APIs (connecting through OCI Integration Cloud Service - OIC), and expose them to a OCI Generative AI Tools powered OCI Digital Assistant (ODA) Chatbot.
+
+When the users ask natural language questions, then the ODA Chatbot leverages Generative AI Tools to dynamically orchestrate and route the user’s request to appropriate Generative AI RAG Agents or OIC APIs, and thereby fetches the correct response to user’s question.
+
+This multi-agent approach offers a powerful and flexible framework for developers to create next-generation conversational AI applications, catering to a wide range of user needs.
 
 ![User View](images/ATOM_Demo_Screenshot.jpg)
 
@@ -30,14 +30,14 @@ Users can then embed the ODA chatbot in ATOM application. Then the users can get
 
 In this workshop, you will learn how to:
 
-* Create Object Storage Bucket, and upload custom PDF documents in that bucket
-* Setup & configure Generative AI Agent Service (Knowledge Bases and Agents) conected to that Object Storage Bucket
+* Create Object Storage Bucket, and upload custom PDF documents in that bucket.
+* Setup & configure Generative AI Agent Service (Knowledge Bases and Agents) conected to that Object Storage Bucket.
 * Create Autonomous Database 23ai and upload vectorized document content in the database.
-* Setup & configure Generative AI Agent Service (Knowledge Bases and Agents) conected to that Autonomous Database 23ai
-* Setup & configure OIC to integrate with weather API
-* Setup & configure ODA as an LLM powered chatbot
-* Setup & configure Visual Builder as a frontend channel for ODA
-* Test out the features and capabilities of this ATOM application
+* Setup & configure Generative AI Agent Service (Knowledge Bases and Agents) conected to that Autonomous Database 23ai.
+* Setup & configure Oracle Integration Cloud to integrate with Weather API.
+* Setup & configure Oracle Digital Assistant (ODA) as an OCI Generative AI powered chatbot.
+* Setup & configure Visual Builder as a frontend channel for ODA.
+* Test out the features and capabilities of this Visual Builder application.
 
 ### Prerequisites
 
