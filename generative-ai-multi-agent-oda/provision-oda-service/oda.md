@@ -59,6 +59,12 @@ This task will help you ensure that the Dynamic Group and Policy are correctly d
 
     ![Policy Details](images/policy_details.png)
 
+    ```
+    allow dynamic-group <dynamic-group-name> to manage agent-family in tenancy 
+    allow dynamic-group <dynamic-group-name> to manage genai-agent-family in tenancy
+    allow dynamic-group <dynamic-group-name> to manage object-family in tenancy  
+    ```
+
     **Note** If you are using a non-default identity domain - then instead of of just supplying the dynamic group name, you need to provide domain-name/group-name in the policy statements.
 
 ## Task 2: Provision Oracle Digital Assistant
@@ -84,11 +90,14 @@ This task will help you to create Oracle Digital Assistant under your chosen com
 
 This task involves creating REST service which will be used by ODA to connect to OCI Generative AI Agent service.
 
-1. Download the two REST Service Configurations
+1. Download the the three REST Service Configurations
 
-    [agent-RESTService-GenAIAgentCreateSession.yaml](https://objectstorage.us-ashburn-1.oraclecloud.com/p/rd2pNEFjpyzebrAx5qbDv5rkDtbQxuRPkZ3bsI3BzrqAViGMEsIzt9TGjudPzQAp/n/c4u02/b/hosted_workshops/o/RESTService-GenAIAgentCreateSession.yaml)
+    [agent-RESTService-GenAIAgentCreateSession.yaml](https://idb6enfdcxbl.objectstorage.us-chicago-1.oci.customer-oci.com/n/idb6enfdcxbl/b/Excel-Chicago/o/Livelabs%2Fgenai-multi-agent%2FRESTService-GenAIAgentCreateSession.yaml)
 
-    [agent-RESTService-GenAIAgentChat.yaml](https://objectstorage.us-ashburn-1.oraclecloud.com/p/Cw2wkNoAfnmHQetzh5jmcQhvErJZa188Wl_sjxBoWPGhiAliHFculEAwIYvqS2Oj/n/c4u02/b/hosted_workshops/o/RESTService-GenAIAgentChat.yaml)
+    [agent-RESTService-GenAIAgentChat.yaml](
+    https://objectstorage.us-chicago-1.oraclecloud.com/n/idb6enfdcxbl/b/Excel-Chicago/o/Livelabs%2Fgenai-multi-agent%2FRESTService-GenAIAgentChat.yaml)
+
+    [RESTService-CohereToolChatService.yaml](https://objectstorage.us-chicago-1.oraclecloud.com/n/idb6enfdcxbl/b/Excel-Chicago/o/Livelabs%2Fgenai-multi-agent%2FRESTService-CohereToolChatService.yaml)
 
 2. Locate the ODA instance (created in Task 2)
 
@@ -106,13 +115,13 @@ This task involves creating REST service which will be used by ODA to connect to
 
     ![ODA import rest services](images/oda_import_rest_services2.png)
 
-     **Note** Import both Rest Services - The GenAIAgentCreateSession Rest API service (using "agent-RESTService-GenAIAgentCreateSession.yaml") and the GenAIAgentChat Rest API service (using "agent-RESTService-GenAIAgentChat.yaml")
+     **Note** Import all Rest Services - The GenAIAgentCreateSession Rest API service (using "agent-RESTService-GenAIAgentCreateSession.yaml"), GenAIAgentChat Rest API service (using "agent-RESTService-GenAIAgentChat.yaml"), and RESTService-CohereToolChatService.yaml. 
 
 6. In the GenAIAgentCreateSession Rest API service, under Parameters, click on the pencil icon to change the value of the GenAIAgentEndpointId
 
     ![ODA create session api](images/oda_create_session_api1.png)
 
-7. In the Value field, remove the existing value 1, and put the value of the GenAI Agent Endpoint Id (from Lab 3 Task 2 Step 4), and then click the Tick icon
+7. In the Value field, remove the existing value 1, and put the value of the GenAI Agent Endpoint Id (from Lab 2 Task 8 Step 4), and then click the Tick icon
 
     ![ODA create session api](images/oda_create_session_api2.png)
 
@@ -120,15 +129,18 @@ This task involves creating REST service which will be used by ODA to connect to
 
     ![ODA create session api](images/oda_create_session_api3.png)
 
-## Task 4: Import Skill (Provided)
+9. Test the CohereToolChatService. Make sure in the request payload you reference your own compartment id. 
 
-1. Click on the link to download the required skill
+## Task 4: Import Digital Assistant (Provided)
 
-    [GenAI-23AI-RagAgent-livelabs.zip](https://objectstorage.us-ashburn-1.oraclecloud.com/p/rkAHVPn54B5ODcUdzzZP9GtyML84SrheDbIrl4W5JT6lZfPVHwTIEJVkIUwpNp0h/n/c4u02/b/hosted_workshops/o/GenAI23aiRAGAgentChatbot.zip)
+1. Click on the link to download the required Digital Assistant
 
-2. Import the skill (downloaded). Click on Import Skill & select the zip file to import
+    [MultiStepAgentAPIOrchestrationDA](
+    https://objectstorage.us-chicago-1.oraclecloud.com/n/idb6enfdcxbl/b/Excel-Chicago/o/Livelabs%2Fgenai-multi-agent%2FMultiStepAgentAPIOrchestrationDA(1.0)%20(1).zip)
 
-    ![import skill](images/import_skill.png)
+2. Import the Digital Assistant (downloaded). Click on Import Digital Assistant & select the zip file to import
+
+    ![import digital assistant](images/import_da.png)
 
 3. Open the GenAI23aiRAGAgentChatbot, go to “Flows” and click on “user.StartFlow”
 

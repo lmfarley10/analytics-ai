@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This lab will take you through the steps needed to provision Oracle Autonomous Database 23ai and Database Tools Connection. Keep in mind this is an optional lab if you already have a 23ai db provisioned and an existing DB tools connection. You can directly move to lab 3 if you also have a table and vector search function ready.
+This lab will take you through the steps needed to provision Oracle Autonomous Database 23ai and Database Tools Connection. We will upload the EPM Administration document using sql to 23ai, then reference the new agent in a later lab.
 
 Estimated Time: 30 minutes
 
@@ -38,17 +38,15 @@ This task will help you ensure that the Dynamic Group and Policy are correctly d
 
     ![Click Domain](images/click_domain.png)
 
-3. Click on Dynamic Groups, and then your Dynamic Group name
+3. Click on Dynamic Groups, and then your Dynamic Group name e.g. **genaiagentdg**
 
     ![Click DG](images/click_dg.png)
-
-    **Note** The name of your dynamic group can be different.
 
 4. Ensure that your Dynamic Group is properly defined - as follows. Then click on Identity
 
     ![DG Details](images/dg_details.png)
 
-5. Click on Policies, ensure that you are in your "root" compartment, then click on your Policy name
+5. Click on Policies, ensure that you are in your "root" compartment, then create a new Policy e.g. **policyforgenaiagentvector**
 
     ![Click Policy](images/click_policy.png)
 
@@ -57,6 +55,14 @@ This task will help you ensure that the Dynamic Group and Policy are correctly d
 6. Ensure that your Policy is properly defined - as follows.
 
     ![Policy Details](images/policy_details.png)
+
+    **Assuming genaiagentgd is name of dynamic group**
+    ```
+    allow dynamic-group genaiagentdg to read database-tools-family in compartment <compartment-name>
+    allow group Administrators to manage genai-agent-family in tenancy <tenancy-name>
+    allow group Administrators to manage object-family in compartment <compartment-name>
+    allow dynamic-group genaiagentdg to read secret-bundle in compartment <compartment-name>
+    ```
 
     **Note** If you are using a non-default identity domain - then instead of of just supplying the dynamic group name, you need to provide domain-name/group-name in the policy statements.
 
@@ -76,13 +82,13 @@ This task will help you to create a VCN and private subnet in your compartment.
 
 This task will help you to create vault which would be used to save secrets for the database
 
-1. Locate Vault under Key Management & Secret Management. Provide Name and click on Create Vault.
+1. Locate Vault under Key Management & Secret Management. Provide Name e.g. **genaiagentvault** and click on Create Vault.
 
     ![Vault](images/create_vault.png)
 
 2. Go to the newly created Vault. Click on Create Key.
 
-3. Provide Name and leave rest as default. Choose Protection Mode as HSM and click on Create Key.
+3. Provide Name e.g. **genaiagentkey** and leave rest as default. Choose Protection Mode as HSM and click on Create Key.
 
     ![Create Key](images/create_key.png)
 
@@ -143,12 +149,11 @@ This task involves creating a Database Tools Connection which will be used to qu
     ![Validate DBTools](images/dbconn_validate.png)
 
 
-## Task 6: Load vector data in ADB using sql
+# Load vector data in ADB using sql
 
-This section will take you through the steps needed to load data and create a vector search function in your ADB 23ai. Keep in mind this is an optional if you already have your table ready with a vector search function. 
+This section will take you through the steps needed to load data and create a vector search function in your ADB 23ai. 
 
-
-## Task 7: Oracle 23ai Prerequisites
+## Oracle 23ai Prerequisites
 
 The user must have the Oracle 23ai Database with the following components:
 
@@ -180,9 +185,11 @@ A function with the following requirements:
 
 Note: Names can vary but must be aliased as follows in the function.
 
-## Task 8: Run SQL statements to create a vector table
+This is a high level overview. We will go through the implementation in the following tasks. 
 
-1. Go to your Database connection created in previous lab. Click on SQL worksheet and run the following code blocks one by one.
+## Task 6: Run SQL statements to create a vector table
+
+1. Go to your Database connection created in Task 5. Click on SQL worksheet and run the following code blocks one by one.
 
     ![SQL work](images/dbconn_sql_wksheet.png)
 
@@ -281,7 +288,8 @@ Note: Names can vary but must be aliased as follows in the function.
 
 7. Create a table from a PDF file. Please upload the PDF file to a storage bucket and get the Pre-Authenticated Request link to access the PDF file.
 
-    * Upload the PDF file to a storage bucket.
+    * Upload the following PDF file to a storage bucket.
+        * [EPM Admin Access Control](https://objectstorage.us-chicago-1.oraclecloud.com/n/idb6enfdcxbl/b/Excel-Chicago/o/Livelabs%2Fgenai-multi-agent%2FEPM_Administering%20Access%20Control%20for%20Oracle%20Enterprise%20Performance%20Management%20Cloud.pdf)
     * Get the Pre-Authenticated Request link to access the PDF file.
     * Divide the BLOB into chunks using 'utl to chunks'. Adjust the chunk settings according to your needs. For more details, check this link: [Custom Chunking Specifications](https://docs.oracle.com/en/database/oracle/oracle-database/23/vecse/convert-text-chunks-custom-chunking-specifications.html)
     * Use 'utl to text' for further processing. More details can be found here: [UTL TO CHUNKS](https://docs.oracle.com/en/database/oracle/oracle-database/23/arpls/dbms_vector_chain1.html#GUID-4E145629-7098-4C7C-804F-FC85D1F24240)
@@ -299,7 +307,7 @@ Note: Names can vary but must be aliased as follows in the function.
             (select * from dbms_vector_chain.utl_to_chunks(
                 dbms_vector_chain.utl_to_text(
                     to_blob(
-                        DBMS_CLOUD.GET_OBJECT('OCI_CRED_BUCKET', 'https://objectstorage.us-chicago-1.oraclecloud.com/p/Aaklz9CEuOdwhdWbV-bLcDTvML4DNlRtTw7z6dMuSMh1gn2toBnmE1airTA-ZhkW/n/axk4z7krhqfx/b/AI_Vector_Search/o/oracle-ai-vector-search-users-guide.pdf')
+                        DBMS_CLOUD.GET_OBJECT('OCI_CRED_BUCKET', '<preauthenticated-url>')
                     )
                 ), json('{"max":"75", "normalize":"all", "overlap":"15"}')
             )),
@@ -449,7 +457,7 @@ Note: Names can vary but must be aliased as follows in the function.
 
 # Create Knowledge base and chat with agent
 
-## Task 9: Create Knowledge Base
+## Task 7: Create Knowledge Base
 
 This task will help you create a knowledge base using 23ai database as source.
 
@@ -457,11 +465,11 @@ This task will help you create a knowledge base using 23ai database as source.
 
     ![KB Navigation](images/locate_kb.png)
 
-2. Click on your Create knowledge base. Provide Name, Data store type as Oracle AI Vector Search, Provide Database tool connection and click on Test connection. Once successful provide the vector search function created in the optional lab or your own vector search function. Lastly, click on create to create the Knowledge base.
+2. Click on your Create knowledge base. Provide Name, Data store type as Oracle AI Vector Search, Provide Database tool connection and click on Test connection. Once successful provide the vector search function created in Task 6 or your own vector search function. Lastly, click on create to create the Knowledge base.
 
     ![KB creation](images/create_kb.png)
 
-## Task 10: Create Agent
+## Task 8: Create Agent
 
 1. Locate Agents under Analytics & AI -> Generative AI Agents.
 
@@ -479,7 +487,7 @@ This task will help you create a knowledge base using 23ai database as source.
 
     ![Agent Endpoint](images/agent_endpoint.png)
 
-## Task 11: Chat with Agent
+## Task 9: Chat with Agent
 
 1. Locate Chat under Analytics & AI -> Generative AI Agents.
 
@@ -490,9 +498,9 @@ This task will help you create a knowledge base using 23ai database as source.
 ## Acknowledgements
 
 * **Authors**
-    * **Luke Farley**, Staff Cloud Engineer, NACIE
     * **Abhinav Jain**, Senior Cloud Engineer, NACIE
     * **JB Anderson**, Senior Cloud Engineer, NACIE
+    * **Luke Farley**, Staff Cloud Engineer, NACIE
 * **Contributors**
     * **Kaushik Kundu**, Master Principal Cloud Architect, NACIE
 

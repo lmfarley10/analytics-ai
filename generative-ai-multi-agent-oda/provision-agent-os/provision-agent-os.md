@@ -37,7 +37,7 @@ This task will help you to create Oracle Object Storage Bucket under your chosen
 
     ![object storage navigation](images/os_nav.png)
 
-2. Provide the information for **Compartment** and **Bucket Name**. Click Create.
+2. Provide the information for **Compartment** and **Bucket Name**. For this lab you can use **Multi Agent Bucket** Click Create.
     The Object Storage Bucket will be created
 
     ![object storage bucket creation](images/os_bucket_create.png)
@@ -46,7 +46,13 @@ This task will help you to create Oracle Object Storage Bucket under your chosen
 
 ## Task 2: Upload PDF Document(s) to the Object Storage Bucket
 
-1. Click on the Bucket name, then Objects -> Upload button
+1. Download the following files:
+
+    [CWM Tasting Notes](https://objectstorage.us-chicago-1.oraclecloud.com/n/idb6enfdcxbl/b/Excel-Chicago/o/Livelabs%2Fgenai-multi-agent%2FCWM%20Tasting%20Notes%20Oct%202024%20(1)-1.pdf)
+
+    [Making Cheese](https://objectstorage.us-chicago-1.oraclecloud.com/n/idb6enfdcxbl/b/Excel-Chicago/o/Livelabs%2Fgenai-multi-agent%2FMaking%20Cheese-1.pdf)
+
+2. Click on the Bucket name, then Objects -> Upload button
 
     Click on “select files” link to select files from your machine. This step can be repeated to select multiple files to upload to the bucket.
 
@@ -56,9 +62,7 @@ This task will help you to create Oracle Object Storage Bucket under your chosen
 
     ![object storage select files](images/os_file_select.png)
 
-2. Click Upload -> Close to upload the PDF file in the Object Storage Bucket.
-
-    ![object storage upload files](images/os_upload.png)
+3. Click Upload -> Close to upload the PDF files in Task 2 step 1 to the Object Storage Bucket.
 
 ## Task 3: Provision Knowledge Base
 
@@ -74,7 +78,7 @@ This task will help you to create Oracle Generative AI Agent’s Knowledge Base 
 
     ![knowledge base navigation](images/kb_nav.png)
 
-3. Specify the name of the knowledge base, ensure that you have selected the correct compartment.
+3. Specify the name of the knowledge base e.g. **WineCheeseKb**, ensure that you have selected the correct compartment.
 
     Select “Object storage” in the “Select data source” dropdown, and then click on the “Specify data source” button
 
@@ -82,7 +86,7 @@ This task will help you to create Oracle Generative AI Agent’s Knowledge Base 
 
 4. Specify the name of the data source and Description (Optional)
 
-    Select the bucket that you have created in the previous lab, and for Object prefix choose “Select all in bucket”
+    Select the bucket that you have created in task one **Multi Agent Bucket**, and for Object prefix choose “Select all in bucket”
 
     Click the “Create” button
 
@@ -106,9 +110,9 @@ This task will help you to create Oracle Generative AI Agent under your chosen c
 
     ![agent](images/agent.png)
 
-2. Specify the agent name, ensure the correct compartment is selected and indicate a suitable welcome message
+2. Specify the agent name e.g. **WineCheeseAgent**, ensure the correct compartment is selected and indicate a suitable welcome message
 
-    Select the Knowledge Base that you created in the previous task. Providing the Welcome message is optional.
+    Select the Knowledge Base that you created in the previous task **WineCheeseKb**. Providing the Welcome message is optional.
 
     Click the “Create” button.
 
