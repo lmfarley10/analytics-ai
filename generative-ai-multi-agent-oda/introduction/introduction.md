@@ -30,11 +30,13 @@ Users can then embed the ODA chatbot in ATOM application. Then the users can get
 
 In this workshop, you will learn how to:
 
-* Create autonomous database and upload documents in the database.
-* Setup & configure Generative AI Agent Service (Knowledge Bases and Agents)
+* Create Object Storage Bucket, and upload custom PDF documents in that bucket
+* Setup & configure Generative AI Agent Service (Knowledge Bases and Agents) conected to that Object Storage Bucket
+* Create Autonomous Database 23ai and upload vectorized document content in the database.
+* Setup & configure Generative AI Agent Service (Knowledge Bases and Agents) conected to that Autonomous Database 23ai
+* Setup & configure OIC to integrate with weather API
 * Setup & configure ODA as an LLM powered chatbot
 * Setup & configure Visual Builder as a frontend channel for ODA
-* Setup & configure OIC to integrate with weather API
 * Test out the features and capabilities of this ATOM application
 
 ### Prerequisites
