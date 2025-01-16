@@ -10,7 +10,7 @@ The users can then
 - Get responses of their question (in natural language) from those custom documents.
 By following the workshop users can install this ATOM application in their own tenancy
 
-![User View](images/image_intro.png)
+![User View](images/ATOM_Demo_Screenshot.jpg)
 
 Estimated Workshop Time: 3 hours
 
@@ -18,7 +18,7 @@ Estimated Workshop Time: 3 hours
 
 Objective of this workshop is to set-up the required OCI services to create a full Generative AI Agent solution with RAG capabilities:
 
-![Architecture Diagram](images/architecture_23ai.png)
+![Architecture Diagram](images/MultiStepAgentAPIOrchestrationArchDiagram.jpg)
 
 * OCI Generative AI Agent Service – Users can configure OCI Generative AI Agent Service (create and configure Knowledge Bases and Agents).
 Users can then ingest and perform RAG on the user’s documents in 23ai database, using OCI Generative AI Agent Service.
