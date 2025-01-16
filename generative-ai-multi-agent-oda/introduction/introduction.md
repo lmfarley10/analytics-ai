@@ -68,7 +68,6 @@ This lab assumes you have:
 * **Author**
     * **Kaushik Kundu**, Master Principal Cloud Architect, NACIE
     * **Abhinav Jain**, Senior Cloud Engineer, NACIE
-
 * **Contributors**
     * **Luke Farley**, Staff Cloud Engineer, NACIE
     * **Nisith Apurb**, Principal Cloud Architect, NACIE
