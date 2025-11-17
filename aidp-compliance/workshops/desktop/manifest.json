@@ -1,0 +1,36 @@
+{
+  "workshoptitle": "Enterprise Data Security & Compliance with OCI Data Catalog, Data Integration, and AI Data Platform",
+  "help": "livelabs-help-aiservices_us@oracle.com",
+  "tutorials": [
+    {
+      "title": "Introduction",
+      "description": "The Introduction is always second for LiveLabs. The title and contents menu title match for the Introduction.",
+      "filename": "../../introduction/introduction.md"
+    },
+    {
+      "title": "Get Started with noVNC Remote Desktop",
+      "description": "Using noVNC Remote Desktop",
+      "filename": "https://oracle-livelabs.github.io/common/labs/remote-desktop/using-novnc-remote-desktop.md"
+    },
+    {
+      "title": "Lab 1: Centralized Data Cataloging & Classification for Compliance",
+      "description": "Labs that follow the introduction are numbered, starting with Lab 1",
+      "filename": "../../data-catalog/data-catalog.md"
+    },
+    {
+      "title": "Lab 2: Secured Data Integration Pipeline with Lineage and Policy Enforcement",
+      "description": "Labs that follow the introduction are numbered, starting with Lab 1",
+      "filename": "../../secure-pipeline/secure-pipeline.md"
+    },
+    {
+      "title": "Lab 3: Inheriting Governance in AI Data Platform and Enforcing Security",
+      "description": "Labs that follow the introduction are numbered, starting with Lab 1",
+      "filename": "../../aidp-enforce/aidp-enforce.md"
+    },
+    {
+      "title": "Need Help?",
+      "description": "Solutions to Common Problems and Directions for Receiving Live Help",
+      "filename": "https://oracle-livelabs.github.io/common/labs/need-help/need-help-livelabs.md"
+    }
+  ]
+}

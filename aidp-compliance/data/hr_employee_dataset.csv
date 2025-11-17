@@ -1,0 +1,11 @@
+Name,Email,Department,Salary,SSN
+John Doe,john.doe@example.com,IT,75000,123-45-6789
+Jane Smith,jane.smith@example.com,HR,85000,987-65-4321
+Alice Johnson,alice.johnson@example.com,Finance,90000,456-78-9012
+Bob Brown,bob.brown@example.com,Marketing,65000,789-01-2345
+Carol White,carol.white@example.com,Sales,70000,234-56-7890
+David Green,david.green@example.com,IT,80000,567-89-0123
+Eve Black,eve.black@example.com,HR,95000,890-12-3456
+Frank Miller,frank.miller@example.com,Finance,100000,345-67-8901
+Grace Lee,grace.lee@example.com,Marketing,60000,678-90-1234
+Henry Wilson,henry.wilson@example.com,Sales,72000,901-23-4567
