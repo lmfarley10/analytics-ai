@@ -49,9 +49,19 @@ This lab assumes you have:
 ## Task 2: Perform Basic Transformations
 
 1. In the pipeline editor, add an Integration Task or Expression operator.
-2. For masking PII: Use functions like REPLACE or a masking expression, e.g., REPLACE(Name, SUBSTR(Name, 1, 1), 'X') to anonymize names.
-3. For filtering: Add a Filter operator, e.g., condition Salary < 100000 or anonymize with CASE statements.
-4. Ensure transformations respect Data Catalog classifications by referencing tagged columns.
+2. For masking PII, use an Expression operator to create derived columns with masking logic:
+   - For Name (e.g., keep first char, mask rest with 'X' preserving length): SUBSTR(EXPRESSION_1.SOURCE_1.Name, 1, 1) || RPAD('X', LENGTH(EXPRESSION_1.SOURCE_1.Name) - 1, 'X')
+   - For Email (mask local part before '@', keep domain): SUBSTR(EXPRESSION_1.SOURCE_1.Email, 1, 3) || RPAD('X', INSTR(EXPRESSION_1.SOURCE_1.Email, '@') - 4, 'X') || SUBSTR(EXPRESSION_1.SOURCE_1.Email, INSTR(EXPRESSION_1.SOURCE_1.Email, '@'))
+   - For SSN (show last 4 digits, mask rest): 'XXX-XX-' || SUBSTR(EXPRESSION_1.SOURCE_1.SSN, -4, 4)
+3. For conditional anonymization (e.g., mask Salary if >= 100000): Use CASE in Expression: CASE WHEN REGEXP_SUBSTR(EXPRESSION_1.SOURCE_1.Salary, '^\d+(\.\d+)?$') IS NOT NULL AND TO_NUMBER(REPLACE(EXPRESSION_1.SOURCE_1.Salary, ',', ''), '999999.99') < 100000 THEN EXPRESSION_1.SOURCE_1.Salary ELSE 'XXXXXX' END
+4. For filtering: Add a Filter operator, e.g., condition Salary < 100000 (to keep low salaries).
+5. Transformations are designed based on prior review of Catalog terms (manual, as direct DI config unavailable); full enforcement via lineage in Catalog and AIDP (next lab).
+
+### Troubleshooting Common Expression Errors
+- **DIS_DATAFLOW_0050 (Syntax/Parse Issues):** Ensure no invalid characters like ':' in expression (use separate field for column name). For multi-expressions, add as separate derived attributes, not concatenated.
+- **Type Mismatch (e.g., boolean expected):** Use REGEXP_SUBSTR ... IS NOT NULL for checks instead of REGEXP_LIKE if unsupported.
+- **IllegalArgumentException (Cannot parse decimal):** Clean strings with REPLACE (e.g., for commas) and specify format in TO_NUMBER (e.g., '999999.99').
+- Test in preview mode; if types mismatch (e.g., numeric to string mask), use consistent types (e.g., mask to 0 instead of 'XXXXXX').
 
    ![Apply Transformations](images/apply-transformations.png)
    *(Image description: Pipeline editor with transformation operators and expressions.)*
@@ -68,7 +78,10 @@ This lab assumes you have:
 ## Task 4: Execute the Pipeline and Store Results
 
 1. In the pipeline editor, click "Publish" then "Run".
-2. Configure output: Add a target operator to write to a new Object Storage bucket (e.g., transformed-hr-bucket) or Autonomous Database table.
+2. Configure output: Add a target operator to write to an Autonomous Database (ADW) table (recommended as source for AIDP in next lab).
+   - Provision ADW if needed (Databases > Autonomous Database > Create, name e.g., aidp-adw, set password/access).
+   - In DI, create ADW connection (Data Assets > Create, type Oracle Database, provide credentials/wallet).
+   - In Target operator, select ADW connection, map columns to new table like TRANSFORMED_HR, set insert mode.
 3. Monitor the run status in the Executions tab.
 
    ![Execute Pipeline](images/execute-pipeline.png)
@@ -77,8 +90,8 @@ This lab assumes you have:
 ## Task 5: View and Export Data Lineage
 
 1. After execution, in Data Integration, go to the pipeline's Lineage tab.
-2. Alternatively, in Data Catalog, search for the output entity and view lineage.
-3. Trace flows: e.g., from source Salary column through transformations to output.
+2. Alternatively, in Data Catalog, search for the ADW output entity (harvest if needed) and view lineage.
+3. Trace flows: e.g., from source Salary column through transformations to ADW output, including terms (even without direct DI linkage, Catalog tracks via metadata if harvested).
 4. Export as PDF for audits.
 
    ![View Lineage](images/view-lineage.png)
