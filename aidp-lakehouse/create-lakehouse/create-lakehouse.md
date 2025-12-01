@@ -41,6 +41,8 @@ This lab assumes you have:
 
 ## Task 1: Create Autonomous AI Lakehouse
 
+> **Note for Shared Labs:** In a shared lab environment, skip provisioning a new ADB instance and use the pre-provisioned shared instance provided by your instructor. Log in as your assigned user.
+
 1. Log in to your cloud tenancy and navigate to Oracle AI Database > Autonomous AI Database
 
 ![AI Database](./images/ai-database.png)
@@ -65,6 +67,8 @@ This lab assumes you have:
 
 
 ## Task 2: Create Gold Schema 
+
+> **Note for Shared Labs:** Use a unique schema name like 'gold_<your_initials>' to avoid conflicts. Replace 'gold' in the SQL below accordingly.
 
 1. Create a Gold Schema (User) in Autonomous Data Lakehouse. Replace "strong\_password" with your own password.
 
@@ -101,6 +105,8 @@ GRANT READ, WRITE ON DIRECTORY DATA_PUMP_DIR TO gold;
 
 ## Task 3: Add REST capabilities to GOLD Schema
 
+> **Note for Shared Labs:** Enable REST on your unique schema (e.g., 'gold_<your_initials>').
+
 **NOTE** If unable to sign in directly as gold schema, enable REST access
 
 1. Navigate to AI DB > database actions > database users > search for 'gold' > select three dots > enable rest > log in to sql developer web as gold
@@ -108,6 +114,8 @@ GRANT READ, WRITE ON DIRECTORY DATA_PUMP_DIR TO gold;
 ![Enable REST](./images/enable-rest-gold.png)
 
 ## Task 4: Log in to SQL Developer as GOLD Schema 
+
+> **Note for Shared Labs:** Log in using your unique schema name and credentials.
 
 1. Navigate back to AI DB > database actions > SQL > Once in SQL Developer select ADMIN (top right) > Sign Out
 
@@ -122,6 +130,8 @@ GRANT READ, WRITE ON DIRECTORY DATA_PUMP_DIR TO gold;
 3. Navigate to Development > SQL 
 
 ## Task 5: Populate AI Lakehouse with Sample Airline Data 
+
+> **Note for Shared Labs:** Create tables in your unique schema (e.g., gold_<your_initials>.AIRLINE_SAMPLE).
 
 1. Create the AIRLINE_SAMPLE table under gold schema 
 ```sql 
@@ -193,6 +203,8 @@ CREATE TABLE GOLD.AIRLINE_SAMPLE_GOLD (
 
 ## Task 6: Provision AI Data Platform Instance 
 
+> **Note for Shared Labs:** If using a shared AIDP instance, skip this and use the provided one. Otherwise, proceed.
+
 1. Log in to your cloud tenancy and navigate to Analytics & AI > AI Data Platform 
 
 ![AI Data Platform](./images/create-aidp.png)
@@ -213,6 +225,8 @@ For more information, see [IAM Policies for AI Data Platform](https://docs.oracl
 
 ## Task 7: Connect AI Data Platform Catalog to Lakehouse Gold Schema
 
+> **Note for Shared Labs:** Connect to your unique schema (e.g., gold_<your_initials>).
+
 1. Once AIDP is provisioned, navigate to the service console - 
 
 ![AIDP Home](./images/aidp-home.png)
@@ -228,6 +242,8 @@ For more information, see [IAM Policies for AI Data Platform](https://docs.oracl
 **NOTE** If you are connecting to an AI Database in a private subnet, you will need to enable private network. This is outside the scope of this livelab. For more details, see [Create an External Catalog for Private Networks](https://docs.oracle.com/en/cloud/paas/ai-data-platform/aidug/external-catalogs.html#GUID-F68CD62C-7D35-4A87-9234-9C88F6CDB60F).
 
 ## Task 8: Set Up Object Storage
+
+> **Note for Shared Labs:** Use the instructor-provided shared bucket. Use a unique subfolder like 'delta/<your_initials>/' for your Delta tables to avoid conflicts.
 
 This task will help you create a bucket in OCI Object Storage where your raw data files will reside.
 

@@ -34,6 +34,8 @@ This lab assumes you have:
 
 ## Task 1: Download the Wallet to Autonomous AI Lakehouse
 
+> **Note for Shared Labs:** Use the wallet for the shared ADB instance provided by your instructor.
+
 1. Navigate to the Autonomous AI Lakehouse created in the first lab from your OCI tenancy
 
 2. Select **Database connection** and download the wallet for the lakehouse
@@ -41,6 +43,8 @@ This lab assumes you have:
 ![Download Wallet](./images/download-wallet.png)
 
 ## Task 2: Connect OAC to Your Gold Data Table
+
+> **Note for Shared Labs:** If using a shared OAC instance, skip provisioning and use the provided one. When connecting, select your unique schema (e.g., gold_<your_initials>) and table (e.g., AIRLINE_SAMPLE_GOLD).
 
 1. Navigate to Analytics Cloud in the OCI console 
 
@@ -81,6 +85,8 @@ This lab assumes you have:
 ---
 
 ## Task 3: Build a Workbook with Gold data
+
+> **Note for Shared Labs:** Ensure you're using data from your unique table (e.g., gold_<your_initials>.AIRLINE_SAMPLE_GOLD).
 
 1. From the OAC home page, select Create > Workbook
 
@@ -142,6 +148,8 @@ This lab assumes you have:
 ## Next Steps
 
 **Congratulations!** You now have a fully functioning pipeline from raw data to analytic insight using **Autonomous AI Lakehouse**, **AI Data Platform**, and **Analytics Cloud**. Feel free to experiment with more charts, filters, or custom calculations—and use your dashboard to present your findings.
+
+> **Note for Shared Labs:** If collaborating, share your unique visualizations or combine insights in a shared workbook.
 
 ---
 

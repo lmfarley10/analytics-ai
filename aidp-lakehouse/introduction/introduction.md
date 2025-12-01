@@ -34,6 +34,13 @@ By completing this workshop, you will:
 
 ---
 
+### Shared Environment Instructions
+
+> **Note:** If participating in a hands-on lab session with a shared Autonomous AI Database (ADB) Lakehouse instance, follow these adaptations to avoid conflicts:
+> - Use unique schema names like 'gold_<your_initials>' instead of 'gold'.
+> - For Object Storage, use a shared bucket with unique subfolders (e.g., 'delta/<your_initials>/') as instructed by your lab facilitator.
+> - Your instructor will provide login details and any pre-provisioned resources. For individual use, follow the default instructions.
+
 ### Prerequisites
 
 This workshop assumes you have:

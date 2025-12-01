@@ -35,11 +35,15 @@ This lab assumes you have:
 
 ## Task 1: Navigate to Workspace
 
+> **Note for Shared Labs:** If using a shared AIDP instance, navigate to the provided workspace and notebook. You may need to create a personal notebook copy.
+
 1. Navigate to the workspace created in the previous lab. Select the workspace and navigate to the notebook just created (e.g. **airline-workspace**).
 
 ![Airline Notebook](./images/airline-notebook.png)
 
 ## Task 2: Load Airline Sample Data as Delta Table
+
+> **Note for Shared Labs:** Use your unique schema in the table path (e.g., aidp_external_gold_catalog.gold_<your_initials>.AIRLINE_SAMPLE).
 
 1. Test to see if you can connect to the gold "**AIRLINE\_SAMPLE**" table. The table is in the format **external-catalog-name.schema.table**. If using a different name for the external catalog, make sure to replace the name below. 
 
@@ -64,6 +68,8 @@ df.show()
 
 ## Task 3: Write to Object Storage Bucket
 
+> **Note for Shared Labs:** Use a unique delta_path like "oci://aidp-shared-lab-bucket@<namespace>/delta/<your_initials>/airline_sample" to avoid conflicts.
+
 1. Write the new data frame to your Object Storage bucket. Replace '**oci-bucket**' with your oci bucket name and '**os-namespace**' with object storage namespace - 
 
 ```python
@@ -81,6 +87,8 @@ df.write.format("delta").mode("overwrite").save(delta_path)
 
 
 ## Task 4: Create Bronze Medallion Schema
+
+> **Note for Shared Labs:** If sharing catalogs, use unique names or schemas to avoid conflicts.
 
 1. Create bronze table for first stage of medallion architecture. Here we will create a new (standard) catalog, called "**airlines\_data\_catalog**". This is distinct from the external catalog to the AI Lakehouse created earlier. "**airlines\_data\_catalog**" will be used to store the bronze, silver, and gold layers of the medallion architecture.
 
@@ -126,6 +134,8 @@ df_v0.show()
 ```
 
 ## Task 5: Create Silver Medallion Schema & Enrich Data with Generative AI 
+
+> **Note for Shared Labs:** Use unique paths for silver_path (e.g., append <your_initials>).
 
 1. Write to Silver schema of medallion architecture 
 
@@ -225,6 +235,8 @@ enhanced_df.show(10, False)
 
 ## Task 6: Write Enriched Data to Gold Schema 
 
+> **Note for Shared Labs:** Use unique paths and table names (e.g., append <your_initials>).
+
 1. Save new data to gold schema 
 
 ```python
@@ -320,6 +332,8 @@ INSERT into aidp_external_gold_catalog.gold.airline_sample_gold select * from df
 ```
 
 **NOTE** We use the sql insert instead of the native spark insert, because spark causes the dataframe to be pushed with lowercase column names. This results in OAC unable to visualize the data. Using sql INSERT into avoids this issue. 
+
+> **Note for Shared Labs:** This inserts into your unique schema's table, ensuring no conflicts.
 
 You are now ready to **proceed to the next lab** to visualize your data in OAC. 
 
