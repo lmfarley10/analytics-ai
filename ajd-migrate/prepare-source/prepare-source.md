@@ -115,7 +115,9 @@ mongodb://<user>:<password>@<hostname>:27017/<user>?authMechanism=PLAIN&authSour
 When setting env variable
 
 ```bash
+<copy>
 export SOURCE_MONGO_API_URL='xxx'
+</copy>
 ```
 
 Replace placeholders with your details. URL-encode special characters in the password, e.g., '@' as %40, '#' as %23, '/' as %2F, and ':' as %3A. For example, if your password is 'pass@word#1', encode it as 'pass%40word%231'. Always use single quotes around the full string when exporting as an environment variable to avoid shell interpretation.
@@ -322,9 +324,9 @@ Replace placeholders with your details. URL-encode special characters in the pas
 ## Task 7 (Optional): Analyze and Plan Migration
 
 1. Use Cline to run anaylsis on migration.
-   - Example: Run analysis on 'todos_source' to suggest mappings.
+   - Example: Run analysis on 'todos\_source' to suggest mappings.
 
-2. Plan: For this simple app, assume 1:1 migration to 'todos_target'. Identify any transformations if needed.
+2. Plan: For this simple app, assume 1:1 migration to 'todos\_target'. Identify any transformations if needed.
 
 With your source data prepared in AJD, you're ready to migrate to a target collection in the same instance in Lab 3.
 

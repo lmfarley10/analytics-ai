@@ -135,14 +135,12 @@ Inside `public`, create `index.html` with the following content:
 
 **Congratulations!** You've deployed a MongoDB-compatible app on AJD.
 
-## Task 4: Review Schema and Collections
+## Task 4 (Optional): Review Schema and Collections
 
 1. In Oracle Database Actions (SQL Web from AJD console):
    - Log in to AJD as database user, e.g. **MONGO_USER**.
    - Run: SELECT json_serialize(data) FROM todos;
    - Note the schema (e.g., DATA column with JSON: _id, text, completed). If SELECT * FROM todos; doesn’t produce the expected output, use this alternative instead.
-
-   ![AJD Tasks](./images/ajd-entries.png)
 
 2. Explore other tables if needed.
 
