@@ -65,7 +65,9 @@ This lab assumes you have:
    - Main check: In Oracle Database Actions, run 
 
    ```sql 
+   <copy>
    SELECT * FROM todos_target;
+   </copy>
    ```
    
    compare with source data.
