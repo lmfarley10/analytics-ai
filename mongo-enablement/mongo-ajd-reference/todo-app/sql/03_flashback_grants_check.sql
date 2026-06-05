@@ -1,0 +1,2 @@
+SELECT COUNT(*) AS flashback_check_count
+FROM "todos" AS OF TIMESTAMP (SYSTIMESTAMP - INTERVAL '1' MINUTE);

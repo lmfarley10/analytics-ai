@@ -1,0 +1,36 @@
+{
+  "workshoptitle": "Mongo Enablement Companion Guide",
+  "help": "livelabs-help-adbs_us@oracle.com",
+  "tutorials": [
+    {
+      "title": "Introduction",
+      "description": "How to use this compact companion guide with the AJD Mongo developer journey lab.",
+      "filename": "../../introduction/introduction.md"
+    },
+    {
+      "title": "Quick Start Cheat Sheet",
+      "description": "Minimum steps to get the reference app running during a workshop.",
+      "filename": "../../quickstart/quickstart.md"
+    },
+    {
+      "title": "Reference Implementation",
+      "description": "How to use the completed app and migration CLI as a recovery path.",
+      "filename": "../../reference-implementation/reference-implementation.md"
+    },
+    {
+      "title": "Troubleshooting",
+      "description": "Fast fixes for common attendee setup, network, and app issues.",
+      "filename": "../../troubleshooting/troubleshooting.md"
+    },
+    {
+      "title": "Instructor Guide",
+      "description": "Instructor run-of-show, rescue paths, and demo guidance.",
+      "filename": "../../instructor-guide/instructor-guide.md"
+    },
+    {
+      "title": "Need Help?",
+      "description": "Solutions to common problems and directions for receiving live help.",
+      "filename": "https://oracle-livelabs.github.io/common/labs/need-help/need-help-livelabs.md"
+    }
+  ]
+}
