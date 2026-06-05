@@ -11,9 +11,15 @@ Use it when:
 - The instructor needs to demo migration or Oracle-enhanced features.
 - The class needs a fast reset to a known-good app.
 
+## Download
+
+[Mongo AJD Reference Workshop](https://objectstorage.us-chicago-1.oraclecloud.com/p/5_owsQRuZS4LCiseFDEU8itZgU8RuKjPfMfIOyAs-G42qsUiHuMyvpBuIdXeGT7M/n/idb6enfdcxbl/b/demo-bucket/o/mongo-ajd-reference-workshop.zip)
+
+Download and unzip the package before running the commands in this section.
+
 ## Expected Layout
 
-After unzipping the sanitized reference package, the workspace should look like this:
+After unzipping the reference package, the workspace should look like this:
 
 ```text
 mongo-ajd-reference/
@@ -22,7 +28,7 @@ mongo-ajd-reference/
   migration-cli/
 ```
 
-Do not include real `.env` files, database wallets, `.git` directories, or `node_modules` folders in the attendee package.
+Do not commit real `.env` files, database wallets, `.git` directories, or `node_modules` folders to this LiveLabs repository.
 
 ## Minimal Attendee Configuration
 

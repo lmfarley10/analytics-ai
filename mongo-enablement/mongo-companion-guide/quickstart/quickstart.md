@@ -16,7 +16,15 @@ mongodb://<username>:<password>@<adb-host>:27017/<username>?authMechanism=PLAIN&
 
 Keep this value private.
 
-## Step 2: Confirm Your Public IP Is Allowed
+## Step 2: Download the Reference Package
+
+Download and unzip the completed app:
+
+[Mongo AJD Reference Workshop](https://objectstorage.us-chicago-1.oraclecloud.com/p/5_owsQRuZS4LCiseFDEU8itZgU8RuKjPfMfIOyAs-G42qsUiHuMyvpBuIdXeGT7M/n/idb6enfdcxbl/b/demo-bucket/o/mongo-ajd-reference-workshop.zip)
+
+Open a terminal in the unzipped reference implementation root before continuing.
+
+## Step 3: Confirm Your Public IP Is Allowed
 
 Your AJD access control list must include your current public IP. If you changed networks, update the ACL before troubleshooting the app.
 
@@ -24,7 +32,7 @@ Your AJD access control list must include your current public IP. If you changed
 curl -s ifconfig.me
 ```
 
-## Step 3: Configure `.env`
+## Step 4: Configure `.env`
 
 In the reference implementation root, create `.env` from `.env.example`.
 
@@ -43,7 +51,7 @@ PORT=3000
 
 Use separate source and target URLs only if your instructor asks you to run the migration demo.
 
-## Step 4: Start the App
+## Step 5: Start the App
 
 ```bash
 cd todo-app
@@ -57,7 +65,7 @@ Open:
 http://localhost:3000
 ```
 
-## Step 5: Validate CRUD
+## Step 6: Validate CRUD
 
 In the app:
 

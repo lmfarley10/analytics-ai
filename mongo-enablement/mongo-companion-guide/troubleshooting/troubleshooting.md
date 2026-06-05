@@ -69,7 +69,7 @@ If an attendee built the migration CLI manually and sees `ERR_REQUIRE_ESM`, pin 
 npm install mongodb dotenv commander@12
 ```
 
-The completed reference implementation can use its checked package lock with:
+The downloaded reference implementation can use its included package lock with:
 
 ```bash
 npm ci

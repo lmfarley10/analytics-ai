@@ -21,8 +21,8 @@ Prioritize outcomes in this order:
 - Confirm Windows attendees have Git Bash available in VS Code.
 - Confirm attendees have OCI permissions to use Autonomous JSON Database.
 - Confirm the workshop compartment and region are ready.
-- Prepare a sanitized reference implementation package.
-- Remove `.env`, wallets, `.git`, `.DS_Store`, and `node_modules` from the attendee package.
+- Confirm the reference implementation download is available.
+- Confirm the downloadable package does not include real `.env`, wallets, `.git`, `.DS_Store`, or `node_modules`.
 - Keep a private instructor copy with any demo-only wallet material.
 - On workshop day, update AJD ACLs with the venue or attendee public IPs.
 - Ask attendees to avoid URI-reserved characters in database passwords when possible.
@@ -76,6 +76,10 @@ If the attendee cannot connect to AJD:
 - Confirm PowerShell did not alter `$external`.
 
 ## Reference Implementation Packaging
+
+Download:
+
+[Mongo AJD Reference Workshop](https://objectstorage.us-chicago-1.oraclecloud.com/p/5_owsQRuZS4LCiseFDEU8itZgU8RuKjPfMfIOyAs-G42qsUiHuMyvpBuIdXeGT7M/n/idb6enfdcxbl/b/demo-bucket/o/mongo-ajd-reference-workshop.zip)
 
 Recommended attendee package contents:
 

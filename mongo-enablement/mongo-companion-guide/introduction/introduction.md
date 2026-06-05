@@ -8,6 +8,10 @@ https://dspdr.github.io/ajd-mgo-journey/workshops/tenancy/index.html?lab=provisi
 
 Use the original workshop as the primary hands-on lab. Use this companion guide when you need a fast reference implementation, a recovery path for attendees who fall behind, or instructor-ready troubleshooting notes.
 
+Download the completed reference package:
+
+[Mongo AJD Reference Workshop](https://objectstorage.us-chicago-1.oraclecloud.com/p/5_owsQRuZS4LCiseFDEU8itZgU8RuKjPfMfIOyAs-G42qsUiHuMyvpBuIdXeGT7M/n/idb6enfdcxbl/b/demo-bucket/o/mongo-ajd-reference-workshop.zip)
+
 This guide is intentionally short. It is not a second full lab. It is a workshop cheat sheet.
 
 > **Estimated Time:** 10 minutes for quick start, 20-30 minutes for guided recovery or instructor demo.
@@ -33,9 +37,9 @@ This guide is intentionally short. It is not a second full lab. It is a workshop
 3. Use the reference implementation instead of building every file manually.
 4. Keep learning from the original lab while using the working app as your safety net.
 
-## Reference App Architecture
+## Reference Package Architecture
 
-The reference implementation contains:
+The downloaded reference package contains:
 
 - `todo-app`: Node.js and Express CRUD app using the MongoDB Node.js driver.
 - `migration-cli`: Command-line utility for source-to-target migration.
