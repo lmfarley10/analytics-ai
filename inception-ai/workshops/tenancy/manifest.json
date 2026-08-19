@@ -1,0 +1,51 @@
+{
+  "workshoptitle": "Project Inception: Enterprise AI Fabric Companion LiveLab",
+  "help": "livelabs-help-aiservices_us@oracle.com",
+  "tutorials": [
+    {
+      "title": "Introduction",
+      "description": "Understand the Enterprise AI Fabric, the companion LiveLab model, and the workshop outcomes.",
+      "filename": "../../0-introduction/introduction.md"
+    },
+    {
+      "title": "Get Started",
+      "description": "Sign in to the Oracle Cloud Console when your implementation exercise uses an OCI tenancy.",
+      "filename": "https://livelabs.oracle.com/cdn/common/labs/cloud-login/cloud-login.md"
+    },
+    {
+      "title": "Lab 1: Plan Your Companion Implementation",
+      "description": "Confirm access, prerequisites, scope, and the implementation decisions required for a customer engagement.",
+      "filename": "../../1-companion-access/companion-access.md"
+    },
+    {
+      "title": "Lab 2: Design the Fabric Foundation",
+      "description": "Map the reusable runtime, agent patterns, data, identity, and observability components to your solution.",
+      "filename": "../../2-foundation/foundation.md"
+    },
+    {
+      "title": "Lab 3: Select MCP Servers and a Recipe",
+      "description": "Choose the governed tool boundary and use Smart Dispatch as the reference implementation walkthrough.",
+      "filename": "../../3-mcp-and-recipes/mcp-and-recipes.md"
+    },
+    {
+      "title": "Lab 4: Apply Governance and Security",
+      "description": "Design identity propagation, tool exposure, data controls, guardrails, logging, and evaluation.",
+      "filename": "../../4-governance-and-security/governance-and-security.md"
+    },
+    {
+      "title": "Lab 5: Prepare for Production",
+      "description": "Create a deployment sequence, validation plan, operational model, and customer handoff package.",
+      "filename": "../../5-production-readiness/production-readiness.md"
+    },
+    {
+      "title": "Lab 6: Choose Your Next Step",
+      "description": "Request the implementation package, select a recipe, and plan a supported customer delivery.",
+      "filename": "../../6-next-steps/next-steps.md"
+    },
+    {
+      "title": "Need Help?",
+      "description": "Review common LiveLabs questions and support options.",
+      "filename": "https://livelabs.oracle.com/cdn/common/labs/need-help/need-help-livelabs.md"
+    }
+  ]
+}
