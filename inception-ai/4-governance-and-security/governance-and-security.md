@@ -32,7 +32,7 @@ In this lab, you will:
 
     ![MCP Inspector authentication settings using an OAuth flow without displaying a token](images/mcp-oauth-settings.png)
 
-4. Never place an access token in a screenshot or LiveLabs command. Even a test token must be treated as a secret until it is expired and the image has been reviewed.
+4. Discuss what should happen to a user's access token after sign-in. A secure design keeps it out of browser-visible URLs and logs, limits its lifetime, and validates it at each protected boundary.
 
 ## Task 2: Define defense in depth
 

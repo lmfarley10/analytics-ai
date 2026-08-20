@@ -87,7 +87,7 @@ In this lab, you will:
 
 2. Assign one system of record for each setting: deployment configuration, OCI Vault, approved CI/CD secret store, or customer configuration service.
 
-3. Never place real secrets, wallets, tokens, private keys, customer hostnames, or OCIDs in LiveLabs content, screenshots, issue reports, or source-control examples.
+3. Identify which values are configuration identifiers and which must be protected as secrets. Discuss where the solution should retrieve protected values at runtime and which workload identity is allowed to use them.
 
 4. In a delivery engagement, use the approved release documentation as the authoritative configuration reference.
 
