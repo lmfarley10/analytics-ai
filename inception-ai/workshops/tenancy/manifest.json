@@ -1,10 +1,10 @@
 {
-  "workshoptitle": "Project Inception: Enterprise AI Fabric Companion LiveLab",
+  "workshoptitle": "Project Inception: Enterprise AI Framework Companion LiveLab",
   "help": "livelabs-help-aiservices_us@oracle.com",
   "tutorials": [
     {
       "title": "Introduction",
-      "description": "Understand the Enterprise AI Fabric, the companion LiveLab model, and the workshop outcomes.",
+      "description": "Explore the Inception framework, a realistic enterprise AI scenario, and the workshop outcomes.",
       "filename": "../../0-introduction/introduction.md"
     },
     {
@@ -13,18 +13,18 @@
       "filename": "https://livelabs.oracle.com/cdn/common/labs/cloud-login/cloud-login.md"
     },
     {
-      "title": "Lab 1: Plan Your Companion Implementation",
-      "description": "Confirm access, prerequisites, scope, and the implementation decisions required for a customer engagement.",
+      "title": "Lab 1: Frame an Enterprise AI Use Case",
+      "description": "Use a realistic scenario to identify users, decisions, data, controls, and a reference workflow.",
       "filename": "../../1-companion-access/companion-access.md"
     },
     {
-      "title": "Lab 2: Design the Fabric Foundation",
-      "description": "Map the reusable runtime, agent patterns, data, identity, and observability components to your solution.",
+      "title": "Lab 2: Design the Inception Foundation",
+      "description": "Map the reusable runtime, agent patterns, data, identity, and observability components to your use case.",
       "filename": "../../2-foundation/foundation.md"
     },
     {
-      "title": "Lab 3: Select MCP Servers and a Recipe",
-      "description": "Choose the governed tool boundary and use Smart Dispatch as the reference implementation walkthrough.",
+      "title": "Lab 3: Explore MCP Servers and a Recipe",
+      "description": "Choose a governed tool boundary and trace Smart Dispatch as a reference workflow.",
       "filename": "../../3-mcp-and-recipes/mcp-and-recipes.md"
     },
     {
@@ -33,13 +33,13 @@
       "filename": "../../4-governance-and-security/governance-and-security.md"
     },
     {
-      "title": "Lab 5: Prepare for Production",
-      "description": "Create a deployment sequence, validation plan, operational model, and customer handoff package.",
+      "title": "Lab 5: Consider Production Readiness",
+      "description": "Explore deployment, validation, operational, and release decisions for an enterprise AI solution.",
       "filename": "../../5-production-readiness/production-readiness.md"
     },
     {
-      "title": "Lab 6: Choose Your Next Step",
-      "description": "Request the implementation package, select a recipe, and plan a supported customer delivery.",
+      "title": "Lab 6: Continue Your Inception Journey",
+      "description": "Select a next learning or implementation path and learn how to discuss approved implementation access.",
       "filename": "../../6-next-steps/next-steps.md"
     },
     {

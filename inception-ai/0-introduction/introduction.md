@@ -2,11 +2,9 @@
 
 ## About this workshop
 
-Project Inception is an agentic landing zone for Oracle Cloud Infrastructure (OCI). It provides reusable building blocks for enterprise AI applications: a shared runtime library, agentic patterns, Model Context Protocol (MCP) servers, solution accelerators, reference recipes, and deployment automation.
+Project Inception is an agentic framework for Oracle Cloud Infrastructure (OCI). It provides reusable building blocks for enterprise AI applications: a shared runtime library, agentic patterns, Model Context Protocol (MCP) servers, solution accelerators, reference recipes, and deployment automation.
 
-This is a **companion LiveLab**. It explains the architecture and guides the decisions needed to implement Project Inception for a customer. It does not publish or distribute the underlying source code.
-
-> **Request implementation access:** The Enterprise AI Fabric implementation is distributed separately by Oracle. To discuss access and the appropriate customer delivery process, contact [anup.ojah@oracle.com](mailto:anup.ojah@oracle.com).
+This is a **companion LiveLab** for an in-person or virtual enablement experience. You will use a realistic enterprise AI scenario to explore architecture choices, agent patterns, governed tool access, and production-readiness decisions. It does not require you to deploy a solution or publish source code.
 
 ![Project Inception code accelerators, from reusable runtime libraries through customer recipes](images/code-accelerators.png)
 
@@ -16,27 +14,27 @@ Estimated Workshop Time: 2 hours 15 minutes
 
 In this workshop, you will:
 
-* Explain the layers and reusable assets in the Enterprise AI Fabric.
-* Define a customer-specific foundation, tool boundary, recipe, and deployment scope.
-* Use Smart Dispatch to understand an end-to-end multi-agent implementation.
-* Design security, governance, observability, evaluation, and production-readiness controls.
-* Prepare the information Oracle needs to provide the separately distributed implementation.
+* Explain the layers and reusable assets in the Project Inception framework.
+* Apply those assets to a realistic enterprise AI use case.
+* Use Smart Dispatch to trace an end-to-end multi-agent reference workflow.
+* Discuss security, governance, observability, evaluation, and production-readiness choices.
+* Identify a practical next step for further learning or approved implementation work.
 
 ### Intended audience
 
-This workshop is for solution architects, AI engineers, application developers, security architects, database teams, and customer delivery leads who are evaluating or planning an enterprise agentic solution on OCI.
+This workshop is for solution architects, AI engineers, application developers, security architects, database teams, and business leaders exploring enterprise agentic solutions on OCI.
 
 ### What the companion LiveLab includes
 
-The workshop contains customer-safe implementation guidance:
+The workshop contains participant-safe guided exercises and reference material:
 
 * Architecture and component responsibilities.
-* Prerequisite and configuration inventories.
+* A use-case design canvas for users, decisions, data, and controls.
 * Selection guidance for agent patterns, MCP servers, and reference recipes.
-* Identity, security, observability, evaluation, and deployment checklists.
-* Validation outcomes and handoff criteria.
+* Identity, security, observability, evaluation, and deployment considerations.
+* Discussion prompts for a proof of value or production-design conversation.
 
-The separately distributed implementation package contains source code, environment templates, tests, deployment assets, and component-specific runbooks. Access to this LiveLab does not grant access to, or a license for, that package.
+The separately distributed implementation package contains source code, environment templates, tests, deployment assets, and component-specific runbooks. This LiveLab is intentionally useful without that package; it does not grant access to, or a license for, the package.
 
 ## Project Inception architecture
 
@@ -71,14 +69,13 @@ Start with deterministic workflows and add model-directed routing only where it 
 
 ## Workshop result
 
-At the end of the workshop, you will have a companion implementation brief containing:
+At the end of the workshop, you will have an Inception design canvas containing:
 
-* Selected use case and reference recipe.
-* Required OCI services and customer-owned dependencies.
-* Identity, data, tool, memory, and governance decisions.
-* Environment and secret inventory.
-* Deployment sequence and validation evidence plan.
-* Requested Fabric package version and Oracle point of contact.
+* Selected use case, users, and measurable business outcome.
+* Candidate reference recipe and agent pattern.
+* Proposed data, tool, identity, memory, and governance boundaries.
+* Production-readiness questions to resolve with the delivery team.
+* A practical next learning or implementation step.
 
 ## Acknowledgements
 

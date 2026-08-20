@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Enterprise agents require controls across identity, tools, data, model behavior, human decisions, and operations. This lab turns the Fabric's security and governance capabilities into a customer-specific control plan.
+Enterprise agents require controls across identity, tools, data, model behavior, human decisions, and operations. This lab turns the Fabric's security and governance capabilities into a use-case-specific control plan.
 
 Estimated Time: 25 minutes
 
@@ -54,7 +54,7 @@ In this lab, you will:
 
 ## Task 3: Configure governance expectations
 
-1. Define input and output guardrail policies for harmful content, prohibited topics, sensitive information, and customer-specific restrictions.
+1. Define input and output guardrail policies for harmful content, prohibited topics, sensitive information, and organization-specific restrictions.
 
 2. Define observability events for:
 
@@ -109,7 +109,6 @@ In this lab, you will:
 
 3. Obtain customer security approval before introducing production data or enabling a system-of-record write path.
 
-    > **Implementation access:** Contact [anup.ojah@oracle.com](mailto:anup.ojah@oracle.com) for the separately distributed Fabric package and its version-specific security runbooks.
 
 ## Acknowledgements
 

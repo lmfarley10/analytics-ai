@@ -13,7 +13,7 @@ In this lab, you will:
 * Map the runtime, agent, tool, data, and operations layers.
 * Select an agent pattern that matches the business risk.
 * Define memory, model, governance, and configuration responsibilities.
-* Produce a component and environment inventory for the supplied implementation package.
+* Produce a component and environment inventory for a reference implementation.
 
 ## Task 1: Map the reusable components
 
@@ -89,7 +89,7 @@ In this lab, you will:
 
 3. Never place real secrets, wallets, tokens, private keys, customer hostnames, or OCIDs in LiveLabs content, screenshots, issue reports, or source-control examples.
 
-4. When the implementation package is available, use its supplied sample environment files as the authoritative variable list for that release.
+4. In a delivery engagement, use the approved release documentation as the authoritative configuration reference.
 
 ## Task 5: Define foundation validation
 
@@ -105,7 +105,6 @@ In this lab, you will:
 
 2. Mark unresolved checks as blockers in the implementation brief rather than deferring them to recipe testing.
 
-    > **Need the implementation package?** Contact [anup.ojah@oracle.com](mailto:anup.ojah@oracle.com). Oracle will confirm the appropriate customer delivery and supported release.
 
 ## Acknowledgements
 

@@ -1,8 +1,8 @@
-# Choose Your Next Step
+# Continue Your Inception Journey
 
 ## Introduction
 
-You have completed the Enterprise AI Fabric companion workflow. This lab helps you convert the implementation brief into an Oracle-supported customer engagement while keeping private implementation assets out of the public LiveLabs repository.
+You have completed the Project Inception companion experience. This lab helps you choose a practical next learning, architecture, or implementation conversation without exposing private implementation assets in the LiveLabs repository.
 
 Estimated Time: 10 minutes
 
@@ -10,26 +10,26 @@ Estimated Time: 10 minutes
 
 In this lab, you will:
 
-* Review the companion implementation deliverables.
+* Review your Inception design canvas.
 * Select a reference recipe or reusable pattern.
-* Request the appropriate implementation package from Oracle.
-* Define versioning and ongoing validation expectations.
+* Identify where a delivery team would validate the reference implementation.
+* Learn how to discuss approved implementation access with Oracle.
 
-## Task 1: Review your implementation brief
+## Task 1: Review your design canvas
 
-1. Confirm that the brief contains:
+1. Confirm that your canvas contains:
 
     * Business outcome, measurable success criteria, and out-of-scope items.
     * Selected recipe, agent pattern, MCP boundary, and tool allowlist.
     * Data, identity, memory, model, governance, and approval decisions.
-    * OCI service, network, configuration, and secret inventories.
-    * Deployment sequence, release gates, validation evidence, and operational owners.
+    * Production questions about OCI services, networking, configuration, and secrets.
+    * Deployment, validation, and operational questions for a delivery team.
 
-2. Mark every unresolved data, identity, system-of-record, or consequential-action decision as a blocker.
+2. Mark every unresolved data, identity, system-of-record, or consequential-action decision for follow-up with the relevant team.
 
 ## Task 2: Select the starting asset
 
-1. Choose the closest starting point from the supplied Fabric release:
+1. Choose the closest Project Inception starting point:
 
     | Starting asset | Use when |
     |---|---|
@@ -37,42 +37,28 @@ In this lab, you will:
     | Invoice Automation recipe | The use case needs document processing, classification, exception review, and governed financial workflow |
     | Meridian Bank recipe | The use case needs peer-agent handoff with a deterministic high-stakes decision boundary |
     | EBS Invoice Reconciliation recipe | The use case needs document extraction and deterministic three-way matching behind an integration boundary |
-    | Agentic accelerator | The customer needs a reusable workflow pattern instead of a complete interface and backend |
+    | Agentic accelerator | The use case needs a reusable workflow pattern instead of a complete interface and backend |
     | Application stub | The solution needs a clean production-oriented API, CLI, agent, tool, prompt, and configuration scaffold |
 
-2. Treat every recipe as a reference implementation. Replace business rules, prompts, tools, schemas, identity mappings, and interfaces through the customer's approved engineering and review process.
+2. Treat every recipe as a reference implementation. A delivery team adapts business rules, prompts, tools, schemas, identity mappings, and interfaces through an approved engineering and review process.
 
-## Task 3: Request implementation access
+## Task 3: Discuss implementation access
 
-1. Contact [anup.ojah@oracle.com](mailto:anup.ojah@oracle.com) to discuss access to the separately distributed Enterprise AI Fabric implementation.
+1. The Project Inception implementation is distributed separately by Oracle. To discuss approved access, contact [anup.ojah@oracle.com](mailto:anup.ojah@oracle.com).
 
-2. Use this request outline:
+2. Bring your design canvas: use case, intended users, selected recipe or pattern, data sources, control requirements, and desired next step.
 
-    ```text
-    Subject: Enterprise AI Fabric implementation request - <customer or project>
+3. Oracle will determine the appropriate access, licensing, support, and delivery mechanism. This public LiveLab does not contain or distribute the private implementation package.
 
-    Customer/project:
-    Oracle account team:
-    Business use case and expected outcome:
-    Selected reference recipe or pattern:
-    OCI region and tenancy status:
-    Required data sources and systems of record:
-    Identity and security constraints:
-    Proof-of-value or production timeline:
-    Technical and business owners:
-    ```
+## Task 4: Continue learning
 
-3. Oracle will determine the appropriate access, licensing, support, and delivery mechanism. Do not upload the package or private repository contents to this public LiveLabs repository.
+1. Compare your design canvas with another participant's use case. What would change in the chosen pattern, MCP boundary, or approval design?
 
-## Task 4: Maintain the companion relationship
+2. Use the reference recipes and patterns to continue the architecture conversation with your team.
 
-1. Pin every customer implementation to an approved Fabric release, tag, or commit identifier.
+3. If your organization pursues implementation, validate the approved private package whenever the release, model, prompts, tool registry, database policy, identity configuration, or system-of-record action changes.
 
-2. Revalidate the implementation when the Fabric release, model, agent prompts, tool registry, database policy, identity configuration, or system-of-record action changes.
-
-3. Keep the companion LiveLab conceptual and customer-safe. Place version-specific source commands, private endpoints, credentials, customer diagrams, and detailed incident evidence only in the approved delivery system.
-
-4. Contribute customer-safe clarifications and sanitized visuals back to the LiveLab through the standard Oracle LiveLabs review process.
+4. Contribute participant-safe clarifications and sanitized visuals back to the LiveLab through the standard Oracle LiveLabs review process.
 
 ## Acknowledgements
 

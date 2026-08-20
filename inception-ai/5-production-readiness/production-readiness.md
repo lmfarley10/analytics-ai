@@ -1,8 +1,8 @@
-# Prepare for Production
+# Consider Production Readiness
 
 ## Introduction
 
-This lab converts the selected architecture into a deployment and operational-readiness sequence. It preserves the Fabric's layered deployment approach while allowing customer-specific components to be added or removed.
+This lab introduces the deployment and operational choices behind an enterprise AI solution. You will use the Inception reference architecture to discuss what a delivery team would need to validate, operate, and improve a production deployment.
 
 Estimated Time: 25 minutes
 
@@ -10,14 +10,14 @@ Estimated Time: 25 minutes
 
 In this lab, you will:
 
-* Tailor the reference deployment sequence to the customer scope.
-* Select runtime, network, secret, and release-management approaches.
-* Define production validation, rollback, and operational ownership.
-* Prepare a customer handoff checklist.
+* Relate the reference deployment sequence to your use case.
+* Compare runtime, network, secret, and release-management approaches.
+* Identify production validation, rollback, and operational questions.
+* Capture the decisions that require a delivery team.
 
-## Task 1: Tailor the deployment sequence
+## Task 1: Explore the deployment sequence
 
-1. Use this reference order and remove any component that is not part of the approved design:
+1. Use this reference order to understand how a production deployment is assembled:
 
     | Sequence | Layer | Typical components |
     |---|---|---|
@@ -27,9 +27,9 @@ In this lab, you will:
     | 4 | Integration | Oracle Integration or another approved boundary, GoldenGate where required, and systems of record |
     | 5 | Operational controls | Evaluation gates, monitoring, alerts, backup, recovery, incident response, and release evidence |
 
-2. For each retained component, record prerequisites, owner, configuration inputs, deployment mechanism, validation test, rollback action, and dependent components.
+2. For your scenario, identify the components that appear essential, optional, or out of scope.
 
-3. Identify customer-specific additions and exclusions in the implementation brief. Do not assume the complete reference architecture is the correct production topology for every customer.
+3. Do not assume the complete reference architecture is the correct topology for every use case. Production design is tailored to data sensitivity, integration needs, availability expectations, and the delivery team's operating model.
 
 ## Task 2: Select the runtime and network model
 
@@ -41,22 +41,22 @@ In this lab, you will:
     | OCI Container Instances | Smaller service footprint and straightforward managed deployment | Private networking, image versioning, health checks, and scaling limits |
     | Oracle Kubernetes Engine | Multiple services, stronger orchestration, rollout, and scaling requirements | Cluster ownership, namespaces, ingress, policies, secrets, and platform operations |
 
-2. Use private subnets and private endpoints where supported by the customer architecture. Document every public ingress or egress requirement and its compensating control.
+2. Discuss where private subnets and private endpoints may be needed. Every public ingress or egress path needs an explicit reason and compensating control.
 
 3. Place immutable images in the approved OCI Container Registry repository. Use versioned tags or digests; do not promote an unpinned `latest` image into production.
 
-4. Inject secrets at runtime from OCI Vault or the approved customer secret service. Do not bake secrets into images or store them in deployment manifests.
+4. Inject secrets at runtime from OCI Vault or the approved secret service. Do not bake secrets into images or store them in deployment manifests.
 
 ## Task 3: Define release gates
 
 1. Require these gates before production promotion:
 
     * Package provenance and supported Fabric release are recorded.
-    * Source and dependency security review is complete in the approved private delivery system.
+    * Source and dependency security review is complete in the approved delivery environment.
     * Infrastructure plan and policy changes are reviewed.
     * Unit, integration, MCP contract, recipe, and continuous-evaluation suites pass.
     * Security negative tests pass for identity, tools, memory, and approvals.
-    * Performance and concurrency results meet the customer target.
+    * Performance and concurrency results meet the business target.
     * Logs, traces, metrics, alerts, dashboards, and runbooks are validated.
     * Backup, restore, rollback, and incident-response exercises are complete.
 
@@ -83,11 +83,11 @@ In this lab, you will:
 
 5. Define data correction separately from application rollback. Reverting a container does not undo a completed business transaction.
 
-## Task 5: Complete the production handoff
+## Task 5: Capture production-design questions
 
-1. Confirm the handoff contains:
+1. Capture the information a delivery team will eventually need:
 
-    * Customer-specific architecture and data-flow diagrams.
+    * Use-case-specific architecture and data-flow diagrams.
     * Component, configuration, secret, and dependency inventories.
     * Identity applications, scopes, dynamic groups, policies, and database roles.
     * Deployment, validation, rollback, recovery, and incident runbooks.
@@ -96,9 +96,9 @@ In this lab, you will:
     * Support ownership and escalation contacts.
     * Fabric package version and upgrade process.
 
-2. Confirm the receiving team can perform a deployment, diagnose a failed MCP call, rotate a secret, review an agent trace, and roll back a release without relying on undocumented knowledge.
+2. Discuss which teams would own deployment, diagnosis of a failed MCP call, secret rotation, agent-trace review, and release rollback.
 
-3. Schedule a post-production review to convert any incident or near miss into a permanent regression case.
+3. In a production program, convert any incident or near miss into a permanent regression case.
 
 ## Acknowledgements
 

@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Project Inception uses MCP servers as explicit, authenticated tool boundaries. Recipes combine those tools with agents, memory, APIs, and interfaces. In this lab, you will choose the smallest tool surface for the customer outcome and use Smart Dispatch as the reference implementation.
+Project Inception uses MCP servers as explicit, authenticated tool boundaries. Recipes combine those tools with agents, memory, APIs, and interfaces. In this lab, you will choose the smallest tool surface for your scenario and use Smart Dispatch as the reference workflow.
 
 Estimated Time: 30 minutes
 
@@ -11,9 +11,9 @@ Estimated Time: 30 minutes
 In this lab, you will:
 
 * Understand the standard MCP server structure and authentication modes.
-* Select the MCP server and permitted tools for the customer use case.
+* Select the MCP server and permitted tools for your use case.
 * Trace the Smart Dispatch reference workflow.
-* Define a validation plan without exposing private implementation code.
+* Identify the validation outcomes a delivery team should demonstrate.
 
 ## Task 1: Define the MCP boundary
 
@@ -81,15 +81,15 @@ In this lab, you will:
     | Observability | Structured logging and trace capture |
     | Consequential action | Explicit dispatch confirmation before execution |
 
-4. Decide which Smart Dispatch concepts transfer to the customer use case. The customer implementation may replace the interface, business agents, database schema, or system-of-record integration while preserving the governed patterns.
+4. Decide which Smart Dispatch concepts transfer to your use case. A future implementation may replace the interface, business agents, database schema, or system-of-record integration while preserving the governed patterns.
 
-## Task 4: Plan package-based implementation
+## Task 4: Practice component validation
 
-1. Request the separately distributed Fabric implementation from [anup.ojah@oracle.com](mailto:anup.ojah@oracle.com).
+1. Put the selected MCP boundary into the context of a complete reference implementation.
 
-2. After access is approved, use only the component READMEs and sample configuration included with the supplied release. Do not use commands copied from another release or an unapproved repository mirror.
+2. Discuss the order a delivery team would validate components. The purpose is to understand the dependency chain, not to deploy software in this workshop.
 
-3. Validate components in dependency order:
+3. Trace the expected dependency order:
 
     1. Core runtime libraries import successfully in an isolated environment.
     2. The selected model and database connections pass their component probes.
@@ -99,11 +99,11 @@ In this lab, you will:
     6. The recipe backend reaches the MCP endpoint and persists the expected state.
     7. The interface completes one golden-path conversation and one declined-action path.
 
-4. Keep implementation evidence free of secrets. Redact tokens, customer URLs, OCIDs, database identifiers, user data, and trace payloads before sharing evidence outside the approved project system.
+4. Explain why each stage must pass before the next begins. For example, a recipe cannot safely use a tool if the MCP server has not proved its registry and authentication behavior.
 
 ## Task 5: Define recipe acceptance criteria
 
-1. Require the following evidence for the reference workflow:
+1. Use the following outcomes to evaluate the reference workflow:
 
     * Intake gathers required fields across multiple turns without losing prior values.
     * A cache hit avoids unnecessary tool calls.

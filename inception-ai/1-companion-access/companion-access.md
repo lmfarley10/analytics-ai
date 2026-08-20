@@ -1,8 +1,8 @@
-# Plan Your Companion Implementation
+# Frame an Enterprise AI Use Case
 
 ## Introduction
 
-This lab establishes the boundary between the public companion material and the separately distributed Enterprise AI Fabric implementation. You will also record the customer decisions that must be resolved before deployment begins.
+Great enterprise AI solutions begin with a focused business decision, a clear user, and a governed path to trusted data and actions. In this lab, you will use a realistic field-service scenario to create a design canvas for an Inception-based solution.
 
 Estimated Time: 20 minutes
 
@@ -10,94 +10,76 @@ Estimated Time: 20 minutes
 
 In this lab, you will:
 
-* Confirm the code-access and support path.
-* Inventory the people, OCI services, tools, and credentials required by the selected scope.
-* Choose a proof-of-value or production-planning outcome.
-* Create an implementation brief that can be matched to a supported Fabric release.
+* Identify a business user, decision, and measurable outcome.
+* Define the data, systems, and actions needed for an enterprise AI workflow.
+* Select an appropriate level of agent autonomy and human approval.
+* Carry a design canvas into the remaining labs.
 
-## Task 1: Understand the delivery boundary
+## Task 1: Select a scenario
 
-1. Record that this LiveLab is an architecture and implementation companion, not a source-code distribution.
+1. Start with the Smart Dispatch scenario, or substitute a familiar enterprise process from your industry.
 
-2. Use the following contact when your team wants to evaluate or obtain the implementation package:
-
-    [anup.ojah@oracle.com](mailto:anup.ojah@oracle.com)
-
-3. Include these details in the request:
-
-    * Customer or organization name.
-    * Oracle account team and technical owner.
-    * Target business use case.
-    * Expected proof-of-value or production timeline.
-    * OCI region and existing tenancy status.
-    * Required integrations and systems of record.
-    * Data classification and security constraints.
-
-4. Do not request or exchange source code, wallets, passwords, API keys, private keys, access tokens, or customer data through the LiveLabs repository.
-
-5. When Oracle provides an implementation package, record its release tag or approved commit identifier in the implementation brief. All commands and component runbooks must be validated against that version.
-
-## Task 2: Choose the engagement outcome
-
-1. Select one primary outcome.
-
-    | Outcome | Recommended scope | Completion evidence |
-    |---|---|---|
-    | Architecture discovery | Component and control decisions only | Approved solution brief and responsibility matrix |
-    | Proof of value | One recipe, one governed MCP boundary, non-production data | Demonstrated workflow and validation report |
-    | Production planning | Customer-specific landing zone, identity, data, integrations, operations | Reviewed deployment and operational-readiness plan |
-
-2. Use Smart Dispatch as the default reference recipe unless another supplied recipe maps more directly to the customer outcome.
-
-3. Define what is out of scope. Common exclusions for an initial proof of value include high availability, disaster recovery, multiple systems of record, automated production writes, and customer-specific user-interface development.
-
-## Task 3: Inventory prerequisites
-
-1. Confirm the people required for the selected outcome.
-
-    * Customer solution owner and business process owner.
-    * OCI tenancy and network administrator.
-    * Identity-domain administrator.
-    * Oracle Database administrator and data owner.
-    * AI/application engineering owner.
-    * Security, privacy, and risk reviewers.
-    * Oracle delivery contact.
-
-2. Confirm the baseline tools described by the Fabric implementation:
-
-    | Tool | Baseline | Purpose |
-    |---|---|---|
-    | Python | 3.13 or the version specified by the supplied release | Agent services, MCP servers, and shared libraries |
-    | Node.js | 18 or the version specified by the supplied recipe | Reference React interfaces and Node.js gateways |
-    | SQLcl | Current version approved by the customer | SQLcl MCP data access |
-    | OCI CLI | Customer-approved current version | OCI authentication and resource operations |
-    | Git | Customer-approved current version | Versioned implementation package |
-    | Terraform | 1.5 or the version specified by the supplied release | Optional infrastructure and security automation |
-
-3. Confirm the OCI dependencies for the selected design. The full Fabric may use Oracle Autonomous Database, OCI Generative AI, Object Storage, Vault, Logging, API Gateway, Container Registry, Container Instances or Oracle Kubernetes Engine, Oracle Integration, and GoldenGate. Include only the components required by the customer scope.
-
-4. Record whether the customer already has a landing zone, VCN, private endpoints, DNS, certificates, identity federation, approved model access, and a database wallet process.
-
-## Task 4: Create the implementation brief
-
-1. Capture the following decisions in the customer project system:
-
-    | Decision | Customer selection |
+    | Scenario element | Smart Dispatch example |
     |---|---|
-    | Business outcome | To be completed |
-    | Reference recipe | Smart Dispatch or another approved recipe |
-    | Fabric release identifier | Supplied by Oracle |
-    | OCI region and compartment | To be completed |
-    | Identity pattern | Interactive OIDC, non-interactive token exchange, or both |
-    | Primary MCP server | To be completed |
-    | Data and memory store | To be completed |
-    | Deployment target | Local evaluation, Container Instances, or OKE |
-    | System-of-record integration | Read-only, human-approved write, or out of scope |
-    | Required reviewers | To be completed |
+    | Business user | Contact-center representative or field-service coordinator |
+    | User need | Diagnose a device issue and recommend the appropriate next step |
+    | Trusted data | Service history, contracts, entitlements, knowledge articles, and technician availability |
+    | Decision | Is a dispatch appropriate, and what should be proposed? |
+    | Consequential action | Create or update a dispatch only after explicit approval |
+    | Measurable outcome | Faster, more consistent intake and reduced unnecessary dispatches |
 
-2. Confirm that no implementation begins until data access, identity ownership, and consequential-action approval have named owners.
+2. If you choose another scenario, keep the same level of specificity: name the user, the decision, the trusted data, the downstream action, and one measurable outcome.
 
-3. Carry this implementation brief into each remaining lab and update it as decisions are made.
+3. Write a one-sentence problem statement using this pattern:
+
+    ```text
+    Help <business user> make <decision> using <trusted data>, while ensuring <required control>.
+    ```
+
+## Task 2: Define the workflow boundary
+
+1. Complete this design canvas for your scenario.
+
+    | Design question | Your answer |
+    |---|---|
+    | Who starts the workflow? | To be completed |
+    | What information must be collected? | To be completed |
+    | Which facts must come from a trusted system? | To be completed |
+    | What can the agent recommend? | To be completed |
+    | What must a person approve? | To be completed |
+    | What action must remain deterministic? | To be completed |
+    | What must never be shown or changed? | To be completed |
+
+2. Separate recommendation from execution. A model can help summarize, classify, route, and draft; authorization, high-stakes business rules, and system-of-record changes need explicit controls.
+
+3. Identify the smallest useful scope. For a first experience, use one business user, one governed data source, one workflow, and one approval point.
+
+## Task 3: Select the participant outcome
+
+1. Choose the outcome you want to explore during this workshop.
+
+    | Outcome | Focus for the remaining labs |
+    |---|---|
+    | Architecture discovery | Understand Inception layers and choose the right building blocks |
+    | Workflow design | Trace how agents, MCP tools, memory, and approvals work together |
+    | Governance review | Identify identity, data, tool, and evaluation controls before a proof of value |
+    | Production conversation | Discuss what a delivery team would need to validate and operate the solution |
+
+2. Capture one question you want answered by the end of the workshop. Examples include: “Which data access should be exposed as an MCP tool?” or “Where should human approval be required?”
+
+3. Do not attempt to define every integration or infrastructure component now. The remaining labs introduce the framework choices in the order needed to refine this canvas.
+
+## Task 4: Share your design canvas
+
+1. Review your canvas with another participant or group.
+
+2. Ask the group to challenge three assumptions:
+
+    * Is the business decision sufficiently narrow and measurable?
+    * Is each data source necessary and trusted for this workflow?
+    * Is the human-approval point placed before the consequential action?
+
+3. Keep the canvas available as you work through the foundation, MCP, governance, and production-design labs.
 
 ## Acknowledgements
 
