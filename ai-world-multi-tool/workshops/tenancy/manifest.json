@@ -1,0 +1,31 @@
+{
+  "workshoptitle": "Build a Multi-Tool OCI Generative AI Agent",
+  "help": "livelabs-help-aiservices_us@oracle.com",
+  "tutorials": [
+    {
+      "title": "Introduction",
+      "description": "A 90-minute workshop for building an OCI Generative AI Agent with RAG, SQL, and Weather tools.",
+      "filename": "../../introduction/introduction.md"
+    },
+    {
+      "title": "Get Started",
+      "description": "Get a Free Trial",
+      "filename": "https://livelabs.oracle.com/cdn/common/labs/cloud-login/pre-register-free-tier-account.md"
+    },
+    {
+      "title": "Lab 1: Provision and Configure GenAI Agent",
+      "description": "Create the RAG source, Knowledge Base, and agent.",
+      "filename": "../../provision-agent/provision-agent.md"
+    },
+    {
+      "title": "Lab 2: Deploy Agent Tools",
+      "description": "Configure and test the SQL and Weather tools.",
+      "filename": "../../deploy-agent-tools/deploy-agent-tools.md"
+    },
+    {
+      "title": "Need Help?",
+      "description": "Solutions to common problems and directions for receiving live help.",
+      "filename": "https://livelabs.oracle.com/cdn/common/labs/need-help/need-help-freetier.md"
+    }
+  ]
+}
