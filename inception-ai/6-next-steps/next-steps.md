@@ -24,6 +24,7 @@ In this lab, you will:
     * Data, identity, memory, model, governance, and approval decisions.
     * Production questions about OCI services, networking, configuration, and secrets.
     * Deployment, validation, and operational questions for a delivery team.
+    * An `AE-01` through `AE-15` review with evidence owners, open gaps, and release blockers.
 
 2. Mark every unresolved data, identity, system-of-record, or consequential-action decision for follow-up with the relevant team.
 

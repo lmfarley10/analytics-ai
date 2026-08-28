@@ -74,12 +74,16 @@ In this lab, you will:
     * Agent and workflow node transitions.
     * Tool name, duration, result classification, and error category.
     * Human approval request, decision, actor, and timestamp.
-    * Model name, token usage, latency, and policy outcome.
+    * Model name, token usage, cost, latency, policy outcome, and applicable user feedback.
     * Database caller identity and policy outcome where approved.
 
 3. Do not log raw access tokens, secrets, wallets, private prompts containing restricted data, or unrestricted tool results.
 
 4. Establish trace and log retention according to the customer data classification and incident-response policy.
+
+5. Treat user input, uploads, web content, retrieved documents, and tool results as untrusted data. Keep them separate from system instructions, validate inputs and outputs, redact sensitive values, and enforce authorization and policy again immediately before every tool execution. Database permissions and masking remain a backstop even when application controls are bypassed.
+
+6. Define responsible-AI controls for safety, privacy, compliance, bias, toxicity, intellectual property, domain rules, and required disclosures. Block prohibited output or route it to an accountable reviewer with a documented exception path.
 
 ## Task 4: Design continuous evaluation
 
@@ -101,7 +105,7 @@ In this lab, you will:
 
 3. Set separate pass thresholds by category. A high average score must not hide a failed adversarial or authorization test.
 
-4. Treat model-judge results as probabilistic evidence. Re-run isolated qualitative failures and preserve deterministic checks for security and business invariants.
+4. Treat model-judge results as probabilistic evidence. Re-run isolated qualitative failures and preserve deterministic checks for security and business invariants. Version the evaluation set and run it whenever a model, prompt, workflow, tool, retrieval source, memory policy, or business policy changes.
 
 5. Add recipe-specific evaluation cases:
 

@@ -18,6 +18,7 @@ In this workshop, you will:
 * Apply those assets to a realistic enterprise AI use case.
 * Compare a governed loan-approval workflow with an EBS invoice-reconciliation workflow.
 * Discuss security, governance, observability, evaluation, and production-readiness choices.
+* Apply a 15-practice Agentic Engineering review framework from scope definition through business-outcome measurement.
 * Identify a practical next step for further learning or approved implementation work.
 
 ### Intended audience
@@ -71,6 +72,8 @@ Project Inception provides 15 runnable agent patterns so that a customer solutio
 | Control and quality | Human-in-the-Loop and Evaluator-Optimizer |
 
 Start with deterministic workflows and add model-directed routing only where it creates measurable value. Human approval should guard consequential actions such as approving a referred loan, releasing a reconciliation draft, or changing a system of record.
+
+Agent patterns describe how work is organized. Agentic Engineering practices describe how the resulting system is scoped, secured, tested, deployed, operated, and measured. This workshop uses both: the pattern catalog helps shape the workflow, while the `AE-01` through `AE-15` review framework provides production guardrails.
 
 ## Workshop result
 

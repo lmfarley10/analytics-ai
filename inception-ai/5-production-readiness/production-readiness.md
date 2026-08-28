@@ -31,6 +31,26 @@ In this lab, you will:
 
 3. Do not assume the complete reference architecture is the correct topology for every use case. Production design is tailored to data sensitivity, integration needs, availability expectations, and the delivery team's operating model.
 
+4. Use the Agentic Engineering practices as a traceable review framework. Agent patterns define workflow behavior; these practices define production fitness.
+
+    | ID | Practice | Required evidence |
+    |---|---|---|
+    | AE-01 | Define scope | Objective, metrics, allowed and forbidden actions, approvals, escalation, owners, and safe failure behavior |
+    | AE-02 | Build modular architecture | Independently testable layers with explicit contracts and ownership |
+    | AE-03 | Govern tools | Constrained schemas, validation, authorization, limits, idempotency, and complete audit records |
+    | AE-04 | Enforce identity and access | Least privilege, short-lived credentials, scoped identity propagation, secure secrets, and denied-access tests |
+    | AE-05 | Ground answers with RAG | Versioned and permission-filtered sources, domain-appropriate retrieval, freshness handling, and citations where useful |
+    | AE-06 | Require human approval | Durable checkpoints with reviewer context, allowed decisions, expiry, and safe resume behavior |
+    | AE-07 | Design for resilience | Timeouts, bounded backoff, circuit breakers, fallbacks, queues, dead-letter handling, checkpoints, and idempotent recovery |
+    | AE-08 | Instrument observability | Correlated traces, logs, metrics, costs, approvals, feedback, errors, and outcomes under privacy controls |
+    | AE-09 | Evaluate continuously | Versioned golden, edge, adversarial, security, and regression suites enforced in CI/CD |
+    | AE-10 | Defend against prompt injection and leakage | Instruction and data separation, validation, redaction, policy enforcement, and data-layer controls |
+    | AE-11 | Govern context and memory | Session/durable separation, minimization, encryption, scoped access, auditing, versioning, retention, and deletion |
+    | AE-12 | Apply responsible-AI guardrails | Safety, privacy, compliance, bias, toxicity, intellectual-property, domain, and exception controls |
+    | AE-13 | Optimize cost and performance | Measured model routing, caching, context reduction, batching, streaming, and quality-preserving optimization |
+    | AE-14 | Deploy safely | Versioned artifacts, review, infrastructure as code, staged rollout, feature flags, monitored thresholds, and rollback |
+    | AE-15 | Measure business outcomes | Baselines and segmented business KPIs correlated with engineering metrics |
+
 ## Task 2: Select the runtime and network model
 
 1. Select the deployment target based on operational requirements.
@@ -46,6 +66,8 @@ In this lab, you will:
 3. Place immutable images in the approved OCI Container Registry repository. Use versioned tags or digests; do not promote an unpinned `latest` image into production.
 
 4. Inject secrets at runtime from OCI Vault or the approved secret service. Do not bake secrets into images or store them in deployment manifests.
+
+5. Treat prompts, models, workflows, tools, policies, retrieval configuration, memory schemas, and runtime configuration as versioned release artifacts. Use feature flags and canary or blue/green rollout, progressing from internal users to limited cohorts only while monitored thresholds remain healthy.
 
 ## Task 3: Define release gates
 
@@ -64,6 +86,8 @@ In this lab, you will:
 
 3. Prevent production promotion when a critical authorization, data-isolation, approval, or secret-exposure test fails.
 
+    Also block release when scope or escalation is undefined; a state-changing tool lacks authorization, auditability, idempotency, or safe failure; identity and data permissions do not propagate end to end; untrusted content can influence instructions or authorization; high-risk actions lack a usable approval path; critical evaluation coverage is missing or below threshold; or traceability, incident response, staged rollout, and tested rollback are absent.
+
 4. Add release evidence for the selected reference recipe:
 
     | Recipe | Required release evidence |
@@ -79,6 +103,8 @@ In this lab, you will:
 
     Include recipe-specific indicators such as loan referral age and decision-policy failures, plus invoice extraction accuracy, match and exception rates, approval age, duplicate detection, and integration-draft failures.
 
+    Measure cost and latency per workflow and outcome before optimizing. Route work to the least costly model that still meets quality, safety, and compliance thresholds; apply caching, context reduction, batching, or streaming only with evaluation evidence.
+
 3. Define recovery procedures for:
 
     * Failed application or MCP container deployment.
@@ -89,6 +115,8 @@ In this lab, you will:
     * Incorrect system-of-record action.
 
     For a loan workflow, recovery must preserve the authoritative policy result and the Loan Officer referral record. For invoice reconciliation, recovery must preserve the source document, match evidence, exception history, and Finance approval record without duplicating a downstream transaction.
+
+    Define timeouts, exponential backoff with limits, circuit breakers, fallback behavior, queue and dead-letter handling, checkpoint recovery, and what the user sees during degraded operation. Do not retry non-idempotent actions blindly.
 
 4. Roll back application images to the last validated digest. Revert infrastructure through the approved infrastructure-as-code workflow and review the resulting plan before applying it.
 
@@ -110,6 +138,8 @@ In this lab, you will:
 2. Discuss which teams would own deployment, diagnosis of a failed MCP call, secret rotation, agent-trace review, and release rollback.
 
 3. In a production program, convert any incident or near miss into a permanent regression case.
+
+4. Track business outcomes alongside engineering indicators. Establish a pre-agent baseline and approved targets for task completion, first-contact resolution where applicable, human intervention, resolution time, accuracy, compliance, customer or employee satisfaction, productivity, and cost. Segment results by scenario, user group, and risk tier to avoid hiding localized harm or failure.
 
 ## Acknowledgements
 

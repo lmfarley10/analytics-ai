@@ -34,6 +34,8 @@ In this lab, you will:
 
 3. Exclude components that do not have a named requirement. The reference architecture is modular; a customer deployment does not need every Fabric capability.
 
+4. Define a contract for every selected component: inputs, outputs, errors, identity, version, latency or availability expectation, owner, and test boundary. Keep interface, reasoning, orchestration, tools, retrieval, memory, policy, identity, and observability independently testable.
+
 ## Task 2: Select the agent pattern
 
 1. Review the 15 runnable patterns in the accelerator catalog.
@@ -86,6 +88,10 @@ In this lab, you will:
 3. Confirm whether the proof of value will use synthetic, masked, or production data. Use synthetic or masked data unless the customer has explicitly approved production data.
 
 4. Define how the implementation will prevent conversation state or shared memory from becoming an ungoverned copy of the system of record.
+
+5. For retrieval-augmented generation, version the source content, enforce document permissions before retrieval, define freshness behavior, and select chunking plus semantic, full-text, or hybrid retrieval for the actual knowledge domain. Require citations where they help the user verify an answer.
+
+6. Persist only memory that improves future work. Encrypt it, scope access by authorized user, team, and agent, audit reads and writes, version durable updates, and implement retention and deletion. Never store secrets or unnecessary authentication or account data in agent memory.
 
 ## Task 4: Build the configuration inventory
 

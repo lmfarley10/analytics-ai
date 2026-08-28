@@ -26,7 +26,9 @@ In this lab, you will:
 
 2. If you choose another scenario, keep the same level of specificity: name the user, the decision, the trusted data, the downstream action, and one measurable outcome.
 
-3. Write a one-sentence problem statement using this pattern:
+3. Establish the business baseline before proposing an agent. Record the current result, target, measurement source, accountable owner, review period, and any required segmentation by scenario, user group, or risk tier. Do not claim improvement without comparable evidence.
+
+4. Write a one-sentence problem statement using this pattern:
 
     ```text
     Help <business user> make <decision> using <trusted data>, while ensuring <required control>.
@@ -51,6 +53,8 @@ In this lab, you will:
 3. For the Loan Approval Reference Recipe, distinguish conversational assistance and underwriting research from the deterministic policy decision. For EBS Invoice Reconciliation, distinguish document extraction and exception explanation from the deterministic matching rules.
 
 4. Identify the smallest useful scope. For a first experience, use one business user, one governed data source, one workflow, and one approval point.
+
+5. Record an explicit scope contract: allowed actions, forbidden actions, approval requirements, escalation paths, and the safe failure behavior for every state-changing action. Assign a business owner to each consequential operation.
 
 ## Task 3: Select the participant outcome
 

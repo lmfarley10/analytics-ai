@@ -47,11 +47,13 @@ In this lab, you will:
     | ADW MCP | Direct Autonomous Database access with propagated identity | Read approved data and, where explicitly designed, perform constrained DML |
     | OCI Database MCP | OCI Database control-plane operations | List approved database resource information and identify caller |
 
-2. Record the exact tool allowlist, input constraints, data classification, required identity, logging fields, timeout, retry behavior, and error response for every selected operation.
+2. Record the exact tool allowlist, typed input and output schemas, validation rules, data classification, required identity and authorization, logging fields, timeout, bounded retry behavior, rate limit, idempotency guarantee, and safe error response for every selected operation.
 
 3. Keep data-plane and control-plane responsibilities separate. Querying rows in a schema is different from administering or listing OCI database resources.
 
 4. For a proof of value, begin with one read-only MCP server unless the business outcome requires more.
+
+5. Log rejected calls as well as successful calls. Never expose an unrestricted enterprise API directly to a model; wrap it in a constrained business operation that revalidates identity, policy, and request data before execution.
 
 ## Task 3: Compare the reference recipes
 
