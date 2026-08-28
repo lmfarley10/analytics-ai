@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Great enterprise AI solutions begin with a focused business decision, a clear user, and a governed path to trusted data and actions. In this lab, you will use a realistic field-service scenario to create a design canvas for an Inception-based solution.
+Great enterprise AI solutions begin with a focused business decision, a clear user, and a governed path to trusted data and actions. In this lab, you will choose one of two reference scenarios and create a design canvas for an Inception-based solution.
 
 Estimated Time: 20 minutes
 
@@ -17,16 +17,12 @@ In this lab, you will:
 
 ## Task 1: Select a scenario
 
-1. Start with the Smart Dispatch scenario, or substitute a familiar enterprise process from your industry.
+1. Choose the reference scenario that most closely matches the business problem you want to explore.
 
-    | Scenario element | Smart Dispatch example |
-    |---|---|
-    | Business user | Contact-center representative or field-service coordinator |
-    | User need | Diagnose a device issue and recommend the appropriate next step |
-    | Trusted data | Service history, contracts, entitlements, knowledge articles, and technician availability |
-    | Decision | Is a dispatch appropriate, and what should be proposed? |
-    | Consequential action | Create or update a dispatch only after explicit approval |
-    | Measurable outcome | Faster, more consistent intake and reduced unnecessary dispatches |
+    | Scenario | Business user | Decision and trusted data | Required control | Example outcome |
+    |---|---|---|---|---|
+    | Loan Approval Reference Recipe | Loan applicant and Loan Officer | Product eligibility and application disposition using product terms, applicant information, and governed financial data | Deterministic approve/decline/refer policy; a Loan Officer decides referred cases | Faster intake with consistent policy application and an auditable referral path |
+    | EBS Invoice Reconciliation Reference Recipe | AP Analyst and Finance Approver | Whether an invoice matches the supplier, governing agreement, purchase order, and received goods | Deterministic matching; exceptions go to review; reconciliation remains a draft until Finance approval | Faster reconciliation with fewer manual comparisons and no autonomous payment release |
 
 2. If you choose another scenario, keep the same level of specificity: name the user, the decision, the trusted data, the downstream action, and one measurable outcome.
 
@@ -52,7 +48,9 @@ In this lab, you will:
 
 2. Separate recommendation from execution. A model can help summarize, classify, route, and draft; authorization, high-stakes business rules, and system-of-record changes need explicit controls.
 
-3. Identify the smallest useful scope. For a first experience, use one business user, one governed data source, one workflow, and one approval point.
+3. For the Loan Approval Reference Recipe, distinguish conversational assistance and underwriting research from the deterministic policy decision. For EBS Invoice Reconciliation, distinguish document extraction and exception explanation from the deterministic matching rules.
+
+4. Identify the smallest useful scope. For a first experience, use one business user, one governed data source, one workflow, and one approval point.
 
 ## Task 3: Select the participant outcome
 
@@ -83,7 +81,9 @@ In this lab, you will:
 
 ## Acknowledgements
 
-* **Authors** - [Anup Ojah](https://github.com/aojah1) and [Luke Farley](https://github.com/lmfarley10), Oracle
+* **Authors**
+    * [Anup Ojah](https://github.com/aojah1), Oracle
+    * [Luke Farley](https://github.com/lmfarley10), Oracle
 * **Contributors**
     * [adrianjalba](https://github.com/adrianjalba)
     * [Andre Correa](https://github.com/andrecorreaneto)

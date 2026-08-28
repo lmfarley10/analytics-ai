@@ -23,8 +23,8 @@
       "filename": "../../2-foundation/foundation.md"
     },
     {
-      "title": "Lab 3: Explore MCP Servers and a Recipe",
-      "description": "Choose a governed tool boundary and trace Smart Dispatch as a reference workflow.",
+      "title": "Lab 3: Explore MCP Servers and Reference Recipes",
+      "description": "Choose a governed tool boundary and compare loan approval with EBS invoice reconciliation.",
       "filename": "../../3-mcp-and-recipes/mcp-and-recipes.md"
     },
     {

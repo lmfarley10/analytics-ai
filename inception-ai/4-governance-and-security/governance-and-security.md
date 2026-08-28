@@ -34,6 +34,13 @@ In this lab, you will:
 
 4. Discuss what should happen to a user's access token after sign-in. A secure design keeps it out of browser-visible URLs and logs, limits its lifetime, and validates it at each protected boundary.
 
+5. Apply the identity design to both reference recipes:
+
+    | Recipe | Interactive identity | Service identity | Required separation |
+    |---|---|---|---|
+    | Loan Approval Reference Recipe | Applicant and Loan Officer | Agent and approved data-service workloads | The applicant cannot act as the reviewing Loan Officer; referred cases enter an officer-owned queue |
+    | EBS Invoice Reconciliation Reference Recipe | AP Analyst and Finance Approver | Extraction, matching, and approved integration workloads | Preparation and exception handling remain separate from financial approval and posting authority |
+
 ## Task 2: Define defense in depth
 
 1. Complete the control matrix.
@@ -51,6 +58,11 @@ In this lab, you will:
 2. Keep agents away from direct system-of-record access when an integration boundary is required. Use an approved MCP or Oracle Integration workflow that exposes only the necessary business operation.
 
 3. Define fail-closed behavior. When identity, policy, guardrail, or downstream validation is unavailable, the agent must not improvise a privileged result.
+
+4. Keep consequential decisions deterministic and auditable:
+
+    * In the Loan Approval Reference Recipe, the model may gather information and explain the outcome, but approved policy rules determine approve, decline, or refer. A referred case requires Loan Officer review.
+    * In EBS Invoice Reconciliation, the model may extract and normalize invoice content, but deterministic matching rules determine whether the invoice is matched or routed to an AP Analyst. The workshop boundary creates an approval draft; it does not autonomously post to EBS or release payment.
 
 ## Task 3: Configure governance expectations
 
@@ -91,6 +103,13 @@ In this lab, you will:
 
 4. Treat model-judge results as probabilistic evidence. Re-run isolated qualitative failures and preserve deterministic checks for security and business invariants.
 
+5. Add recipe-specific evaluation cases:
+
+    | Recipe | Golden and edge cases | Security and control cases |
+    |---|---|---|
+    | Loan Approval Reference Recipe | Clear approval, clear decline, threshold boundary, missing evidence, and referred case | Applicant attempts officer action, model attempts to override policy, prompt injection in supplied text, and unauthorized cross-case access |
+    | EBS Invoice Reconciliation Reference Recipe | Exact match, tolerance boundary, duplicate invoice, missing purchase order, and ambiguous extraction | Invoice document prompt injection, unauthorized vendor or ledger access, bypassed Finance approval, and attempted direct posting or payment release |
+
 ## Task 5: Run the security review checklist
 
 1. Require negative-test evidence for:
@@ -112,7 +131,9 @@ In this lab, you will:
 
 ## Acknowledgements
 
-* **Authors** - [Anup Ojah](https://github.com/aojah1) and [Luke Farley](https://github.com/lmfarley10), Oracle
+* **Authors**
+    * [Anup Ojah](https://github.com/aojah1), Oracle
+    * [Luke Farley](https://github.com/lmfarley10), Oracle
 * **Contributors**
     * [adrianjalba](https://github.com/adrianjalba)
     * [Andre Correa](https://github.com/andrecorreaneto)

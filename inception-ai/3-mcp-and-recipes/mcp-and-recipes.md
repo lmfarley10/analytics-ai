@@ -1,8 +1,8 @@
-# Select MCP Servers and a Recipe
+# Select MCP Servers and Compare Reference Recipes
 
 ## Introduction
 
-Project Inception uses MCP servers as explicit, authenticated tool boundaries. Recipes combine those tools with agents, memory, APIs, and interfaces. In this lab, you will choose the smallest tool surface for your scenario and use Smart Dispatch as the reference workflow.
+Project Inception uses MCP servers as explicit, authenticated tool boundaries. Recipes combine those tools with agents, memory, APIs, interfaces, deterministic business rules, and human review. In this lab, you will choose the smallest tool surface for your scenario and compare two governed reference workflows.
 
 Estimated Time: 30 minutes
 
@@ -12,7 +12,7 @@ In this lab, you will:
 
 * Understand the standard MCP server structure and authentication modes.
 * Select the MCP server and permitted tools for your use case.
-* Trace the Smart Dispatch reference workflow.
+* Trace the Loan Approval and EBS Invoice Reconciliation reference workflows.
 * Identify the validation outcomes a delivery team should demonstrate.
 
 ## Task 1: Define the MCP boundary
@@ -53,35 +53,40 @@ In this lab, you will:
 
 4. For a proof of value, begin with one read-only MCP server unless the business outcome requires more.
 
-## Task 3: Trace the Smart Dispatch reference recipe
+## Task 3: Compare the reference recipes
 
-1. Review the Smart Dispatch architecture supplied by Project Inception.
+1. Compare the two participant-safe recipe foundations.
 
-    ![Smart Dispatch architecture with systems of record, governance, agent, data, model, and observability layers](images/smart-dispatch-architecture.png)
+    | Design dimension | Loan Approval Reference Recipe | EBS Invoice Reconciliation Reference Recipe |
+    |---|---|---|
+    | Primary actors | Applicant and Loan Officer | AP Analyst and Finance Approver |
+    | Workflow style | Peer-agent handoff into a governed application workflow | Ordered extraction, lookup, deterministic matching, exception handling, and draft approval |
+    | Agent patterns | Swarm or routing, memory, research, and human-in-the-loop | Prompt chaining, structured output, routing, and human-in-the-loop |
+    | Trusted data | Product terms, applicant profile, application state, and decision history | Invoice, supplier, governing agreement, purchase order, goods receipts, and reconciliation state |
+    | Tool boundaries | Governed database access and approved application services | Object Storage, document extraction, governed database access, and an approved integration boundary |
+    | Deterministic control | Policy logic classifies approve, decline, or refer | Matching logic evaluates supplier, agreement, duplicate, receipt, quantity, price, and total checks |
+    | Human control | Loan Officer decides referred cases | AP Analyst reviews exceptions; Finance approves the reconciliation draft |
+    | Prohibited autonomous action | A model cannot make or override the final lending policy decision | The workflow cannot post to EBS or release payment autonomously |
 
-2. Trace the reference conversation:
+2. Trace the Loan Approval Reference Recipe:
 
-    1. The Call Intake Agent collects and merges the service-request details.
-    2. The Memory Agent checks whether prior research is available for the session.
-    3. On a cache miss, the Contract Agent uses the SQLcl MCP boundary to retrieve governed service and entitlement information.
-    4. The workflow saves the research result and asks whether the user wants to schedule a dispatch.
-    5. A later affirmative response crosses a human-in-the-loop gate before the Dispatch Agent invokes the approved action.
-    6. A decline routes to a farewell and session-summary path.
+    1. A concierge capability handles general questions and identifies whether the applicant needs product information or wants to apply.
+    2. Product questions route to a specialist with read-only access to approved product terms.
+    3. An application path collects required information and uses governed data for research and underwriting context.
+    4. Deterministic policy logic classifies the outcome as approve, decline, or refer.
+    5. Referred cases enter a Loan Officer queue with the application context and conversation trail.
+    6. The Loan Officer makes the consequential decision; the model cannot bypass that boundary.
 
-3. Map the recipe's runtime responsibilities:
+3. Trace the EBS Invoice Reconciliation Reference Recipe:
 
-    | Layer | Smart Dispatch reference responsibility |
-    |---|---|
-    | Interface | React application |
-    | Web/API boundary | Node.js gateway plus Python FastAPI agents |
-    | Orchestration | LangGraph state workflow |
-    | Data tool | SQLcl MCP server |
-    | Memory | Oracle-backed conversation checkpoint and shared store |
-    | Identity | Browser authorization-code flow and non-interactive token exchange |
-    | Observability | Structured logging and trace capture |
-    | Consequential action | Explicit dispatch confirmation before execution |
+    1. Approved invoice, agreement, and receipt documents enter controlled Object Storage locations.
+    2. Extraction and structured normalization produce typed business fields while reporting missing data instead of guessing.
+    3. Governed lookups retrieve the supplier, agreement, purchase-order, and receipt evidence required for matching.
+    4. Deterministic rules evaluate all relevant match conditions and record pass, fail, or skipped evidence.
+    5. Variances route to an AP Analyst; valid matches produce a reconciliation draft.
+    6. Finance approval is required before an approved integration boundary can perform a downstream action. The reference recipe does not post directly to EBS or release payment.
 
-4. Decide which Smart Dispatch concepts transfer to your use case. A future implementation may replace the interface, business agents, database schema, or system-of-record integration while preserving the governed patterns.
+4. Select the closer foundation for your design canvas. Record which concepts transfer and which interfaces, business rules, data sources, identities, or integration boundaries must change.
 
 ## Task 4: Practice component validation
 
@@ -97,28 +102,37 @@ In this lab, you will:
     4. An authorized identity can list and invoke only the expected tools.
     5. An unauthorized or expired identity receives a controlled denial.
     6. The recipe backend reaches the MCP endpoint and persists the expected state.
-    7. The interface completes one golden-path conversation and one declined-action path.
+    7. Deterministic business rules produce the expected outcome from known inputs.
+    8. The interface completes one golden path and one human-review or exception path.
 
 4. Explain why each stage must pass before the next begins. For example, a recipe cannot safely use a tool if the MCP server has not proved its registry and authentication behavior.
 
 ## Task 5: Define recipe acceptance criteria
 
-1. Use the following outcomes to evaluate the reference workflow:
+1. Use the following outcomes to evaluate the Loan Approval Reference Recipe:
 
-    * Intake gathers required fields across multiple turns without losing prior values.
-    * A cache hit avoids unnecessary tool calls.
-    * A cache miss invokes only the approved SQLcl MCP tools.
-    * The database applies the intended identity and data policy.
-    * The workflow does not dispatch without explicit confirmation.
-    * A declined dispatch produces no system-of-record update.
-    * Logs and traces correlate the user session, agent path, tool call, and decision without exposing secrets.
-    * Restart or resume behavior matches the approved memory design.
+    * Peer-agent handoff preserves the user's request and conversation context.
+    * Product information comes only from the approved read-only data boundary.
+    * The deterministic policy produces the expected approve, decline, or refer result from known inputs.
+    * A referred case remains pending until a Loan Officer acts.
+    * The audit trail identifies the applicant session, workflow path, policy result, and human decision without exposing restricted data.
 
-2. Add edge, adversarial, and regression cases for missing information, ambiguous approval, prompt injection, expired identity, tool timeout, and unavailable downstream systems.
+2. Use the following outcomes to evaluate the EBS Invoice Reconciliation Reference Recipe:
+
+    * Missing or uncertain extracted fields are reported rather than invented.
+    * Matching rules produce the expected result for clean, duplicate, missing-receipt, quantity, price, and total-variance cases.
+    * A failed rule cannot be converted into a successful match by instructions embedded in document text.
+    * An exception remains pending for AP Analyst review.
+    * A successful match produces only a draft, and no downstream action occurs without Finance approval.
+    * Logs correlate the document, workflow, rule outcomes, tool calls, and approval without exposing document contents or secrets.
+
+3. Add edge, adversarial, and regression cases for missing information, ambiguous approval, prompt injection, expired identity, tool timeout, duplicate requests, and unavailable downstream systems.
 
 ## Acknowledgements
 
-* **Authors** - [Anup Ojah](https://github.com/aojah1) and [Luke Farley](https://github.com/lmfarley10), Oracle
+* **Authors**
+    * [Anup Ojah](https://github.com/aojah1), Oracle
+    * [Luke Farley](https://github.com/lmfarley10), Oracle
 * **Contributors**
     * [adrianjalba](https://github.com/adrianjalba)
     * [Andre Correa](https://github.com/andrecorreaneto)

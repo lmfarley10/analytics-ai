@@ -64,11 +64,20 @@ In this lab, you will:
 
 3. Prevent production promotion when a critical authorization, data-isolation, approval, or secret-exposure test fails.
 
+4. Add release evidence for the selected reference recipe:
+
+    | Recipe | Required release evidence |
+    |---|---|
+    | Loan Approval Reference Recipe | Versioned decision-policy matrix, threshold-boundary tests, applicant and Loan Officer authorization tests, referral-queue tests, and evidence that model output cannot override the deterministic result |
+    | EBS Invoice Reconciliation Reference Recipe | Versioned extraction schema and matching rules, tolerance and duplicate tests, AP Analyst and Finance Approver authorization tests, exception-queue tests, and evidence that no autonomous EBS posting or payment release is exposed |
+
 ## Task 4: Plan operations and recovery
 
 1. Assign operational ownership for the interface, API, agent workflow, MCP servers, database, integrations, identity applications, secrets, models, and observability services.
 
 2. Define service-level indicators for availability, agent completion, tool-call success, latency, token usage, policy denials, human-approval age, and downstream integration health.
+
+    Include recipe-specific indicators such as loan referral age and decision-policy failures, plus invoice extraction accuracy, match and exception rates, approval age, duplicate detection, and integration-draft failures.
 
 3. Define recovery procedures for:
 
@@ -78,6 +87,8 @@ In this lab, you will:
     * Model endpoint degradation or behavior regression.
     * Compromised secret, wallet, token, or image.
     * Incorrect system-of-record action.
+
+    For a loan workflow, recovery must preserve the authoritative policy result and the Loan Officer referral record. For invoice reconciliation, recovery must preserve the source document, match evidence, exception history, and Finance approval record without duplicating a downstream transaction.
 
 4. Roll back application images to the last validated digest. Revert infrastructure through the approved infrastructure-as-code workflow and review the resulting plan before applying it.
 
@@ -102,7 +113,9 @@ In this lab, you will:
 
 ## Acknowledgements
 
-* **Authors** - [Anup Ojah](https://github.com/aojah1) and [Luke Farley](https://github.com/lmfarley10), Oracle
+* **Authors**
+    * [Anup Ojah](https://github.com/aojah1), Oracle
+    * [Luke Farley](https://github.com/lmfarley10), Oracle
 * **Contributors**
     * [adrianjalba](https://github.com/adrianjalba)
     * [Andre Correa](https://github.com/andrecorreaneto)

@@ -33,9 +33,7 @@ In this lab, you will:
 
     | Starting asset | Use when |
     |---|---|
-    | Smart Dispatch recipe | The use case needs guided intake, database research, memory, and a human-approved action |
-    | Invoice Automation recipe | The use case needs document processing, classification, exception review, and governed financial workflow |
-    | Meridian Bank recipe | The use case needs peer-agent handoff with a deterministic high-stakes decision boundary |
+    | Loan Approval Reference Recipe | The use case needs guided intake, specialist handoff, memory, a deterministic high-stakes decision boundary, and Loan Officer review |
     | EBS Invoice Reconciliation recipe | The use case needs document extraction and deterministic three-way matching behind an integration boundary |
     | Agentic accelerator | The use case needs a reusable workflow pattern instead of a complete interface and backend |
     | Application stub | The solution needs a clean production-oriented API, CLI, agent, tool, prompt, and configuration scaffold |
@@ -62,7 +60,9 @@ In this lab, you will:
 
 ## Acknowledgements
 
-* **Authors** - [Anup Ojah](https://github.com/aojah1) and [Luke Farley](https://github.com/lmfarley10), Oracle
+* **Authors**
+    * [Anup Ojah](https://github.com/aojah1), Oracle
+    * [Luke Farley](https://github.com/lmfarley10), Oracle
 * **Contributors**
     * [adrianjalba](https://github.com/adrianjalba)
     * [Andre Correa](https://github.com/andrecorreaneto)

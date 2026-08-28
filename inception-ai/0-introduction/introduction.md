@@ -16,7 +16,7 @@ In this workshop, you will:
 
 * Explain the layers and reusable assets in the Project Inception framework.
 * Apply those assets to a realistic enterprise AI use case.
-* Use Smart Dispatch to trace an end-to-end multi-agent reference workflow.
+* Compare a governed loan-approval workflow with an EBS invoice-reconciliation workflow.
 * Discuss security, governance, observability, evaluation, and production-readiness choices.
 * Identify a practical next step for further learning or approved implementation work.
 
@@ -61,11 +61,16 @@ A typical governed request follows this sequence:
 
 ## Reusable agent patterns
 
-Project Inception provides reusable patterns so that a customer solution can choose the least autonomous design that satisfies the business requirement.
+Project Inception provides 15 runnable agent patterns so that a customer solution can choose the least autonomous design that satisfies the business requirement.
 
-![Seven reusable AI agent design patterns provided by Project Inception](images/agent-patterns.png)
+| Pattern family | Available patterns |
+|---|---|
+| Foundations | Basic ReAct Agent, Augmented LLM, Structured Output, and Code Interpretation |
+| Memory | Short-Term Memory, Long-Term Memory, Memory Store, and Memory-Aware Deep Agent |
+| Coordination | Prompt Chaining, Routing, Parallelization, Orchestrator-Workers, and Swarm |
+| Control and quality | Human-in-the-Loop and Evaluator-Optimizer |
 
-Start with deterministic workflows and add model-directed routing only where it creates measurable value. Human approval should guard consequential actions such as dispatching work, releasing payments, or changing a system of record.
+Start with deterministic workflows and add model-directed routing only where it creates measurable value. Human approval should guard consequential actions such as approving a referred loan, releasing a reconciliation draft, or changing a system of record.
 
 ## Workshop result
 
@@ -79,7 +84,9 @@ At the end of the workshop, you will have an Inception design canvas containing:
 
 ## Acknowledgements
 
-* **Authors** - [Anup Ojah](https://github.com/aojah1) and [Luke Farley](https://github.com/lmfarley10), Oracle
+* **Authors**
+    * [Anup Ojah](https://github.com/aojah1), Oracle
+    * [Luke Farley](https://github.com/lmfarley10), Oracle
 * **Contributors**
     * [adrianjalba](https://github.com/adrianjalba)
     * [Andre Correa](https://github.com/andrecorreaneto)

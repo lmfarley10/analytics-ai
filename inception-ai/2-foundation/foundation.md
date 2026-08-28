@@ -36,9 +36,14 @@ In this lab, you will:
 
 ## Task 2: Select the agent pattern
 
-1. Match the workflow to a pattern.
+1. Review the 15 runnable patterns in the accelerator catalog.
 
-    ![Project Inception catalog of reusable agent design patterns](images/agent-patterns.png)
+    | Family | Patterns | Use for |
+    |---|---|---|
+    | Foundations | Basic ReAct Agent, Augmented LLM, Structured Output, Code Interpretation | Tool use, retrieval, typed responses, and controlled computation |
+    | Memory | Short-Term Memory, Long-Term Memory, Memory Store, Memory-Aware Deep Agent | Conversation continuity, durable facts, shared state, and research workflows |
+    | Coordination | Prompt Chaining, Routing, Parallelization, Orchestrator-Workers, Swarm | Ordered stages, specialist selection, concurrent work, delegated work, and peer handoff |
+    | Control and quality | Human-in-the-Loop, Evaluator-Optimizer | Consequential-action approval and iterative quality improvement |
 
 2. Apply these selection rules:
 
@@ -49,11 +54,22 @@ In this lab, you will:
     | Independent analysis that can run concurrently | Parallelization |
     | A coordinator decomposes a variable task | Orchestrator-workers |
     | Iterative drafting against an explicit quality rubric | Evaluator-optimizer |
-    | Open-ended tool selection | Autonomous agent, with stricter guardrails and evaluation |
+    | Peer specialists hand control to one another | Swarm |
+    | Conversation context is needed only for the active thread | Short-term memory |
+    | Durable user or workflow knowledge must survive sessions | Long-term memory or memory store |
+    | A consequential action needs explicit approval | Human-in-the-loop |
+    | Open-ended research with planning, tools, and durable context | Memory-aware deep agent, with stricter guardrails and evaluation |
 
 3. Identify deterministic boundaries. Authentication, authorization, monetary decisions, regulatory rules, and system-of-record updates should not depend only on a model's interpretation.
 
 4. Identify every step that requires human approval. Record the approver role, information shown to that person, permitted decisions, expiry behavior, and audit evidence.
+
+5. Map the reference recipes to a minimal pattern set:
+
+    | Recipe | Recommended starting patterns | Deterministic boundary |
+    |---|---|---|
+    | Loan Approval Reference Recipe | Swarm or routing, short-term memory, optional long-term memory, and human-in-the-loop | Policy logic classifies approve, decline, or refer; the model does not make the final lending decision |
+    | EBS Invoice Reconciliation Reference Recipe | Prompt chaining, structured output, routing, and human-in-the-loop | Matching rules determine match or variance; Finance approval is required before any downstream action |
 
 ## Task 3: Design data and memory
 
@@ -108,7 +124,9 @@ In this lab, you will:
 
 ## Acknowledgements
 
-* **Authors** - [Anup Ojah](https://github.com/aojah1) and [Luke Farley](https://github.com/lmfarley10), Oracle
+* **Authors**
+    * [Anup Ojah](https://github.com/aojah1), Oracle
+    * [Luke Farley](https://github.com/lmfarley10), Oracle
 * **Contributors**
     * [adrianjalba](https://github.com/adrianjalba)
     * [Andre Correa](https://github.com/andrecorreaneto)
