@@ -113,9 +113,19 @@ This task involves creating a Database Tools Connection which will be used to qu
 
 4. Use the newly created password secret as **User password secret**.
 
-5. Under **Secure connection details**, choose **SSO wallet (for example, `cwallet.sso`)** for Wallet format. Select **Create Key Store Content Secret** and store the wallet in the Vault created in Task 2. If the console offers **Retrieve regional auto login wallet from Autonomous Database**, use it; otherwise download the auto-login wallet from the Autonomous Database **Database connection** page and upload `cwallet.sso`.
+5. Under **SSL details**, set **Wallet format** to **Oracle auto-login wallet (for example, `cwallet.sso`)**, then select **Create wallet content secret**.
 
-6. The connection string is populated when you select the Autonomous Database. Do not modify it to use a private IP address.
+    ![Select the auto-login wallet format and create a wallet content secret](images/adb/dbconn-wallet-format-sanitized.png)
+
+    If you have not already done so, open the Autonomous Database **Database connection** page and download its mTLS wallet. Unzip the download so that you can select `cwallet.sso`. In the dialog, choose the compartment, Vault, and encryption key created in Task 2. Under **Wallet**, select **Upload wallet** (do not select **Retrieve regional wallet from Autonomous AI Database**), then upload `cwallet.sso`. Create the secret and select it as the **SSO wallet content secret**.
+
+    ![Create the wallet content secret and select Upload wallet](images/adb/dbconn-wallet-upload-sanitized.png)
+
+6. On your Autonomous Database details page, select **Database connection**. Copy the connection string for the **low** service using **Mutual TLS (mTLS)** authentication. Return to the Database Tools connection and paste that value into **Connection string**. Do not replace it with a private-IP address.
+
+    ![Open Database connection from the Autonomous AI Database details page](images/adb/adb-database-connection-sanitized.png)
+
+    ![Paste the mTLS low-service connection string into the Database Tools connection](images/adb/dbconn-connection-string-sanitized.png)
 
 7. Do not select **Access database via a private network** or a Database Tools private endpoint.
 
