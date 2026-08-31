@@ -15,7 +15,6 @@ Estimated Time: 45 minutes
 ### Objectives
 
 In this lab, you will:
-* Deploy VCN and subnet for ADB
 * Create Vault to store DB secret
 * Define agent tools in the OCI console
 * Provision an Oracle Autonomous AI Database
@@ -50,11 +49,11 @@ Allow any-user to read secret-family in compartment <compartment-name> where req
 
     ```text
      <copy>
-      You are a helpful assistant. If user asks about <info on your dataset>, use the rag tool. If user asks about employees, use atomlivelab-sql tool. If user asks about the weather, use the weather tool. If user asks a general question, use your general knowledge, no tools.
+      You are a helpful assistant. If a user asks about design considerations for generative AI applications, use the rag tool. If a user asks about employees, use atomlivelab-sql tool. If a user asks about the weather, use the weather tool. If a user asks a general question, use your general knowledge, no tools.
      </copy>
     ```
 
-    > **Note** Be sure to replace "info on your dataset" above with a relevant term to your knowledge base to help the agent route to the correct tool. In our example, our dataset relates to wines.
+    > **Note** The RAG tool is grounded in *Design Considerations for GenAI Apps.pdf*. The routing instruction uses this document's subject so the agent selects the RAG tool for relevant questions.
 
 3. Select your agent and confirm it has a RAG tool as configured in the previous lab. If not, create a new tool.
 
@@ -64,21 +63,11 @@ Allow any-user to read secret-family in compartment <compartment-name> where req
 
 ![Configure RAG Tool](./images/rag/config-rag.png)
 
-5. Navigate to the agent endpoint and launch the chat. You should now be able to ask questions about your dataset - 
+5. Navigate to the agent endpoint and launch the chat. You should now be able to ask questions about design considerations for generative AI applications.
 
 ![Test RAG Tool](./images/rag/test-rag.png)
 
-## Task 2: Create VCN and Private Subnet
-
-This task will help you to create a VCN and private subnet in your compartment. This will be used for the ADB for the SQL Tool.
-
-1. Go to Networking -> Virtual cloud networks and select the VCN created in Lab 1.
-
-2. Click on the private subnet and go to the Security List. Add following ingress rules in the security list. Make sure to have the ingress rule to access database port 1521-1522
-
-    ![Ingress Rules](images/adb/ingress_rules.png)
-
-## Task 3: Create Vault to store database secrets
+## Task 2: Create Vault to store database secrets
 
 This task will help you to create vault which would be used to save secrets for the database. The secrets are used for the agent to connect to your database with the db tool connection.
 
@@ -92,25 +81,23 @@ This task will help you to create vault which would be used to save secrets for 
 
     ![Create Key](images/adb/create_key.png)
 
-## Task 4: Create Autonomous Database
+## Task 3: Create Autonomous Database
 
-This task involves creating Autonomous Database 23ai.
+This task involves creating Autonomous Database 26ai.
 
 1. Locate Autonomous Databases under Oracle Databases. Click on Create Autonomous Database.
 
     ![Create ADB](images/adb/create_adb.png)
 
-2. Provide information for Compartment, Display name, Database name. Choose workload type as Transaction Processing. Choose deployment type as Serverless. Choose database version as 23ai and give it a password of your preference. 
+2. Provide information for Compartment, Display name, Database name. Choose workload type as Transaction Processing. Choose deployment type as Serverless. Choose database version as 26ai and give it a password of your preference.
 
     ![Create ATP](images/atp/create-atp-1.png)
 
-3. Make sure to select the Network Access: Private Endpoint access only, and select the VCN and subnet mentioned in above section. Also, do not check Require mutual TLS (mTLS) authentication.
-
-    ![ADB creation](images/adb/adb.png)
+3. For **Network access**, select **Secure access from everywhere** to create a public endpoint. Keep **Require mutual TLS (mTLS) authentication** enabled. This workshop uses only sample data; do not use this public-endpoint configuration for production data.
 
 4. Finally click on Create Autonomous Database.
 
-## Task 5: Create Database Tools Connection
+## Task 4: Create Database Tools Connection
 
 This task involves creating a Database Tools Connection which will be used to query the database using SQL Worksheet.
 
@@ -118,39 +105,27 @@ This task involves creating a Database Tools Connection which will be used to qu
 
     ![Create conn](images/adb/dbconn.png)
 
-2. Provide Name and Compartment information. Choose Oracle Autonomous Database as Database cloud service. Provide Username as admin.
+2. Provide Name and Compartment information. Choose **Oracle Autonomous Database** as the Database cloud service, select the Autonomous Database you created in Task 3, and provide the username `ADMIN`.
 
-3. Click on Create password secret. Provide Name, Vault and Key created in Task 3. Provide same password used at the time of ADB creation in previous task.
+3. Click **Create password secret**. Provide a name, the Vault and key created in Task 2, and the same password used when you created the Autonomous Database.
 
     ![Create Password](images/adb/dbconn_pass.png)
 
-4. Use the newly created password secret as User password secret.
+4. Use the newly created password secret as **User password secret**.
 
-5. Copy the connection string from your autonomous database. Go to ADB and click on database connection and copy any of the low, medium or high connection strings as shown below,
+5. Under **Secure connection details**, choose **SSO wallet (for example, `cwallet.sso`)** for Wallet format. Select **Create Key Store Content Secret** and store the wallet in the Vault created in Task 2. If the console offers **Retrieve regional auto login wallet from Autonomous Database**, use it; otherwise download the auto-login wallet from the Autonomous Database **Database connection** page and upload `cwallet.sso`.
 
-    ![Create Conn String](images/adb/conn_string.png)
+6. The connection string is populated when you select the Autonomous Database. Do not modify it to use a private IP address.
 
-6. Modify the connection string with the following: Reduce retry_count form 20 to 3; Replace host with private ip address. You can get Private IP address from the autonomous database as shown below.
+7. Do not select **Access database via a private network** or a Database Tools private endpoint.
 
-    ![Private IP](images/adb/pvt_ip.png)
+8. Click **Create** to create the Database Tools connection.
 
-7. Click on Create private endpoint. Provide Name and private subnet created in Task 1.
+9. Open the newly created Database Tools connection and select **Validate**.
 
-    ![Private Endpoint](images/adb/dbconn_pvt_endp.png)
+> **Production note:** A production database should use private endpoint access, a Database Tools private endpoint, least-privilege network rules, and production data controls. This public-endpoint configuration is intentionally limited to the disposable workshop database and sample data.
 
-8. Choose newly created private endpoint as Private Endpoint.
-
-9. Choose Wallet format as None in SSL details.
-
-10. Click on Create to create a database tools connection.
-
-    ![Create DBTools](images/adb/dbconn_create_conn.png)
-
-11. Go to newly create Database Tools connection. Click on Validate.
-
-    ![Validate DBTools](images/adb/dbconn_validate.png)
-
-## Task 6: Create and Populate Employee Table
+## Task 5: Create and Populate Employee Table
 
 1. Navigate to the SQL Worksheet of your newly created ADB and run the following statements: 
 
@@ -183,7 +158,7 @@ SELECT * FROM dual;
 
   > **Note** If you use your own table, large queries can cause timeouts in the agent service & ODA. Try filtering your results to avoid timeouts.
 
-## Task 7: Create SQL Tool
+## Task 6: Create SQL Tool
 1. In the console navigate to your agent and create a new SQL Tool
 
   ![Navigate to Agent](./images/console/agents-service-navigation.png)
@@ -230,7 +205,7 @@ in SQL Developer.
 
   > * **Note** Also make sure the agent is using the correct tool for the job. If the agent is using the wrong tool, make sure to add a more detailed description and/or routing instructions.
 
-## Task 8: Create a Weather Tool
+## Task 7: Create a Weather Tool
 
   1. Navigate to the agent tools and create a new custom function tool called "get_weather" 
 
@@ -252,14 +227,23 @@ in SQL Developer.
   2. Create the tool 
 
 
-## Task 10: Chat with your Agent
+## Task 8: Chat with your Agent
 
 - You should now have all tools configured. Ask questions and your agent should determine which tools to use based on your query.
+
+## Task 9: Clean Up Workshop Resources
+
+1. When you finish the workshop and no longer need the environment, remove the SQL tool from the agent, then delete the Database Tools connection and the Autonomous Database.
+
+2. After the database and connection are deleted, delete the password secret and wallet-content secret. Delete the Vault key and Vault only when they are not used by another resource.
+
+3. If you do not plan to continue experimenting, delete the agent endpoint, agent, knowledge base, and Object Storage bucket created for the workshop. Do not delete shared or organization-managed resources.
+
+4. Verify that the public workshop database no longer appears on the Autonomous Databases page.
 
 ## Learn More
 
 * [SQL Tool Guidelines for Generative AI Agents](https://docs.oracle.com/en-us/iaas/Content/generative-ai-agents/sqltool-guidelines.htm)
-* [ADB Shared with Private Endpoint Access](https://docs.oracle.com/en-us/iaas/database-tools/doc/oracle-database-use-cases.html#OCDBT-GUID-C2C8BC15-EDB1-47D6-BDFC-852558C8D650)
 * [Database Tools - ADB Shared with Public IP](https://docs.oracle.com/en-us/iaas/database-tools/doc/oracle-database-use-cases.html#OCDBT-GUID-87796740-BAE4-4805-BF6D-C75A02A3D1D4)
 * [RAG Tool Oracle Database Guidelines for Generative AI Agents](https://docs.oracle.com/en-us/iaas/Content/generative-ai-agents/oracle-db-guidelines.htm)
 
