@@ -2,23 +2,25 @@
 
 ## Introduction
 
-This lab will walk through the steps of deploying and configuring a Generative AI Agent with an associated knowledge base. 
+This lab will walk through the steps of deploying and configuring a Generative AI Agent with an associated knowledge base.
 
 Estimated Time: 45 minutes
 
 ### Objectives
 
 In this lab, you will:
-* Make sure that our tenancy is subscribed to the Chicago or Ashburn region.
+* Make sure that your tenancy is subscribed to the Chicago region.
 * Provision GenAI Agent
 * Configure RAG Tool for Agent in console UI
 
-### Prerequisites (Optional)
+### Prerequisites
 
 This lab assumes you have:
 
 * Access to the Chicago region
-* Permissions to use Generative AI Agents and Object Storage. Administrator permissions are recommended for this workshop.
+* For a self-managed tenancy, the required IAM permissions listed in **Deploying in Your Own Tenancy?** in the workshop introduction.
+
+> **Luna Lab participants:** Required policies are preconfigured. If you are using your own tenancy, see **Deploying in Your Own Tenancy?** in the workshop introduction.
 
 ## Task 1: Ensure Chicago Region is Accessible
 
@@ -29,6 +31,8 @@ If your tenancy is already subscribed to the Chicago region, please skip to the 
   ![Screenshot showing the tenancy regions list](./images/policies/regions-list.png)
 
 1. Review the list of regions your tenancy is subscribed in. If you find the **US Midwest (Chicago)** region in the list, switch to it and proceed to the next task.
+
+    If Chicago isn't listed, ask your tenancy administrator to subscribe to the region before continuing.
 
 ## Task 2: Provision Oracle Object Storage Bucket
 
@@ -42,8 +46,6 @@ This task will help you to create Oracle Object Storage Bucket under your chosen
     The Object Storage Bucket will be created. Keep the visibility of bucket as Private.
 
     ![object storage bucket creation](images/kb/os_bucket_create.png)
-
-    <!--TODO: may need object events and may want object versioning -->
 
 ## Task 3: Upload PDF Document(s) to the Object Storage Bucket
 
@@ -93,9 +95,11 @@ This task will help you to create Oracle Generative AI Agent’s Knowledge Base 
 
     ![knowledge base creation](images/kb/kb_create.png)
 
-6. In few minutes the status of recently created Knowledge Base will change from Creating to Active
+6. In few minutes the status of recently created Knowledge Base will change from Creating to Active.
 
     ![knowledge base active](images/kb/kb_active.png)
+
+7. Open the data source and start or review its ingestion job. Processing can take up to 30 minutes. Wait until ingestion completes successfully and the uploaded document is listed as ingested before creating or testing the RAG tool. If ingestion fails, Luna Lab participants should contact the facilitator; self-managed participants should review the policy reference in the workshop introduction.
 
 ## Task 5: Provision GenAI Agent
 
@@ -109,7 +113,7 @@ This task will help you to create Oracle Generative AI Agent under your chosen c
 
 2. Specify the agent name, ensure the correct compartment is selected and indicate a suitable welcome message
 
-    Select Add tool > Choose RAG tool 
+    Select Add tool > Choose RAG tool
 
     ![Create Tool](images/agent/create-tool.png)
 
@@ -127,9 +131,7 @@ This task will help you to create Oracle Generative AI Agent under your chosen c
 
     ![agent active](images/agent/agent_active_endpoint.png)
 
-4. It’ll open up the Endpoint Screen. Copy and keep the OCID of the Endpoint. It’ll be used later.
-
-   Click on “Launch chat” button
+4. It’ll open up the Endpoint Screen. Click on “Launch chat” button.
 
    ![agent endpoint](images/agent/agent_endpoint.png)
 
@@ -137,7 +139,7 @@ This task will help you to create Oracle Generative AI Agent under your chosen c
 
     ![Agent Chat Playground](images/agent/agent_launch_chat.png)
 
-4. You may now **proceed to the next lab**
+6. You may now **proceed to the next lab**
 
 ## Learn More
 

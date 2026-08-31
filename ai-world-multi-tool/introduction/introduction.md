@@ -20,8 +20,54 @@ By the end of this workshop, you will be able to:
 
 ### Prerequisites
 
-* An OCI tenancy with access to the US Midwest (Chicago) region.
-* Permissions to use Generative AI Agents, Object Storage, Autonomous Database, Database Tools, Vault, Networking, and IAM policies. An administrator account is recommended for the workshop.
+* A Luna Lab workspace, or an OCI tenancy with access to the US Midwest (Chicago) region.
+* For a self-managed tenancy, the IAM permissions listed in **Deploying in Your Own Tenancy?** below.
+
+> **Luna Lab participants:** The Luna Lab administrator preconfigures the required IAM policies. Do not create or modify IAM policies during the workshop. If you receive a permissions error, contact the workshop facilitator.
+
+## Deploying in Your Own Tenancy?
+
+The following reference is only for participants who are completing the workshop in their own OCI tenancy. Replace the placeholders with your group and workshop compartment. Scope policies more narrowly when your tenancy standards require it.
+
+1. Give the workshop user group permission to create and manage the workshop resources:
+
+    ```text
+    <copy>
+    allow group <workshop-user-group> to manage genai-agent-family in compartment <workshop-compartment>
+    allow group <workshop-user-group> to manage object-family in compartment <workshop-compartment>
+    allow group <workshop-user-group> to manage autonomous-database-family in compartment <workshop-compartment>
+    allow group <workshop-user-group> to manage vaults in compartment <workshop-compartment>
+    allow group <workshop-user-group> to manage keys in compartment <workshop-compartment>
+    allow group <workshop-user-group> to manage secret-family in compartment <workshop-compartment>
+    allow group <workshop-user-group> to manage database-tools-family in compartment <workshop-compartment>
+    </copy>
+    ```
+
+    This workshop uses a public Autonomous Database endpoint, so it doesn't require `virtual-network-family` permissions. If you change the workshop to use private networking, add the required networking permissions and setup.
+
+2. Allow the agent runtime to execute and self-correct SQL queries through the Database Tools connection:
+
+    ```text
+    <copy>
+    allow any-user to use database-tools-connections in compartment <workshop-compartment> where request.principal.type='genaiagent'
+    allow any-user to read database-tools-family in compartment <workshop-compartment> where request.principal.type='genaiagent'
+    allow any-user to read secret-family in compartment <workshop-compartment> where request.principal.type='genaiagent'
+    </copy>
+    ```
+
+3. For larger or long-running Object Storage ingestion jobs, or when ingestion fails because the job can't read the bucket, an administrator can also configure an ingestion-job dynamic group:
+
+    ```text
+    <copy>
+    Dynamic group matching rule:
+    ALL {resource.type='genaiagentdataingestionjob'}
+
+    IAM policy:
+    allow dynamic-group <data-ingestion-dynamic-group> to read objects in compartment <bucket-compartment>
+    </copy>
+    ```
+
+    The small, unfiltered sample PDF used in this workshop doesn't require this optional configuration when normal ingestion succeeds.
 
 ## Workshop Structure
 

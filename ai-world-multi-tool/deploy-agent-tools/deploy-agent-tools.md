@@ -4,10 +4,10 @@
 
 This lab configures the OCI Generative AI Agent tools. You will confirm the RAG tool created in Lab 1, configure an Autonomous AI Database and Database Tools connection for SQL, add a Weather tool, and test the multi-tool agent.
 
-The following agent tools will be configured: 
+The following agent tools will be configured:
 * General LLM Chat (Built-in)
 * Weather
-* RAG 
+* RAG
 * SQL
 
 Estimated Time: 45 minutes
@@ -27,29 +27,19 @@ This lab assumes you have:
 * An Oracle account
 * All previous labs successfully completed
 
-> **Important:** Before enabling SQL execution or SQL self-correction, ensure that the Generative AI Agent runtime has permission to use the Database Tools connection and read its password secret. See [SQL Tool Guidelines for Generative AI Agents](https://docs.oracle.com/en-us/iaas/Content/generative-ai-agents/sqltool-guidelines.htm).
-
-For the compartment that contains the Database Tools connection and secret, the agent runtime requires policies equivalent to:
-
-```text
-<copy>
-Allow any-user to use database-tools-connections in compartment <compartment-name> where request.principal.type='genaiagent'
-Allow any-user to read database-tools-family in compartment <compartment-name> where request.principal.type='genaiagent'
-Allow any-user to read secret-family in compartment <compartment-name> where request.principal.type='genaiagent'
-</copy>
-```
+> **Luna Lab participants:** Required policies are preconfigured. If you are using your own tenancy, review **Deploying in Your Own Tenancy?** in the workshop introduction before enabling SQL execution or self-correction.
 
 ## Task 1: Add Agent Routing Instructions and Confirm RAG Tool Configuration
 
-1. Navigate to your GenAI Agent created in the previous lab 
+1. Navigate to your GenAI Agent created in the previous lab
 
 ![Screenshot showing how to navigate to the Agents service from the main menu](./images/console/agents-service-navigation.png)
 
-2. Edit your agent and add the following routing instructions: 
+2. Edit your agent and add the following routing instructions:
 
     ```text
      <copy>
-      You are a helpful assistant. If a user asks about design considerations for generative AI applications, use the rag tool. If a user asks about employees, use atomlivelab-sql tool. If a user asks about the weather, use the weather tool. If a user asks a general question, use your general knowledge, no tools.
+      You are a helpful assistant. If a user asks about design considerations for generative AI applications, use the RAG tool. If a user asks about employees, use the employee-sql tool. If a user asks about the weather, use the get_weather tool. If a user asks a general question, use your general knowledge, no tools.
      </copy>
     ```
 
@@ -59,7 +49,7 @@ Allow any-user to read secret-family in compartment <compartment-name> where req
 
 ![Create RAG Tool](./images/rag/create-rag-tool.png)
 
-4. Confirm the description of the tool and the knowledge base you created in the previous lab 
+4. Confirm the description of the tool and the knowledge base you created in the previous lab
 
 ![Configure RAG Tool](./images/rag/config-rag.png)
 
@@ -137,9 +127,9 @@ This task involves creating a Database Tools Connection which will be used to qu
 
 ## Task 5: Create and Populate Employee Table
 
-1. Navigate to the SQL Worksheet of your newly created ADB and run the following statements: 
+1. Navigate to the SQL Worksheet of your newly created ADB and run the following statements:
 
-> **Note** You can create or use your own tables here; we provided the table below for illustration purposes. 
+> **Note** You can create or use your own tables here; we provided the table below for illustration purposes.
 
 ```text
 <copy>
@@ -152,7 +142,7 @@ CREATE TABLE Employees (
 </copy>
 ```
 
-- Populate your table with the following data 
+- Populate your table with the following data
 
 ```text
 <copy>
@@ -163,6 +153,7 @@ INTO Employees (EmployeeID, Name, DepartmentID, HireDate) VALUES (3, 'Bob Johnso
 INTO Employees (EmployeeID, Name, DepartmentID, HireDate) VALUES (4, 'Alice Brown', 3, TO_DATE('2020-04-01', 'YYYY-MM-DD'))
 INTO Employees (EmployeeID, Name, DepartmentID, HireDate) VALUES (5, 'Mike Davis', 2, TO_DATE('2020-05-01', 'YYYY-MM-DD'))
 SELECT * FROM dual;
+COMMIT;
 </copy>
 ```
 
@@ -173,7 +164,7 @@ SELECT * FROM dual;
 
   ![Navigate to Agent](./images/console/agents-service-navigation.png)
 
-2. Enter name e.g. atomlivelab-sql and description, along with the database schema 
+2. Set the tool name to `employee-sql`, add a description such as `Retrieve employee information from the Employees table`, and paste the database schema.
 
 > **Note** Make sure to use the same schema defined from the previous task.
 
@@ -193,23 +184,15 @@ CREATE TABLE Employees (
 ```sql
 DESC table_name;
 ```
- 
-in SQL Developer. 
 
-![Create SQL Tool](images/sqltool/create-tool.png)
+in the SQL Worksheet.
 
-3. Select Oracle SQL as the dialect and select the database tool connection configured in the previous task. Enable SQL Execution and self correction. 
-4. Test the connection 
+3. Select Oracle SQL as the dialect and select the database tool connection configured in the previous task. Enable SQL Execution and self correction.
+4. Select the Database Tools connection you validated in Task 4, then select **Test connection** and confirm that the test succeeds.
 
-![Test Connection](images/sqltool/tool-connection.png)
+5. Create the tool.
 
-5. Create the tool 
-
-6. Navigate to your endpoint and launch the chat. Ask a question such as "Give me list of employees". The agent should invoke the SQL Tool and convert the query to Oracle SQL, then return the result - 
-
-  ![Test SQL Tool](./images/sql/test-sql-tool.png)
-
-  ![Test SQL Tool](./images/sql/test-sql-tool-2.png)
+6. Navigate to your endpoint and launch the chat. Ask a question such as `List all employees`. The agent should invoke the SQL tool, generate Oracle SQL, and return the result.
 
   > * **Note** If the sql tool is not returning the correct response, it can be helpful to provide an in-line example to the tool. Also see [SQL Tool Guidelines](https://docs.oracle.com/en-us/iaas/Content/generative-ai-agents/sqltool-guidelines.htm#sqltool-iclexamples)
 
@@ -217,9 +200,9 @@ in SQL Developer.
 
 ## Task 7: Create a Weather Tool
 
-  1. Navigate to the agent tools and create a new custom function tool called "get_weather" 
+1. Navigate to the agent tools and select **Create tool** > **Custom tool**. Under Tool configuration, select **Function calling**, then create a function named `get_weather`.
 
-  - Give the following description - 
+2. Give the function the following description:
 
     ```text
     <copy>
@@ -227,19 +210,39 @@ in SQL Developer.
     </copy>
     ```
 
-  - Paste the following function parameters - 
-    ```text
+3. Paste the following valid JSON schema as the function parameters:
+
+    ```json
     <copy>
-    {"type":"object","properties":{"location":{"type":"string"}},"required":"['location']"}
+    {
+      "type": "object",
+      "properties": {
+        "location": {
+          "type": "string",
+          "description": "City and country or region for the weather request"
+        }
+      },
+      "required": ["location"],
+      "additionalProperties": false
+    }
     </copy>
     ```
 
-  2. Create the tool 
+4. Create the tool and wait for it to become active.
+
+> **Note:** This workshop configures the function contract only; it doesn't deploy a weather-service implementation. A weather prompt verifies that the agent selects `get_weather` and passes a `location` argument. A production application must execute the function and return its result to the agent.
 
 
 ## Task 8: Chat with your Agent
 
-- You should now have all tools configured. Ask questions and your agent should determine which tools to use based on your query.
+1. From the agent endpoint, launch chat and test the following prompts:
+
+   * Ask a question about design considerations for generative AI applications to verify RAG routing.
+   * Ask `List all employees` to verify the `employee-sql` tool and the committed sample data.
+   * Ask about the weather in a location to verify that the agent selects `get_weather` and supplies a location argument.
+   * Ask a general question, such as `What is an autonomous agent?`, to verify general chat without a tool.
+
+2. If a prompt selects the wrong tool, refine the tool description or the routing instructions in Task 1, then test again.
 
 ## Task 9: Clean Up Workshop Resources
 
@@ -259,7 +262,7 @@ in SQL Developer.
 
 ## Acknowledgements
 
-**Author** 
+**Author**
   * **Luke Farley**, Senior Cloud Engineer, NACIE
 
 **Contributors**
