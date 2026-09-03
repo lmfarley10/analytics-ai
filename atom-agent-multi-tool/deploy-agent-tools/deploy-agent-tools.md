@@ -33,7 +33,7 @@ This lab assumes you have:
 
 1. Navigate to your GenAI Agent created in the previous lab
 
-![Screenshot showing how to navigate to the Agents service from the main menu](./images/console/agents-service-navigation.png)
+    ![Screenshot showing how to navigate to the Agents service from the main menu](./images/console/agents-service-navigation.png)
 
 2. Edit your agent and add the following routing instructions:
 
@@ -47,15 +47,15 @@ This lab assumes you have:
 
 3. Select your agent and confirm it has a RAG tool as configured in the previous lab. If not, create a new tool.
 
-![Create RAG Tool](./images/rag/create-rag-tool.png)
+    ![Create RAG Tool](./images/rag/create-rag-tool.png)
 
 4. Confirm the description of the tool and the knowledge base you created in the previous lab
 
-![Configure RAG Tool](./images/rag/config-rag.png)
+    ![Configure RAG Tool](./images/rag/config-rag.png)
 
 5. Navigate to the agent endpoint and launch the chat. You should now be able to ask questions about design considerations for generative AI applications.
 
-![Test RAG Tool](./images/rag/test-rag.png)
+    ![Test RAG Tool](./images/rag/test-rag.png)
 
 ## Task 2: Create Vault to store database secrets
 
@@ -123,69 +123,69 @@ This task involves creating a Database Tools Connection which will be used to qu
 
 9. Open the newly created Database Tools connection and select **Validate**.
 
-> **Production note:** A production database should use private endpoint access, a Database Tools private endpoint, least-privilege network rules, and production data controls. This public-endpoint configuration is intentionally limited to the disposable workshop database and sample data.
+    > **Production note:** A production database should use private endpoint access, a Database Tools private endpoint, least-privilege network rules, and production data controls. This public-endpoint configuration is intentionally limited to the disposable workshop database and sample data.
 
 ## Task 5: Create and Populate Employee Table
 
 1. Navigate to the SQL Worksheet of your newly created ADB and run the following statements:
 
-> **Note** You can create or use your own tables here; we provided the table below for illustration purposes.
+    > **Note** You can create or use your own tables here; we provided the table below for illustration purposes.
 
-```text
-<copy>
-CREATE TABLE Employees (
-    EmployeeID INT PRIMARY KEY,
-    Name VARCHAR(100) NOT NULL,
-    DepartmentID INT,
-    HireDate DATE NOT NULL
-);
-</copy>
-```
+    ```text
+    <copy>
+    CREATE TABLE Employees (
+        EmployeeID INT PRIMARY KEY,
+        Name VARCHAR(100) NOT NULL,
+        DepartmentID INT,
+        HireDate DATE NOT NULL
+    );
+    </copy>
+    ```
 
-- Populate your table with the following data
+    - Populate your table with the following data
 
-```text
-<copy>
-INSERT ALL
-INTO Employees (EmployeeID, Name, DepartmentID, HireDate) VALUES (1, 'John Doe', 1, TO_DATE('2020-01-01', 'YYYY-MM-DD'))
-INTO Employees (EmployeeID, Name, DepartmentID, HireDate) VALUES (2, 'Jane Smith', 2, TO_DATE('2020-02-01', 'YYYY-MM-DD'))
-INTO Employees (EmployeeID, Name, DepartmentID, HireDate) VALUES (3, 'Bob Johnson', 1, TO_DATE('2020-03-01', 'YYYY-MM-DD'))
-INTO Employees (EmployeeID, Name, DepartmentID, HireDate) VALUES (4, 'Alice Brown', 3, TO_DATE('2020-04-01', 'YYYY-MM-DD'))
-INTO Employees (EmployeeID, Name, DepartmentID, HireDate) VALUES (5, 'Mike Davis', 2, TO_DATE('2020-05-01', 'YYYY-MM-DD'))
-SELECT * FROM dual;
-COMMIT;
-</copy>
-```
+    ```text
+    <copy>
+    INSERT ALL
+    INTO Employees (EmployeeID, Name, DepartmentID, HireDate) VALUES (1, 'John Doe', 1, TO_DATE('2020-01-01', 'YYYY-MM-DD'))
+    INTO Employees (EmployeeID, Name, DepartmentID, HireDate) VALUES (2, 'Jane Smith', 2, TO_DATE('2020-02-01', 'YYYY-MM-DD'))
+    INTO Employees (EmployeeID, Name, DepartmentID, HireDate) VALUES (3, 'Bob Johnson', 1, TO_DATE('2020-03-01', 'YYYY-MM-DD'))
+    INTO Employees (EmployeeID, Name, DepartmentID, HireDate) VALUES (4, 'Alice Brown', 3, TO_DATE('2020-04-01', 'YYYY-MM-DD'))
+    INTO Employees (EmployeeID, Name, DepartmentID, HireDate) VALUES (5, 'Mike Davis', 2, TO_DATE('2020-05-01', 'YYYY-MM-DD'))
+    SELECT * FROM dual;
+    COMMIT;
+    </copy>
+    ```
 
-  > **Note** If you use your own table, large queries can cause timeouts in the agent service & ODA. Try filtering your results to avoid timeouts.
+    > **Note** If you use your own table, large queries can cause timeouts in the agent service. Try filtering your results to avoid timeouts.
 
 ## Task 6: Create SQL Tool
 1. In the console navigate to your agent and create a new SQL Tool
 
-  ![Navigate to Agent](./images/console/agents-service-navigation.png)
+    ![Navigate to Agent](./images/console/agents-service-navigation.png)
 
 2. Set the tool name to `employee-sql`, add a description such as `Retrieve employee information from the Employees table`, and paste the database schema.
 
-> **Note** Make sure to use the same schema defined from the previous task.
+    > **Note** Make sure to use the same schema defined in the previous task.
 
-```text
-<copy>
-CREATE TABLE Employees (
-    EmployeeID INT PRIMARY KEY,
-    Name VARCHAR(100) NOT NULL,
-    DepartmentID INT,
-    HireDate DATE NOT NULL
-);
-</copy>
-```
+    ```text
+    <copy>
+    CREATE TABLE Employees (
+        EmployeeID INT PRIMARY KEY,
+        Name VARCHAR(100) NOT NULL,
+        DepartmentID INT,
+        HireDate DATE NOT NULL
+    );
+    </copy>
+    ```
 
-> **Note** If using your own table, to get a better idea of the schema run
+    > **Note** If using your own table, run the following to inspect its schema:
 
-```sql
-DESC table_name;
-```
+    ```sql
+    DESC table_name;
+    ```
 
-in the SQL Worksheet.
+    in the SQL Worksheet.
 
 3. Select Oracle SQL as the dialect and select the database tool connection configured in the previous task. Enable SQL Execution and self correction.
 4. Select the Database Tools connection you validated in Task 4, then select **Test connection** and confirm that the test succeeds.
@@ -194,9 +194,9 @@ in the SQL Worksheet.
 
 6. Navigate to your endpoint and launch the chat. Ask a question such as `List all employees`. The agent should invoke the SQL tool, generate Oracle SQL, and return the result.
 
-  > * **Note** If the sql tool is not returning the correct response, it can be helpful to provide an in-line example to the tool. Also see [SQL Tool Guidelines](https://docs.oracle.com/en-us/iaas/Content/generative-ai-agents/sqltool-guidelines.htm#sqltool-iclexamples)
+    > * **Note** If the SQL tool isn't returning the correct response, it can be helpful to provide an inline example to the tool. Also see [SQL Tool Guidelines](https://docs.oracle.com/en-us/iaas/Content/generative-ai-agents/sqltool-guidelines.htm#sqltool-iclexamples)
 
-  > * **Note** Also make sure the agent is using the correct tool for the job. If the agent is using the wrong tool, make sure to add a more detailed description and/or routing instructions.
+    > * **Note** Also make sure the agent is using the correct tool for the job. If the agent is using the wrong tool, add a more detailed description or routing instructions.
 
 ## Task 7: Create a Weather Tool
 
@@ -230,17 +230,17 @@ in the SQL Worksheet.
 
 4. Create the tool and wait for it to become active.
 
-> **Note:** This workshop configures the function contract only; it doesn't deploy a weather-service implementation. A weather prompt verifies that the agent selects `get_weather` and passes a `location` argument. A production application must execute the function and return its result to the agent.
+    > **Note:** This workshop configures the function contract only; it doesn't deploy a weather-service implementation. A weather prompt verifies that the agent selects `get_weather` and passes a `location` argument. A production application must execute the function and return its result to the agent.
 
 
 ## Task 8: Chat with your Agent
 
 1. From the agent endpoint, launch chat and test the following prompts:
 
-   * Ask a question about design considerations for generative AI applications to verify RAG routing.
-   * Ask `List all employees` to verify the `employee-sql` tool and the committed sample data.
-   * Ask about the weather in a location to verify that the agent selects `get_weather` and supplies a location argument.
-   * Ask a general question, such as `What is an autonomous agent?`, to verify general chat without a tool.
+    * Ask a question about design considerations for generative AI applications to verify RAG routing.
+    * Ask `List all employees` to verify the `employee-sql` tool and the committed sample data.
+    * Ask about the weather in a location to verify that the agent selects `get_weather` and supplies a location argument.
+    * Ask a general question, such as `What is an autonomous agent?`, to verify general chat without a tool.
 
 2. If a prompt selects the wrong tool, refine the tool description or the routing instructions in Task 1, then test again.
 

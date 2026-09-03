@@ -26,7 +26,7 @@ If your tenancy is already subscribed to the Chicago region, please skip to the 
 
 1. On the top right, click the Regions drop down menu.
 
-  ![Screenshot showing the tenancy regions list](./images/policies/regions-list.png)
+    ![Screenshot showing the tenancy regions list](./images/policies/regions-list.png)
 
 1. Review the list of regions your tenancy is subscribed in. If you find the **US Midwest (Chicago)** region in the list, switch to it and proceed to the next task.
 
@@ -131,7 +131,7 @@ This task will help you to create Oracle Generative AI Agent under your chosen c
 
 4. It’ll open up the Endpoint Screen. Click on “Launch chat” button.
 
-   ![agent endpoint](images/agent/agent_endpoint.png)
+    ![agent endpoint](images/agent/agent_endpoint.png)
 
 5. It’ll open up the Chat Playground, where you can ask questions in natural language, and get the responses from your PDF documents
 

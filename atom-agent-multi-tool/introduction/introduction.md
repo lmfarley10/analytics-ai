@@ -8,7 +8,7 @@ The workshop focuses on the backend agent and its tools, with direct testing thr
 
 ![Architecture diagram showing direct OCI Console access to the multi-tool Generative AI Agent](images/multi-tool-architecture.png)
 
-Estimated Time: 90 minutes
+Estimated Workshop Time: 90 minutes
 
 ### Objectives
 
