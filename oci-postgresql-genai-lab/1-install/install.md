@@ -69,11 +69,17 @@ The API key will be used to access OCI command line tool and OCI Generative AI s
 
 ## Task 3: Run Terraform script 
 
-1. Download the Github code to your Local machine
+1. Review and accept the license agreement before downloading the GitHub code to your local machine.
 
-    ````
-   git clone https://github.com/shadabshaukat/oracle-livelabs.git
-     ````
+    <div class="sample-code-license-gate" data-license-gate>
+      <p>Review the Oracle Technology Network License Agreement in Appendix 1, then select <strong>Accept License Agreement</strong> to reveal the download command.</p>
+      <button type="button" class="license-gate-review" data-license-gate-review>Review License Agreement</button>
+      <p class="license-gate-status" data-license-gate-status aria-live="polite"></p>
+    </div>
+
+    <div class="sample-code-clone" data-license-gated-clone hidden>
+      <pre><code>git clone https://github.com/kaushik-kundu/PostgreSQL-AI.git</code></pre>
+    </div>
 
        
 3. Go to OCI Console Home Page
@@ -159,11 +165,11 @@ sudo firewall-cmd --permanent --add-port=8000/tcp
 sudo firewall-cmd --reload
 ````
 
-4. Download the Code Repository
+4. Download the Code Repository to the compute instance. Use the license agreement above to reveal this command.
 
-````
-git clone https://github.com/shadabshaukat/oracle-livelabs.git
-````
+<div class="sample-code-clone" data-license-gated-clone hidden>
+  <pre><code>git clone https://github.com/kaushik-kundu/PostgreSQL-AI.git</code></pre>
+</div>
 
 5. Setup OCI ClI
 
@@ -280,4 +286,3 @@ None
 
 - **Created By/Date** - Shadab Mohammad, Master Principal Cloud Architect, January 2026
 - **Last Updated By** - Shadab Mohammad, January 2026
-
