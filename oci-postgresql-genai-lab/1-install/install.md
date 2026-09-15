@@ -77,7 +77,7 @@ The API key will be used to access OCI command line tool and OCI Generative AI s
       <p class="license-gate-status" data-license-gate-status aria-live="polite"></p>
     </div>
 
-    <div class="sample-code-clone" data-license-gated-clone hidden>
+    <div class="sample-code-clone license-gate-is-hidden" data-license-gated-clone aria-hidden="true">
       <pre><code>git clone https://github.com/kaushik-kundu/PostgreSQL-AI.git</code></pre>
     </div>
 
@@ -167,7 +167,7 @@ sudo firewall-cmd --reload
 
 4. Download the Code Repository to the compute instance. Use the license agreement above to reveal this command.
 
-<div class="sample-code-clone" data-license-gated-clone hidden>
+<div class="sample-code-clone license-gate-is-hidden" data-license-gated-clone aria-hidden="true">
   <pre><code>git clone https://github.com/kaushik-kundu/PostgreSQL-AI.git</code></pre>
 </div>
 

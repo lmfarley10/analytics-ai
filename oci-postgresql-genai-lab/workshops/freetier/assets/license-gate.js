@@ -12,10 +12,18 @@
   var accepted = false;
   var observer;
 
+  function hideCloneCommands() {
+    document.querySelectorAll(cloneSelector).forEach(function (clone) {
+      clone.classList.add('license-gate-is-hidden');
+      clone.setAttribute('aria-hidden', 'true');
+    });
+  }
+
   function revealCloneCommands() {
     accepted = true;
     document.querySelectorAll(cloneSelector).forEach(function (clone) {
-      clone.hidden = false;
+      clone.classList.remove('license-gate-is-hidden');
+      clone.setAttribute('aria-hidden', 'false');
     });
     document.querySelectorAll('[data-license-gate-status]').forEach(function (status) {
       status.textContent = 'License agreement accepted. The download commands are now available.';
@@ -65,6 +73,7 @@
       closeDialog(overlay);
     });
     overlay.querySelector('[data-license-gate-decline]').addEventListener('click', function () {
+      hideCloneCommands();
       document.querySelectorAll('[data-license-gate-status]').forEach(function (status) {
         status.textContent = 'You must accept the License Agreement to view the download commands.';
       });
@@ -92,6 +101,7 @@
       gate.dataset.licenseGateInitialized = 'true';
       // A newly rendered Lab 1 page requires a fresh acknowledgement.
       accepted = false;
+      hideCloneCommands();
       gate.querySelector('[data-license-gate-review]').addEventListener('click', openAgreement);
       openAgreement();
     });

@@ -34,7 +34,7 @@
 }
 
 .license-gate-status { margin-bottom: 0; }
-.sample-code-clone[hidden] { display: none; }
+.sample-code-clone.license-gate-is-hidden { display: none !important; }
 
 .license-gate-modal {
   align-items: center;
