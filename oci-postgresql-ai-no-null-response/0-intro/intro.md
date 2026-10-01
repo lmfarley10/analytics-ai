@@ -19,7 +19,7 @@ The website created during the workshop has several ways to search:
 - Hybrid: Based on the 2 above search
 - RAG (Retrieval Augmented Generation): Answer questions based on documents
 
-The procedures in this workshop are designed for users that have obtained an Oracle Cloud free trial account with active credits. The procedures will also work for other Oracle Cloud accounts but may, in some cases, require minor adaptation.
+This event uses temporary users in a dedicated OCI tenancy. The operator provides the workshop compartment, tested stack ZIP, model details, and Bastion source-IP allowlist.
 
 Estimated Workshop Time: 90 minutes
 
@@ -42,20 +42,19 @@ This picture shows the ingestion, embeddings and RAG pipeline workflow.
 ### Objectives
 
 - Provision the services needed for the system
-    - Compartment, VCN, Compute instance, PostgreSQL, and Enterprise AI services.
+    - Compartment, private VCN, OCI Bastion, PostgreSQL, and OCI Generative AI services. The web app runs on your laptop.
 
 ## Prerequisites
 ### Cloud Account
-You need an Oracle Cloud account (i.e. access to an OCI tenancy) to complete this workshop. Participants can take advantage of Oracle's free trial account that comes with free cloud credits that are good for 30 days or until used up. Many Oracle events, such as CloudWorld, offer trial accounts with extra free cloud credits. You should be able to complete this workshop in the allotted time if your free trial cloud account is already created and ready to use. If you previously had a free trial account but the credits have expired, you won't be able to complete the lab. An option in this case is to obtain a new free trial account with fresh credits using a different email address. You can also use an existing paid Oracle Cloud account as long as you have administrator rights that will be needed to provision services.
+You need the temporary OCI user and compartment assigned by the workshop operator. The user must have the Resource Manager, Bastion session, PostgreSQL, and OCI Generative AI permissions described in Lab 1. Do not use a personal free-trial tenancy for the green-button test.
 
 ### Laptop
-You need a macOS or Windows 10/11 computer (laptop or desktop) with a web browser, a text editor, and internet access. Chrome, Edge, or another current browser is recommended. Windows participants also need the OpenSSH Client and Git for Windows; Lab 1 includes preflight checks. Attempting this workshop on a tablet or phone is not recommended and has not been tested.
+The current full app build supports Apple Silicon macOS 14+ and its supported Linux bootstrap. You need a browser, Git, OpenSSH, and laptop internet for the pinned app dependencies. Native Windows and Intel macOS builds still require validation.
 
 ### Region
 This workshop is validated in the **US Midwest (Chicago)** region (`us-chicago-1`) and uses it by default. Ashburn can be used only if you deliberately change the Console region, Terraform region, OCI Generative AI endpoint, and model OCID so that they all use the same region.
 
-- For a Free Trial account, create the trial in Chicago when possible.
-- For a paid account, subscribe to Chicago if it is not already available in the tenancy. Use Ashburn only when Chicago is unavailable.
+The operator must make the selected region available in the dedicated tenancy before the event.
 
 
 **Please proceed to the [next lab.](#next)**

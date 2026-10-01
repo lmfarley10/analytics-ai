@@ -28,12 +28,12 @@ You will load a file into the search app which will be parsed, chunked, vector e
 1. Go to the application URL:
 
     ````
-    http://<PUBLIC_IP>:8000/
+    http://127.0.0.1:8000/
     ````
 
-    Replace with your Public_IP (from Task 3 step 14 in Lab 1) in the URL
+    Keep the Bastion SSH tunnel and local app running. This URL opens the app on your laptop.
 
-2. Login to the app, using the credentials set in Task 5 Step 6 in Lab 1
+2. Login to the app, using the local app credentials set in Lab 1
 
     ![Login](images/app-login-1.png)
 
