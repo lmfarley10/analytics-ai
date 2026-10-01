@@ -19,7 +19,7 @@ The website created during the workshop has several ways to search:
 - Hybrid: Based on the 2 above search
 - RAG (Retrieval Augmented Generation): Answer questions based on documents
 
-This event uses temporary users in a dedicated OCI tenancy. The operator provides the workshop compartment, tested stack ZIP, model details, and Bastion source-IP allowlist.
+This event uses temporary users in a dedicated OCI tenancy. Your instructor provides the workshop compartment, model details, and Bastion source-IP allowlist. You clone the workshop code from GitHub in Lab 1.
 
 Estimated Workshop Time: 90 minutes
 
@@ -46,15 +46,15 @@ This picture shows the ingestion, embeddings and RAG pipeline workflow.
 
 ## Prerequisites
 ### Cloud Account
-You need the temporary OCI user and compartment assigned by the workshop operator. The user must have the Resource Manager, Bastion session, PostgreSQL, and OCI Generative AI permissions described in Lab 1. Do not use a personal free-trial tenancy for the green-button test.
+Use the temporary OCI user and compartment assigned by your instructor. The account has the permissions needed for this lab.
 
 ### Laptop
-The current full app build supports Apple Silicon macOS 14+ and its supported Linux bootstrap. You need a browser, Git, OpenSSH, and laptop internet for the pinned app dependencies. Native Windows and Intel macOS builds still require validation.
+The current app runner supports Apple Silicon macOS 14+ and Linux. Windows attendees can prepare WSL 2 with Ubuntu as described in Lab 1, but that path still needs an event-laptop validation. You need a browser, Git, OpenSSH, and laptop internet for the pinned app dependencies.
 
 ### Region
 This workshop is validated in the **US Midwest (Chicago)** region (`us-chicago-1`) and uses it by default. Ashburn can be used only if you deliberately change the Console region, Terraform region, OCI Generative AI endpoint, and model OCID so that they all use the same region.
 
-The operator must make the selected region available in the dedicated tenancy before the event.
+Use the region your instructor specifies for this event.
 
 
 **Please proceed to the [next lab.](#next)**

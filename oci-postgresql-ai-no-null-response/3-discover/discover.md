@@ -13,38 +13,15 @@ Estimated time: 20 min
 ### Prerequisites
 - You've completed the previous labs.
 
-## Task 1: Compartment
+## Task 1: Your workshop compartment
 
-The compartment is used to contains all the components of the lab.
-From an architectural viewpoint, a compartment is simply a logical group of OCI resources. There is no specific implication of network structure, geographical placement, or even any relationship between resources. They are merely a set of resources that are associated with a set of group based permissions.
+In the OCI Console, open **Identity & Security → Compartments** and find the compartment assigned to you by your instructor. It groups the cloud resources you created in Lab 1. Select this compartment when exploring the database and Bastion below.
 
-Go the Cloud console 3-bar/hamburger menu and select the following
-  1. Identity & Security
-  2. Choose Compartment
-    ![GenAI Compartment](images/postgres-genai-compartment1.png)
- 
-  3. Click on the compartment name ***oci-starter_XX*** (where XX is the initial of the user working on this LiveLab)
+## Task 2: Private network and Bastion
 
-     
-   ![GenAI Compartment](images/postgres-genai-compartment2.png)
+Open **Networking → Virtual Cloud Networks**, select your workshop compartment, and open `vcn1`. The `psql-priv-subnet` is private: the database has no public IP. Its Service Gateway lets it reach OCI services. Your laptop reaches the database through OCI Bastion instead of connecting to the private IP directly.
 
-## Task 2: Virtual Cloud Network
-
-The Virtual Cloud Network allows you to manage the network of the components.
-A virtual cloud network (VCN) is a virtual, private network that closely resembles a traditional network, with firewall rules and specific types of communication gateways that you can choose. A VCN resides in a single OCI region and covers one or more CIDR blocks (IPv4 and IPv6, if enabled). Each subnet consists of a contiguous range of IP addresses (for IPv4 and IPv6, if enabled) that do not overlap with other subnets in the VCN.
-
-Go the Cloud console 3-bar/hamburger menu and select the following
-  1. Networking
-  2. Virtual Cloud Network
-
-   ![Menu VCN](images/discover-stack-1.png)
-
-  3. Check that you are in the right compartment (oci-starter in this case)
-  4. Click on vcn name *vcn1*
-  5. Notice one private subnet, `psql-priv-subnet`. It prohibits public IPs and internet ingress.
-  6. Open its route table. Confirm the only route points to **All Services in Oracle Services Network** through the Service Gateway. There must be no `0.0.0.0/0` route, NAT Gateway, or Internet Gateway.
-  7. Open `VCN1-PRIVATE-SL`. It permits PostgreSQL TCP `5432` within the private target subnet and HTTPS to OCI services only. The PostgreSQL NSG also permits TCP `5432` from that subnet and OCI-service egress for backups. The OCI Bastion private endpoint uses an address in this target subnet.
-  8. Open **Identity & Security → Bastion** and inspect `postgres-workshop-bastion`. Its client CIDR allowlist must contain only the operator-provided attendee source ranges. The Bastion service is OCI-managed; the stack does not create a public-IP VM.
+Open **Identity & Security → Bastion** and select `postgres-workshop-bastion`. The session you created in Lab 1 connects local port `15432` to PostgreSQL port `5432`. If the session has expired, follow Lab 1 to create another one before using the app.
 
 ## Task 3: PostgreSQL Database System
 
@@ -56,7 +33,7 @@ Go the Cloud console 3-bar/hamburger menu and select the following
 
   ![Menu PostgreSQL](images/postgres-genai-cluster1.png)
 
-  3. Check that you are in the right compartment (oci-starter_XX in this case -> where XX is the initial of the user)
+  3. Select your assigned workshop compartment
   4. Click on the PostgreSQL db system name *psql_inst_1*
   5. Notice the General information:  
   Performance tier: 75K IOPS
@@ -172,7 +149,7 @@ You explored the private VCN, OCI Bastion, PostgreSQL DB System, and OCI Generat
 
 ## Cleanup
 
-Stop the local app and Bastion SSH tunnel. Empty the upload bucket if you used it, then run **Destroy** on the Resource Manager stack. Remove the temporary user API key from OCI and delete its local PEM according to the operator's retention policy.
+Stop the local app and Bastion SSH tunnel. Empty the upload bucket if you used it, then run **Destroy** on your Resource Manager stack. Follow your instructor's directions for removing the temporary API key.
 
 ## Acknowledgements
 

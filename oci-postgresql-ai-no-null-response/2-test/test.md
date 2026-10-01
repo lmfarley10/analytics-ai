@@ -19,7 +19,7 @@ You will use the local repository cloned in Lab 1. Its `dataset` folder contains
 PostgreSQL-AI/dataset/
 ````
 
-Keep this local repository available while testing the application.
+Keep this local repository available while testing the application. On Windows with WSL 2, use `\\wsl$\Ubuntu\home\<linux-user>\PostgreSQL-AI\dataset` in the browser file picker.
 
 ## Task 2: Upload the sample files to the search app
 

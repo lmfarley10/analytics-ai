@@ -1,72 +1,126 @@
-# Provision private PostgreSQL and run the search app locally
+# Install the components
 
 ## Introduction
 
-This workshop uses OCI Resource Manager to create a **private** OCI Database with PostgreSQL system, an Object Storage bucket, and an OCI Bastion. The Python app runs on your laptop. Its PostgreSQL connection travels through a local SSH port forward. The VCN has an OCI Service Gateway route only: no NAT Gateway, Internet Gateway, app VM, or public IP on workshop resources.
+In this lab, you will obtain the workshop code, provision private OCI PostgreSQL and Bastion, start an SSH tunnel, and run the search app on your laptop. Your OCI workshop resources have no public IPs. The database subnet has a route to OCI services only.
 
 Estimated time: 45–60 minutes, plus first-time laptop downloads.
 
-## Before the workshop: operator checklist
+### Before you start
 
-1. Publish the tested `livelabs-local-app-bastion` Terraform stack and app changes together. Make the stack ZIP available to Resource Manager; do not use the older public-VM stack.
-2. In the dedicated tenancy, give the temporary workshop group permission to launch and destroy the stack in its assigned compartment. An administrator must review the Resource Manager, PostgreSQL, Networking, Object Storage, and optional PostgreSQL configuration permissions for the actual compartment. The attendee group also needs these Bastion session policies (replace names and scope):
+- Sign in with the temporary OCI user and use the compartment assigned for this workshop. Keep the Console in the workshop region (normally `us-chicago-1`).
+- Have a browser, Git, OpenSSH, and laptop internet access for the app's pinned dependencies. Ask an instructor for the approved Bastion source-IP CIDR, PostgreSQL admin name, and OCI Generative AI model OCID.
+- The current app runner supports Apple Silicon macOS 14+ and Linux. The Windows path uses WSL 2 and needs an event-laptop validation before it can be considered supported. Native Windows is not supported by `run.sh`.
 
-   ```text
-   Allow group <attendee-group> to use bastion in compartment <workshop-compartment>
-   Allow group <attendee-group> to manage bastion-session in compartment <workshop-compartment>
-   Allow group <attendee-group> to read vcn in compartment <workshop-compartment>
-   Allow group <attendee-group> to read subnets in compartment <workshop-compartment>
-   Allow group <attendee-group> to read postgres-db-systems in compartment <workshop-compartment>
-   ```
+### Check laptop commands
 
-   Restrict `manage bastion-session` to this Bastion, port `5432`, and the DB private IP with [Bastion IAM conditions](https://docs.oracle.com/en-us/iaas/Content/Bastion/Reference/bastionpolicyreference.htm) after the stack has a stable Bastion OCID and DB IP. A separate policy must grant the user's API key access to OCI Generative AI inference in the chosen compartment. If `STORAGE_BACKEND=oci`, grant the user Object Storage object permissions for the upload bucket as well. Test every policy as a temporary attendee user.
-3. Confirm the **public source IP CIDRs** that attendee laptops will use on Venetian Wi-Fi. Set `bastion_client_cidrs` to those restricted CIDRs. Never use `0.0.0.0/0`. Confirm outbound TCP `22` from event Wi-Fi to `host.bastion.<region>.oci.oraclecloud.com`. Laptop internet for downloads and OCI APIs is separate from OCI VCN egress.
-4. Confirm the selected region, chat model OCID, capacity, and each temporary user's access to its inference endpoint. This workshop uses `us-chicago-1` unless the operator changes all region values together.
-5. Validate that the final Terraform plan has no `oci_core_instance`, public subnet, Internet Gateway, NAT Gateway, public IP, or `0.0.0.0/0` route. The workshop stack creates its own private subnet so Terraform enforces this route policy.
-6. Test the full workflow, including uploads and RAG, using a temporary user before the event. The app's pinned full build supports Apple Silicon macOS 14+ and its supported Linux bootstrap. Native Windows and Intel Mac builds are **not yet validated**; arrange supported laptops or finish and test those paths before the event.
-
-## Task 1: Prepare your laptop
-
-You need a supported laptop, a browser, Git, OpenSSH (`ssh` and `ssh-keygen`), and internet access for the app's pinned dependencies and model files. Allow sufficient disk space and download time. On macOS, install Apple Command Line Tools if Git is missing. Keep the terminal that runs the tunnel open throughout the lab.
-
-Create a dedicated Bastion SSH key on your laptop:
+**macOS Terminal**
 
 ```bash
+command -v git ssh ssh-keygen
+```
+
+If Git is missing, run `xcode-select --install` and complete the installer. macOS includes OpenSSH.
+
+**Windows PowerShell**
+
+```powershell
+Get-Command git, ssh, ssh-keygen -ErrorAction SilentlyContinue
+wsl --version
+```
+
+If Git is missing, install [Git for Windows](https://git-scm.com/install/windows) or run `winget install --id Git.Git -e --source winget`. If OpenSSH is missing, run the following in Administrator PowerShell, then reopen PowerShell:
+
+```powershell
+Add-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0
+```
+
+For the local app, install WSL 2 with Ubuntu in Administrator PowerShell if it is not already available:
+
+```powershell
+wsl --install -d Ubuntu
+```
+
+Restart Windows if prompted, open Ubuntu, and install its basic command-line tools:
+
+```bash
+sudo apt update
+sudo apt install -y git curl ca-certificates iproute2 util-linux
+systemctl status
+```
+
+The app's Linux bootstrap requires systemd. Follow the **macOS/Linux Terminal** commands below *inside Ubuntu* for the clone, keys, tunnel, and app. [Microsoft's WSL systemd guide](https://learn.microsoft.com/en-us/windows/wsl/systemd) explains how to enable it if your Ubuntu installation does not start it automatically. Before the event, confirm this full WSL path with an instructor; it has not yet had an end-to-end workshop test.
+
+## Task 1: Review the license and clone the code
+
+Review the Oracle Technology Network License Agreement in Appendix 1 before cloning the workshop code. Select **Accept License Agreement** to reveal the command.
+
+<div class="sample-code-license-gate" data-license-gate>
+  <p>Review the Oracle Technology Network License Agreement in Appendix 1, then select <strong>Accept License Agreement</strong> to reveal the download command.</p>
+  <button type="button" class="license-gate-review" data-license-gate-review>Review License Agreement</button>
+  <p class="license-gate-status" data-license-gate-status aria-live="polite"></p>
+</div>
+
+<div class="sample-code-clone license-gate-is-hidden" data-license-gated-clone aria-hidden="true">
+  <p>Source: <a href="https://github.com/kaushik-kundu/PostgreSQL-AI">PostgreSQL-AI on GitHub</a></p>
+  <pre><code>git clone https://github.com/kaushik-kundu/PostgreSQL-AI.git</code></pre>
+</div>
+
+The cloned repository contains both `oci_postgres_tf_stack` and `search-app`. Run the revealed clone command in Terminal or, on Windows, in Ubuntu under WSL 2. Keep this local copy for Lab 2's sample files. If `search-app/.env.example` does not mention `DB_HOSTADDR`, the workshop revision has not been published yet; ask an instructor before provisioning.
+
+## Task 2: Prepare your SSH and OCI API keys
+
+Use **two different keys**: a Bastion SSH key for the tunnel and an OCI API-signing key for Generative AI and optional Object Storage calls. Keep both private keys on your laptop.
+
+**macOS/Linux Terminal** (Windows attendees: Ubuntu under WSL 2)
+
+```bash
+mkdir -p ~/.ssh ~/.oci
 ssh-keygen -t ed25519 -f ~/.ssh/oci_workshop_bastion
 ```
 
-Keep the private key on the laptop. You will upload only `~/.ssh/oci_workshop_bastion.pub` when creating a Bastion session.
+Only the `.pub` file is uploaded when you create a Bastion session. Do not upload or share the SSH private key.
 
-Create an OCI API-signing key for your temporary user in the OCI Console, download its private PEM to your laptop, and set up `~/.oci/config` with `user`, `fingerprint`, `tenancy`, `region`, and `key_file`. Restrict the key file to your user (`chmod 600`). This key stays on the laptop. It authenticates OCI Generative AI and, if enabled, Object Storage. See [OCI SDK configuration](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/sdkconfig.htm).
+In the OCI Console, open your **User Settings → Tokens & Keys → Add API Key**. Generate and download the API-signing private key. Save it in `~/.oci/`, restrict it with `chmod 600`, and create `~/.oci/config` from the Console's configuration snippet. Confirm that it contains `user`, `fingerprint`, `tenancy`, `region`, and `key_file`. On Windows, copy the downloaded PEM from Windows Downloads into Ubuntu and restrict it there:
 
-## Task 2: Launch the private stack
+```bash
+cp /mnt/c/Users/<Windows-user>/Downloads/oci_api_key.pem ~/.oci/oci_api_key.pem
+chmod 600 ~/.oci/oci_api_key.pem
+```
 
-In Resource Manager, create a stack from the **operator-provided, tested ZIP** and select the assigned compartment. Set:
+Create the OCI config inside Ubuntu so the app can read it. For macOS or Linux, move the downloaded PEM into `~/.oci/` and run the same `chmod 600` command. See [OCI SDK configuration](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/sdkconfig.htm).
 
-- `region`: `us-chicago-1` (or the operator's chosen region)
-- `compartment_ocid`: your assigned compartment
-- `psql_admin`: the assigned PostgreSQL admin name
-- `bastion_client_cidrs`: the operator-provided venue source CIDRs
-- The network and PostgreSQL system are created together; `create_compute` is **not present**
+## Task 3: Provision the private stack
 
-Create a plan, inspect it for the resources listed in the operator checklist, then apply. Record the `bastion_id`, `postgres_private_ip`, `uploads_bucket_name`, and the sensitive `psql_admin_pwd` output securely. The password output is stored in Terraform state; do not paste it into workshop chat or screenshots. From the DB System's **Connection details**, record its endpoint FQDN and download its CA certificate (`dbsystem.pub`) to your laptop. The FQDN is needed for TLS hostname verification even though the tunnel connects to `127.0.0.1`.
+In the OCI Console, open **Developer Services → Resource Manager → Stacks → Create stack**. Choose **My configuration**, then select the `oci_postgres_tf_stack` folder from your local clone. OCI Resource Manager accepts a local Terraform folder or ZIP as the configuration source. Select your assigned compartment. On Windows, the File Explorer path to a WSL clone is `\\wsl$\Ubuntu\home\<linux-user>\PostgreSQL-AI\oci_postgres_tf_stack`.
 
-## Task 3: Create and start the Bastion tunnel
+Set `region`, `compartment_ocid`, `psql_admin`, and `bastion_client_cidrs` to the workshop values. Use the approved venue CIDR from your instructor; do not enter `0.0.0.0/0`. The stack creates PostgreSQL, its private VCN, an Object Storage bucket, and OCI Bastion. It does not create an app VM.
 
-Open **Identity & Security → Bastion** in the same compartment. Open `postgres-workshop-bastion`, create an **SSH port forwarding** session, and enter:
+Run **Plan**, review it, then run **Apply**. Save the outputs `bastion_id`, `postgres_private_ip`, `uploads_bucket_name`, and sensitive `psql_admin_pwd` securely. Do not paste the password into chat or screenshots. On the PostgreSQL DB System's **Connection details** page, record the endpoint FQDN and download its CA certificate (`dbsystem.pub`) to your laptop. Windows attendees should copy it from Windows Downloads into Ubuntu, for example `cp /mnt/c/Users/<Windows-user>/Downloads/dbsystem.pub ~/.oci/dbsystem.pub`, then use `/home/<linux-user>/.oci/dbsystem.pub` for `DB_SSLROOTCERT`.
 
-- Target: the PostgreSQL **private IP** from the stack output
+## Task 4: Open the Bastion tunnel
+
+In **Identity & Security → Bastion**, open `postgres-workshop-bastion` in the workshop compartment. Create an **SSH port forwarding** session with:
+
+- Target private IP: the `postgres_private_ip` stack output
 - Target port: `5432`
 - SSH public key: `~/.ssh/oci_workshop_bastion.pub`
-- Session lifetime: at most the Bastion's three-hour limit
 
-Copy the session's SSH command. Replace `<privateKey>` with `~/.ssh/oci_workshop_bastion` and `<localPort>` with `15432`. Add `-N` so the terminal stays dedicated to forwarding. Run it on your laptop and leave it open. Use `-v` if troubleshooting. Oracle's [Bastion connection instructions](https://docs.oracle.com/en-us/iaas/Content/Bastion/Tasks/connect-port-forwarding.htm) show the command format.
+Copy the session's SSH command. Replace `<privateKey>` with `~/.ssh/oci_workshop_bastion` and `<localPort>` with `15432`. Add `-N` to keep the terminal dedicated to forwarding, and run it. On Windows, create and run the command inside Ubuntu under WSL 2, where the app will run. Keep this terminal open. Oracle's [Bastion instructions](https://docs.oracle.com/en-us/iaas/Content/Bastion/Tasks/connect-port-forwarding.htm) show the command format.
 
-If your venue source IP changes or the session expires, have the operator update the allowlist if needed, create a **new** port forwarding session, and restart the SSH command. Restart the app if its connection pool does not recover. Each session targets one private IP.
+A session expires after at most three hours. If it expires, create a new session and restart the SSH command. If you move networks and your public source IP changes, ask an instructor to update the Bastion allowlist.
 
-## Task 4: Install and configure the local app
+## Task 5: Configure and start the search app
 
-Clone the **operator-published app revision** (the public repository's older revision may lack the tunnel settings), accept its license terms, and enter `PostgreSQL-AI/search-app`. Copy `.env.example` to `.env`. Set these values:
+In a second Terminal (or Ubuntu) window, create the app settings file:
+
+```bash
+cd ~/PostgreSQL-AI/search-app
+cp .env.example .env
+chmod 600 .env
+```
+
+Edit `.env` with your workshop values:
 
 ```ini
 HOST=127.0.0.1
@@ -85,33 +139,30 @@ LLM_PROVIDER=oci
 OCI_REGION=us-chicago-1
 OCI_COMPARTMENT_OCID=<assigned compartment OCID>
 OCI_GENAI_ENDPOINT=https://inference.generativeai.us-chicago-1.oci.oraclecloud.com
-OCI_GENAI_MODEL_ID=<operator-provided model OCID>
+OCI_GENAI_MODEL_ID=<instructor-provided model OCID>
 OCI_CONFIG_FILE=<absolute path to ~/.oci/config>
 OCI_CONFIG_PROFILE=DEFAULT
 STORAGE_BACKEND=local
 ```
 
-The generated Terraform password contains shell metacharacters, so keep its single quotes in `.env` (the generated character set excludes apostrophes). The app runner sources this file as shell input. Use a single-quote-safe value for the two local secrets too.
+Use the selected region consistently. Keep `DATABASE_URL` unset because it overrides the individual DB values. Keep single quotes around the generated database password: the app runner reads `.env` as a shell file, and the generated password may contain shell characters. The generated character set excludes apostrophes. Use single-quote-safe values for the two local secrets as well.
 
-Use the selected region consistently. Keep `DATABASE_URL` unset: it overrides the individual DB values. The `DB_HOST` FQDN plus `DB_HOSTADDR=127.0.0.1` lets psycopg/libpq connect through the tunnel and verify the PostgreSQL certificate against the actual endpoint name. `STORAGE_BACKEND=local` keeps uploaded files on this laptop while the extracted text and vectors are stored in private PostgreSQL. To test Object Storage uploads, set `STORAGE_BACKEND=oci` and `OCI_OS_BUCKET_NAME=<uploads_bucket_name>` after the operator grants object permissions.
+The endpoint FQDN in `DB_HOST` is checked against the server certificate. `DB_HOSTADDR=127.0.0.1` sends the actual connection through the Bastion tunnel, and `DB_SSLMODE=verify-full` plus `DB_SSLROOTCERT` verifies TLS. This is the [connection pattern documented by Oracle](https://docs.oracle.com/en-us/iaas/Content/postgresql/connect-to-db.htm).
 
-From `search-app`, run `./run.sh` on a supported macOS or Linux laptop. This bootstraps the app's pinned local runtime and dependencies using **laptop internet**, then starts the app. Open `http://127.0.0.1:8000/`. Do not bind the app to `0.0.0.0` on an attendee laptop.
-
-For a quick database check, with a compatible `psql` client installed locally:
+Run the app from `search-app`:
 
 ```bash
-psql "host=<PostgreSQL endpoint FQDN> hostaddr=127.0.0.1 port=15432 sslmode=verify-full sslrootcert=<absolute path to dbsystem.pub> dbname=postgres user=<PostgreSQL admin user>" -c 'select 1'
+./run.sh
 ```
 
-Oracle documents [PostgreSQL over Bastion with `host` and `hostaddr`](https://docs.oracle.com/en-us/iaas/Content/postgresql/connect-to-db.htm). Proceed to Lab 2 only when both the database check and app startup succeed.
+The first run downloads pinned dependencies using **your laptop's internet connection**. Open [http://127.0.0.1:8000/](http://127.0.0.1:8000/) in your browser. `STORAGE_BACKEND=local` keeps uploaded files on your laptop; extracted text and vectors go into private PostgreSQL. Proceed to Lab 2 after the app opens and the tunnel remains connected.
 
-## Troubleshooting
+## If something does not connect
 
-- SSH cannot connect: check venue outbound TCP `22`, your current public IP against the Bastion allowlist, session state, key pair, and region.
-- PostgreSQL times out: check the session target private IP and port `5432`, the private subnet ingress rule, and that the tunnel still runs.
-- TLS verification fails: download the CA certificate from this DB System and use its exact endpoint FQDN in `DB_HOST`.
-- OCI inference or bucket calls return `NotAuthorizedOrNotFound`: check the laptop's OCI config, key, region, model or bucket, and temporary-user IAM policy.
+- SSH tunnel: check that the session is active, the right `.pub` key was uploaded, your current public IP is allowlisted, and the venue network permits outbound TCP `22`.
+- PostgreSQL: check the target private IP, port `5432`, and that the tunnel window is still open. A TLS error usually means the FQDN or downloaded CA certificate is wrong.
+- OCI AI: check your local `~/.oci/config`, the region, model OCID, and your temporary-user permissions.
 
 ## Cleanup
 
-Stop the app and SSH tunnel. Destroy the Resource Manager stack when the workshop is over; empty the upload bucket first if you used Object Storage. Remove the temporary user's API key from OCI and your laptop after the event according to operator policy.
+Stop the local app and SSH tunnel. Destroy your Resource Manager stack when the workshop is over. Remove the temporary OCI API key from your user settings and laptop according to instructor guidance.
