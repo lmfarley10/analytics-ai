@@ -76,11 +76,11 @@ In this step you will explore the AI Services that are leveraged in the solution
 
       ![OCI GenerativeAI](images/oci-genai-1.png)
 
-When you click on the model details you get the model OCID which is used the environment variable file of the application to perform the inference in the RAG pipeline
+Open a chat model's details to find its identifier. OCI may show an OCID or a model name. The value used by the app is `OCI_GENAI_MODEL_ID` in `search-app/.env`.
 
   ![OCI GenerativeAI](images/oci-genai-2.png)
 
-If you want to try a different model, you can select a model from this menu, copy its OCID and paste it in the environment file and restart the local app.
+To try a different on-demand chat model, copy its identifier into `OCI_GENAI_MODEL_ID` and restart the local app. Keep the model and app endpoint in the same OCI region.
 
 ## Task 6: PostgreSQL Schema
 

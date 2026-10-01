@@ -19,7 +19,7 @@ The website created during the workshop has several ways to search:
 - Hybrid: Based on the 2 above search
 - RAG (Retrieval Augmented Generation): Answer questions based on documents
 
-This event uses temporary users in a dedicated OCI tenancy. Your instructor provides the workshop compartment, model details, and Bastion source-IP allowlist. You clone the workshop code from GitHub in Lab 1.
+This event uses temporary users in a dedicated OCI tenancy. Your instructor provides access to the workshop compartment. In Lab 1 you clone the code, find your public IP, choose the PostgreSQL admin username, and select an available OCI chat model.
 
 Estimated Workshop Time: 90 minutes
 
@@ -49,10 +49,10 @@ This picture shows the ingestion, embeddings and RAG pipeline workflow.
 Use the temporary OCI user and compartment assigned by your instructor. The account has the permissions needed for this lab.
 
 ### Laptop
-The current app runner supports Apple Silicon macOS 14+ and Linux. Windows attendees can prepare WSL 2 with Ubuntu as described in Lab 1, but that path still needs an event-laptop validation. You need a browser, Git, OpenSSH, and laptop internet for the pinned app dependencies.
+The current app runner supports Apple Silicon macOS 14+ and Linux. Windows attendees can use Oracle Linux 9 under WSL 2 (recommended) or an existing Ubuntu WSL 2 installation. The WSL app path has not yet had an end-to-end workshop test. You need a browser, Git, OpenSSH, and laptop internet for the pinned app dependencies.
 
 ### Region
-This workshop is validated in the **US Midwest (Chicago)** region (`us-chicago-1`) and uses it by default. Ashburn can be used only if you deliberately change the Console region, Terraform region, OCI Generative AI endpoint, and model OCID so that they all use the same region.
+This workshop defaults to the **US Midwest (Chicago)** region (`us-chicago-1`). If your instructor assigns another region, use that region consistently in the Console, Terraform, OCI Generative AI endpoint, and model identifier.
 
 Use the region your instructor specifies for this event.
 

@@ -19,7 +19,7 @@ You will use the local repository cloned in Lab 1. Its `dataset` folder contains
 PostgreSQL-AI/dataset/
 ````
 
-Keep this local repository available while testing the application. On Windows with WSL 2, use `\\wsl$\Ubuntu\home\<linux-user>\PostgreSQL-AI\dataset` in the browser file picker.
+Keep this local repository available while testing the application. On Windows with WSL 2, use `\\wsl$\<distribution-name>\home\<linux-user>\PostgreSQL-AI\dataset` in the browser file picker.
 
 ## Task 2: Upload the sample files to the search app
 
@@ -68,6 +68,10 @@ You will load a file into the search app which will be parsed, chunked, vector e
     ![RAG](images/app-us-search-3.png)
 
     The References of the RAG Search are also listed.
+
+    **Search Matches** come from PostgreSQL through your Bastion tunnel. **LLM Response** comes from OCI Generative AI when `LLM_PROVIDER=oci`; Ollama is not used for these answers. The two time badges measure the database search and model response separately. A long **LLM Response** time does not mean the database tunnel is slow.
+
+    If you see references but **No LLM answer**, check `OCI_GENAI_MODEL_ID` in `search-app/.env`. An OCI model OCID starts with `ocid1.`; a model name must match the OCI Console exactly. Also check that the model, `OCI_REGION`, and `OCI_GENAI_ENDPOINT` use the same region. Restart the app after changing `.env`, then search again.
 
     ![RAG](images/app-us-search-4.png)
    
