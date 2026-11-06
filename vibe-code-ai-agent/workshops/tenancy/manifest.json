@@ -1,0 +1,15 @@
+{
+  "workshoptitle": "Vibe code your own AI Agent Application on Autonomous AI Database",
+  "help": "livelabs-help-adbs_us@oracle.com",
+  "tutorials": [
+    {"title": "Introduction", "description": "Scope, data flow and prerequisites", "filename": "../../introduction/introduction.md"},
+    {"title": "Lab 1: Install ChatGPT and Codex", "description": "Mac and Windows client setup", "filename": "../../client-setup/client-setup.md"},
+    {"title": "Lab 2: Prepare database access", "description": "Approved account, wallet and saved connection", "filename": "../../database-access/database-access.md"},
+    {"title": "Lab 3: Connect the SQLcl MCP server", "description": "Configure Codex and verify database identity", "filename": "../../connect-mcp/connect-mcp.md"},
+    {"title": "Lab 4: Discover your data", "description": "Inspect metadata and approve the data contract", "filename": "../../discover-data/discover-data.md"},
+    {"title": "Lab 5: Plan your application", "description": "Approve customer-specific questions and reports", "filename": "../../plan-app/plan-app.md"},
+    {"title": "Lab 6: Build the Python agent application", "description": "Tailor and run reports and bounded agent tools", "filename": "../../build-app/build-app.md"},
+    {"title": "Lab 7: Validate and clean up", "description": "Customer acceptance, troubleshooting and handoff", "filename": "../../validate-cleanup/validate-cleanup.md"},
+    {"title": "References and facilitator checklist", "description": "Official sources and publication gates", "filename": "../../references/references.md"}
+  ]
+}

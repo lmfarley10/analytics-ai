@@ -1,0 +1,55 @@
+# Vibe code your own AI Agent Application on Autonomous AI Database
+
+Estimated Time: 3 hours, plus prerequisite installation and customer access provisioning.
+
+### Objectives
+
+Deliver a reusable bring-your-own-data LiveLab: install ChatGPT/Codex on Windows or Mac, connect Codex to Oracle SQLcl MCP, discover an approved schema, agree an application plan, and build a Python application with a bounded report agent.
+
+## Preview
+
+From the repository root, run:
+
+```bash
+python3 -m http.server 8000 --bind 127.0.0.1
+```
+
+Open [the workshop launcher](http://127.0.0.1:8000/vibe-code-ai-agent/workshops/tenancy/index.html). The launcher uses the same Oracle LiveLabs CDN renderer as `ajd-mongo`. Internet access is required. This workshop assumes an existing customer database; no sandbox provisioning is promised.
+
+## Contents
+
+| Section | Outcome | Minutes |
+| --- | --- | --- |
+| [Introduction](introduction/introduction.md) | Understand scope, prerequisites and data flow | 10 |
+| [Lab 1](client-setup/client-setup.md) | Install desktop client and Codex CLI on Mac or Windows | 25 |
+| [Lab 2](database-access/database-access.md) | Prepare a restricted database account and wallet | 25 |
+| [Lab 3](connect-mcp/connect-mcp.md) | Register and verify SQLcl MCP in Codex | 20 |
+| [Lab 4](discover-data/discover-data.md) | Discover tables and approve a reusable data contract | 25 |
+| [Lab 5](plan-app/plan-app.md) | Approve a customer-specific Python app plan | 15 |
+| [Lab 6](build-app/build-app.md) | Generate and run the tailored application | 35 |
+| [Lab 7](validate-cleanup/validate-cleanup.md) | Validate results, troubleshoot and disconnect | 25 |
+
+## Customer adaptation
+
+Keep the workshop prompts, diagrams and planning templates. Each learner generates their application, report catalog, dependency list and tests locally from their approved data map. Use an isolated working directory and approved database account per customer. Keep customer metadata and generated artifacts out of this public workshop.
+
+No application source, executable tests, dependency manifest or sample query catalog is distributed. Lab 6 supplies staged natural-language prompts with review checkpoints. There is no dependency on a particular customer schema. SQLcl provides the existing MCP server; a custom server is unnecessary. A metadata-export fallback supports initial discovery when a live MCP connection is unavailable.
+
+The runtime design calls for OpenAI Responses function calling and approved report IDs; learners generate and verify that implementation. Codex uses MCP during development; the app uses python-oracledb directly at runtime. Customer query results used by the runtime agent are sent to the configured model provider. Metadata sent through Codex also crosses the model boundary. Confirm customer policy before either activity.
+
+## Checks and publication status
+
+```bash
+bash .github/scripts/validate-livelabs-markdown.sh vibe-code-ai-agent
+```
+
+Maintainers should also check manifest targets, local links, image dimensions and balanced prompt fences/copy tags. Learners generate and run application tests in their private workspace; there is no supplied executable test suite.
+
+The diagrams are original, labeled illustrations, including both installation flows; they are not product screenshots. See [the publication checklist](references/references.md) for genuine screenshot capture points and platform/database acceptance tests. Desktop capture was unavailable during authoring. Live Mac/Windows setup, CDN rendering, SQLcl wallet persistence, and a real customer database/API run remain publication gates. No live credentials were used to author this workshop.
+
+Have learners review dependencies before installation and record exact tested versions in their private workspace. Facilitator rehearsal should verify that the prompts produce a working app on both supported platforms. This prompt-led design does not establish an exemption from publication policy: the publishing owner must still review the retained setup commands, SQLcl/configuration examples, standard renderer and third-party tooling references. Do not distribute generated customer code or a dependency lock as part of the lab without the applicable review.
+
+## Acknowledgements
+
+* Prepared for the analytics-ai workshop maintainers.
+* Last updated: November 6, 2026.

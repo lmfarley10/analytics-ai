@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="610" viewBox="0 0 1200 610" role="img" aria-labelledby="title desc"><title id="title">Install on macOS</title><desc id="desc">Original instructional illustration. 01 · DOWNLOAD — Official desktop guide — Check Mac requirements Then 02 · INSTALL — Open the installer — Complete Applications setup Then 03 · SIGN IN — Approved work account — Choose local project folder Then 04 · VERIFY — Terminal tool checks — Python · Node · Java · Codex.</desc>
+<rect width="1200" height="610" rx="20" fill="#f6f4ef"/><rect width="1200" height="12" fill="#c74634"/>
+<g font-family="Arial, Helvetica, sans-serif"><text x="48" y="65" font-size="16" font-weight="bold" fill="#9b3b2d">ORACLE LIVELABS · VIBE CODE YOUR AI AGENT</text>
+<text x="48" y="122" font-size="32" font-weight="bold" fill="#252b2d">Install on macOS</text>
+<text x="48" y="158" font-size="16" fill="#606966">Illustrated walkthrough · not a product screenshot</text>
+<rect x="48" y="225" width="258" height="224" rx="14" fill="white" stroke="#d9ddd8"/>
+<rect x="48" y="225" width="258" height="7" rx="3" fill="#317568"/>
+<text x="66" y="274" font-size="16" font-weight="bold" fill="#317568">01 · DOWNLOAD</text>
+<text x="66" y="326" font-size="18" font-weight="bold" fill="#252b2d">Official desktop guide</text>
+<text x="66" y="365" font-size="15" fill="#606966">Check Mac requirements</text>
+<path d="M310 334h15m-6-6 6 6-6 6" fill="none" stroke="#317568" stroke-width="2"/>
+<rect x="330" y="225" width="258" height="224" rx="14" fill="white" stroke="#d9ddd8"/>
+<rect x="330" y="225" width="258" height="7" rx="3" fill="#317568"/>
+<text x="348" y="274" font-size="16" font-weight="bold" fill="#317568">02 · INSTALL</text>
+<text x="348" y="326" font-size="18" font-weight="bold" fill="#252b2d">Open the installer</text>
+<text x="348" y="365" font-size="15" fill="#606966">Complete Applications setup</text>
+<path d="M592 334h15m-6-6 6 6-6 6" fill="none" stroke="#317568" stroke-width="2"/>
+<rect x="612" y="225" width="258" height="224" rx="14" fill="white" stroke="#d9ddd8"/>
+<rect x="612" y="225" width="258" height="7" rx="3" fill="#317568"/>
+<text x="630" y="274" font-size="16" font-weight="bold" fill="#317568">03 · SIGN IN</text>
+<text x="630" y="326" font-size="18" font-weight="bold" fill="#252b2d">Approved work account</text>
+<text x="630" y="365" font-size="15" fill="#606966">Choose local project folder</text>
+<path d="M874 334h15m-6-6 6 6-6 6" fill="none" stroke="#317568" stroke-width="2"/>
+<rect x="894" y="225" width="258" height="224" rx="14" fill="white" stroke="#d9ddd8"/>
+<rect x="894" y="225" width="258" height="7" rx="3" fill="#317568"/>
+<text x="912" y="274" font-size="16" font-weight="bold" fill="#317568">04 · VERIFY</text>
+<text x="912" y="326" font-size="18" font-weight="bold" fill="#252b2d">Terminal tool checks</text>
+<text x="912" y="365" font-size="15" fill="#606966">Python · Node · Java · Codex</text>
+<text x="48" y="521" font-size="18" fill="#384e46">Then install SQLcl and keep every component in the same local environment</text>
+<text x="48" y="565" font-size="14" fill="#69736f">Follow the numbered lab instructions for exact commands and acceptance checks.</text></g></svg>

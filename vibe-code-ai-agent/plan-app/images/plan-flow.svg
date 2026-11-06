@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="610" viewBox="0 0 1200 610" role="img" aria-labelledby="title desc"><title id="title">Agree a small application before writing code</title><desc id="desc">Original instructional illustration. 01 · CHOOSE — One business outcome — Rank three grounded ideas Then 02 · DEFINE — Two approved reports — Inputs + measures + checks Then 03 · DESIGN — Useful Python screens — Reports + question input Then 04 · APPROVE — app-plan.md — Scope + acceptance evidence.</desc>
+<rect width="1200" height="610" rx="20" fill="#f6f4ef"/><rect width="1200" height="12" fill="#c74634"/>
+<g font-family="Arial, Helvetica, sans-serif"><text x="48" y="65" font-size="16" font-weight="bold" fill="#9b3b2d">ORACLE LIVELABS · VIBE CODE YOUR AI AGENT</text>
+<text x="48" y="122" font-size="32" font-weight="bold" fill="#252b2d">Agree a small application before writing code</text>
+<text x="48" y="158" font-size="16" fill="#606966">Illustrated walkthrough · not a product screenshot</text>
+<rect x="48" y="225" width="258" height="224" rx="14" fill="white" stroke="#d9ddd8"/>
+<rect x="48" y="225" width="258" height="7" rx="3" fill="#317568"/>
+<text x="66" y="274" font-size="16" font-weight="bold" fill="#317568">01 · CHOOSE</text>
+<text x="66" y="326" font-size="18" font-weight="bold" fill="#252b2d">One business outcome</text>
+<text x="66" y="365" font-size="15" fill="#606966">Rank three grounded ideas</text>
+<path d="M310 334h15m-6-6 6 6-6 6" fill="none" stroke="#317568" stroke-width="2"/>
+<rect x="330" y="225" width="258" height="224" rx="14" fill="white" stroke="#d9ddd8"/>
+<rect x="330" y="225" width="258" height="7" rx="3" fill="#317568"/>
+<text x="348" y="274" font-size="16" font-weight="bold" fill="#317568">02 · DEFINE</text>
+<text x="348" y="326" font-size="18" font-weight="bold" fill="#252b2d">Two approved reports</text>
+<text x="348" y="365" font-size="15" fill="#606966">Inputs + measures + checks</text>
+<path d="M592 334h15m-6-6 6 6-6 6" fill="none" stroke="#317568" stroke-width="2"/>
+<rect x="612" y="225" width="258" height="224" rx="14" fill="white" stroke="#d9ddd8"/>
+<rect x="612" y="225" width="258" height="7" rx="3" fill="#317568"/>
+<text x="630" y="274" font-size="16" font-weight="bold" fill="#317568">03 · DESIGN</text>
+<text x="630" y="326" font-size="18" font-weight="bold" fill="#252b2d">Useful Python screens</text>
+<text x="630" y="365" font-size="15" fill="#606966">Reports + question input</text>
+<path d="M874 334h15m-6-6 6 6-6 6" fill="none" stroke="#317568" stroke-width="2"/>
+<rect x="894" y="225" width="258" height="224" rx="14" fill="white" stroke="#d9ddd8"/>
+<rect x="894" y="225" width="258" height="7" rx="3" fill="#317568"/>
+<text x="912" y="274" font-size="16" font-weight="bold" fill="#317568">04 · APPROVE</text>
+<text x="912" y="326" font-size="18" font-weight="bold" fill="#252b2d">app-plan.md</text>
+<text x="912" y="365" font-size="15" fill="#606966">Scope + acceptance evidence</text>
+<text x="48" y="521" font-size="18" fill="#384e46">Reusable plan structure · customer-specific SQL and terminology</text>
+<text x="48" y="565" font-size="14" fill="#69736f">Follow the numbered lab instructions for exact commands and acceptance checks.</text></g></svg>
