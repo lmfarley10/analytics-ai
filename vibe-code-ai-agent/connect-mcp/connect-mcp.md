@@ -26,7 +26,7 @@ If client database access is not ready, use Lab 4's metadata-export route for in
 
     ```bash
     <copy>
-    codex mcp add customer_db -- /Users/YOUR_USER/tools/sqlcl/bin/sql -mcp
+    codex mcp add lab_db -- /Users/YOUR_USER/tools/sqlcl/bin/sql -mcp
     codex mcp list
     </copy>
     ```
@@ -35,7 +35,7 @@ If client database access is not ready, use Lab 4's metadata-export route for in
 
     ```powershell
     <copy>
-    codex.cmd mcp add customer_db -- "C:\Tools\sqlcl\bin\sql.exe" -mcp
+    codex.cmd mcp add lab_db -- "C:\Tools\sqlcl\bin\sql.exe" -mcp
     codex.cmd mcp list
     </copy>
     ```
@@ -53,7 +53,7 @@ If client database access is not ready, use Lab 4's metadata-export route for in
     An illustrative complete Mac entry is:
 
     ```toml
-    [mcp_servers.customer_db]
+    [mcp_servers.lab_db]
     command = "/Users/YOUR_USER/tools/sqlcl/bin/sql"
     args = ["-mcp"]
     enabled_tools = ["list-connections", "connect", "disconnect", "run-sql", "schema-information"]
@@ -63,9 +63,11 @@ If client database access is not ready, use Lab 4's metadata-export route for in
 
     For Windows, a TOML literal string avoids backslash escaping: `command = 'C:\Tools\sqlcl\bin\sql.exe'`. Confirm the actual advertised tool names for your SQLcl release. Excluding `run-sqlcl` reduces exposed capabilities, but `run-sql` can still execute writes or PL/SQL if the database permits them. The allowlist is not a read-only security control.
 
-3. Start Codex again in the customer project. Enter `/mcp` and confirm that `customer_db` is connected and the intended tools are listed. A configured entry alone is not proof of a successful server handshake.
+3. Start Codex again in the project. Enter `/mcp` and confirm that `lab_db` is connected and the intended tools are listed. A configured entry alone is not proof of a successful server handshake.
 
     ![MCP registration, server handshake and database identity checkpoint](images/mcp-checkpoint.svg)
+
+    > *Screenshot placeholder — Open the Codex MCP server list and show lab_db connected with its available tools.*
 
 ## Task 2: Verify the database identity
 
@@ -73,14 +75,16 @@ If client database access is not ready, use Lab 4's metadata-export route for in
 
     ```text
     <copy>
-    Use only the customer_db MCP server. Connect only to the saved connection
-    customer_lab_ro. Verify SELECT USER and the current service name from DUAL.
+    Use only the lab_db MCP server. Connect only to the saved connection
+    lab_reader. Verify SELECT USER and the current service name from DUAL.
     Show the connected account and service, then stop. Do not inspect other
     connections, read local secrets, or execute DDL, DML, PL/SQL or SQLcl commands.
     </copy>
     ```
 
-2. Compare the identity with Lab 2. If it differs, disconnect and correct the saved connection. SQLcl's connection listing can expose the names of other saved connections. For a customer workshop, use a dedicated OS profile or SQLcl connection store containing only the approved lab connection, following your SQLcl release's supported configuration. The MCP alias is not a saved-connection allowlist.
+2. Compare the identity with Lab 2. If it differs, disconnect and correct the saved connection. SQLcl's connection listing can expose the names of other saved connections. For this workshop, use a dedicated OS profile or SQLcl connection store containing only the approved lab connection, following your SQLcl release's supported configuration. The MCP alias is not a saved-connection allowlist.
+
+    > *Screenshot placeholder — Show the approved account/service identity returned by the MCP check, with identifying values redacted.*
 
 ## Task 3: Use a desktop workspace if preferred
 

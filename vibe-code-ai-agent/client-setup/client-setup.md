@@ -10,7 +10,7 @@ Estimated Time: 25 minutes, excluding software downloads.
 
 * Install and sign in on Windows or macOS.
 * Verify Python, Node.js, Java and SQLcl.
-* Open an isolated customer project in Codex.
+* Open an isolated project in Codex.
 
 ### Prerequisites
 
@@ -24,7 +24,9 @@ Complete Task 1 **or** Task 2 for your operating system, then complete Tasks 3 a
 
     ![Illustrated Mac download, installation and sign-in sequence](images/install-macos.svg)
 
-2. Open the local coding workspace available in your installed release and select a customer project folder. Product labels may change; the terminal route below is the common workshop path if the desktop coding workspace is unavailable. Installing the chat app alone does not register a database MCP server.
+    > *Screenshot placeholder — Download ChatGPT on macOS, complete installation, and open the signed-in local workspace.*
+
+2. Open the local coding workspace available in your installed release and select a project folder. Product labels may change; the terminal route below is the common workshop path if the desktop coding workspace is unavailable. Installing the chat app alone does not register a database MCP server.
 
 3. Install Python 3.11+ from [Python](https://www.python.org/downloads/macos/), Node.js LTS from [Node.js](https://nodejs.org/en/download), and a supported JDK from [Oracle Java](https://www.oracle.com/java/technologies/downloads/), using their macOS installers. Open Terminal and verify:
 
@@ -39,7 +41,7 @@ Complete Task 1 **or** Task 2 for your operating system, then complete Tasks 3 a
     </copy>
     ```
 
-4. Create the workspace. Use one folder per customer and keep wallet files elsewhere.
+4. Create the workspace. Use one folder per project and keep wallet files elsewhere.
 
     ```bash
     <copy>
@@ -56,6 +58,8 @@ Complete Task 1 **or** Task 2 for your operating system, then complete Tasks 3 a
 1. Open the [official Windows guide](https://learn.chatgpt.com/docs/windows/windows-app), follow its download link, complete the installer, launch ChatGPT, and sign in. Use a native local Windows workspace for this lab.
 
     ![Illustrated Windows download, installer and project selection sequence](images/install-windows.svg)
+
+    > *Screenshot placeholder — Complete the Windows installer and open the signed-in local workspace.*
 
 2. Install Python 3.11+ from [Python](https://www.python.org/downloads/windows/), Node.js LTS from [Node.js](https://nodejs.org/en/download), and a supported JDK from [Oracle Java](https://www.oracle.com/java/technologies/downloads/) using their Windows installers. Include Python's launcher/PATH option if offered. Close and reopen PowerShell so it sees the installed commands.
 
@@ -114,6 +118,8 @@ Complete Task 1 **or** Task 2 for your operating system, then complete Tasks 3 a
     ```
 
 2. Confirm the file appears in the intended project. Continue only when your terminal can launch both Codex and SQLcl. Retain normal approval controls; approve specific setup operations when you understand them.
+
+    > *Screenshot placeholder — Open the project folder in Visual Studio Code, launch Codex in the integrated terminal, and show the generated README in the Explorer.*
 
 ## Learn More
 

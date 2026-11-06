@@ -6,13 +6,13 @@ Build an application around the data you already have. You will give Codex a nar
 
 Estimated Workshop Time: 3 hours 15 minutes, plus prerequisite installation and DBA provisioning.
 
-![Workshop flow from client installation to a customer-specific Python agent](images/workshop-flow.svg)
+![Workshop flow from client installation to a tailored Python agent](images/workshop-flow.svg)
 
 ### Objectives
 
 * Install ChatGPT and a local Codex development environment on Windows or macOS.
 * Connect the Oracle SQLcl MCP server to your Autonomous AI Database.
-* Discover metadata without assuming a particular customer schema.
+* Discover metadata without assuming a particular schema.
 * Turn a business question into a reviewed application plan and report catalog.
 * Build, test and run a Python UI with a real, bounded tool-calling agent.
 
@@ -20,12 +20,14 @@ Estimated Workshop Time: 3 hours 15 minutes, plus prerequisite installation and 
 
 * A supported Windows or Mac client, permission to install software, and internet access.
 * An organization-approved ChatGPT/Codex account with access enabled. Check current account eligibility; this workshop makes no free-access guarantee.
-* An existing Autonomous AI Database with customer-approved tables or views, a DBA contact, and a working network route from your client. A private endpoint requires an approved VPN or other private route.
+* An existing Autonomous AI Database with approved tables or views, a DBA contact, and a working network route from your client. A private endpoint requires an approved VPN or other private route.
 * Permission to send the selected metadata and aggregate results to the chosen AI service. Use sanitized views or a non-production copy if required by your organization.
-* For the final app: an OCI compartment with permission to call OCI Generative AI, an approved OCI model/region with native tool calling, available service budget, and an approved local OCI authentication profile. Lab 6 covers setup. No OpenAI API key is required. The local report viewer and database check can run without model calls.
+* For the final app: an OCI compartment with permission to call OCI Generative AI, an approved OCI model/region with native tool calling, available service budget, and an approved local OCI authentication profile. Lab 6 covers setup. The local report viewer and database check can run without model calls.
 * Python 3.11 or later, Node.js LTS for the npm CLI installation path, and a supported JDK/SQLcl combination. Lab 1 covers installation.
 
 ## What you will build
+
+> *Screenshot placeholder — Preview the finished app with two report views, a business question, an evidence-based answer and the expanded tool-activity panel.*
 
 Your application contains a report browser, question input, evidence-based answers, and a visible tool activity panel. The model selects a report ID from a reviewed catalog. Application code runs its fixed SQL through python-oracledb and returns bounded results. The model does not receive an arbitrary SQL execution tool.
 
@@ -40,11 +42,11 @@ The development connection is `Codex → local SQLcl MCP → Autonomous AI Datab
 | SQLcl MCP, recommended for the full lab | Repeated live metadata inspection and report validation from Codex | Requires SQLcl/Java, a saved connection and a client network route |
 | Approved metadata export | Initial discovery/planning when agent database access is unavailable | No live verification; the data owner must run SQL checks separately |
 
-For the full live workflow, SQLcl MCP is the workshop recommendation because it provides an existing Oracle connector for both inspection and SQL checks. If the customer already uses SQL Developer for VS Code, its connection manager can prepare the saved connection; Codex still needs its own MCP configuration. Choose the export route when avoiding connection setup is more valuable than immediate live validation.
+For the full live workflow, SQLcl MCP is the workshop recommendation because it provides an existing Oracle connector for both inspection and SQL checks. If you already use SQL Developer for VS Code, its connection manager can prepare the saved connection; Codex still needs its own MCP configuration. Choose the export route when avoiding connection setup is more valuable than immediate live validation.
 
 This workshop connects an existing SQLcl MCP server. It does not require a custom MCP implementation or a hosted server. Start with approved aggregates and read access. Database administrator credentials are used only by the DBA during access setup, never by Codex or the application.
 
-The workshop distributes prompts and planning templates, not a completed application. You generate and review code locally in stages: connection check, two customer reports, interface, then agent and tests. Completion requires verifying two reports against trusted SQL results. If live MCP access is unavailable, use the metadata-export discovery route in Lab 4 and arrange SQL verification with the data owner.
+The workshop distributes prompts and inline planning outlines, not a completed application. You generate and review code locally in stages: connection check, two reports, interface, then agent and tests. Completion requires verifying two reports against trusted SQL results. If live MCP access is unavailable, use the metadata-export discovery route in Lab 4 and arrange SQL verification with the data owner.
 
 ## Learn More
 

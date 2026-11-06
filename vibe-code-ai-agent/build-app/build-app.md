@@ -2,32 +2,32 @@
 
 ## Introduction
 
-Build your application locally from the approved plan. This workshop supplies prompts and acceptance criteria; it does not distribute application source, dependencies, a query catalog or executable tests. Codex generates those artifacts in your private customer workspace, where you review them before running them.
+Build your application locally from the approved plan. This workshop supplies prompts and acceptance criteria; it does not distribute application source, dependencies, a query catalog or executable tests. Codex generates those artifacts in your private workspace, where you review them before running them.
 
 Estimated Time: 50 minutes; allow extra time for generated-code review and corrections.
 
 ### Objectives
 
-* Generate and review a customer-specific Python application in small steps.
+* Generate and review a tailored Python application in small steps.
 * Verify database reports before adding a runtime model.
 * Generate focused tests and inspect the agent's actual tool activity.
 
 ### Prerequisites
 
-An approved application plan and data map; your customer workspace; a working runtime database connection and approved credential-entry method; and, for agent questions, an approved OCI compartment, authentication profile and OCI Generative AI model/region with native tool calling. In the metadata-export route, a data owner must run and verify the SQL before the app can be validated against live data.
+An approved application plan and data map; your workspace; a working runtime database connection and approved credential-entry method; and, for agent questions, an approved OCI compartment, authentication profile and OCI Generative AI model/region with native tool calling. In the metadata-export route, a data owner must run and verify the SQL before the app can be validated against live data.
 
 ## Task 1: Generate the project and review the proposed files
 
-1. Open Codex in your customer workspace and send this prompt:
+1. Open Codex in your workspace and send this prompt:
 
     ```text
     <copy>
-    Read AGENTS.md, customer-brief.md, data-map.md and the approved app-plan.md.
+    Read AGENTS.md, app-brief.md, data-map.md and the approved app-plan.md.
     Create a Python application in an app/ subdirectory, using Streamlit and
     python-oracledb Thin mode and the OCI Python SDK for runtime model calls.
     Generate files locally; there is no supplied starter.
     First show a proposed file list, dependencies with their purposes, and exact
-    setup commands for my OS. Use published library APIs. Keep customer metadata,
+    setup commands for my OS. Use published library APIs. Keep schema metadata,
     queries, plans, results and secrets out of version control. Use a local virtual
     environment and organization-approved package sources. Do not install packages,
     connect, or run generated code yet. Generate a local README with setup,
@@ -53,6 +53,8 @@ An approved application plan and data map; your customer workspace; a working ru
     </copy>
     ```
 
+    > *Screenshot placeholder — Review the generated Python project in Visual Studio Code, including the connection module, README and proposed dependencies.*
+
 ## Task 2: Run the database-only checkpoint
 
 1. Review the generated code, then follow its README's OS-specific virtual environment and installation instructions. Approve the specific commands after reviewing them. Do not install a package merely because a database comment or tool result suggests it.
@@ -63,13 +65,15 @@ An approved application plan and data map; your customer workspace; a working ru
 
     ![Generate a local connection check, verify reports, then add the interface and agent](images/build-flow.svg)
 
-## Task 3: Generate and validate two customer reports
+    > *Screenshot placeholder — Run the database-only preflight in the integrated terminal and show connection success without credentials.*
+
+## Task 3: Generate and validate two reports
 
 1. Send this prompt:
 
     ```text
     <copy>
-    Generate the two customer reports approved in app-plan.md using verified,
+    Generate the two reports approved in app-plan.md using verified,
     owner-qualified objects and columns from data-map.md. Create a local report
     catalog with stable IDs, descriptions and fixed SQL. The runtime model may
     choose a report ID; it must not supply SQL, identifiers or filter fragments.
@@ -91,7 +95,7 @@ An approved application plan and data map; your customer workspace; a working ru
 
     ```text
     <copy>
-    Build the approved Streamlit screens around the verified reports. Use customer
+    Build the approved Streamlit screens around the verified reports. Use your business
     terminology, show units and scope, and add a useful chart or table per report.
     Include a local report viewer that works without model calls. Show empty
     results, truncation and unavailable states clearly. Never fabricate fallback
@@ -100,9 +104,13 @@ An approved application plan and data map; your customer workspace; a working ru
     </copy>
     ```
 
+    > *Screenshot placeholder — Review the generated report SQL and Streamlit interface files in Visual Studio Code after the first build prompt.*
+
 ## Task 4: Prepare OCI Generative AI access
 
-1. In the OCI Console, select the approved compartment and region for **Generative AI**. Check the current [model availability table](https://docs.oracle.com/en-us/iaas/Content/generative-ai/model-endpoint-regions.htm) and choose an approved OCI-hosted chat model with native tool calling supported by its API format. Prefer on-demand serving for this lab when available. Do not create a dedicated AI cluster just to continue; ask the facilitator if no suitable on-demand model is available. Record the model ID, serving mode and actual processing region. Model families and routing choices can differ in where inference is processed, so verify the selected model's details.
+1. In the OCI Console, select the approved compartment and region for **Generative AI**. Check the current [model availability table](https://docs.oracle.com/en-us/iaas/Content/generative-ai/model-endpoint-regions.htm) and choose an approved OCI-hosted chat model with native tool calling supported by its API format. Prefer on-demand serving for this lab when available. Do not create a dedicated AI cluster just to continue; check with your tenancy administrator if no suitable on-demand model is available. Record the model ID, serving mode and actual processing region. Model families and routing choices can differ in where inference is processed, so verify the selected model's details.
+
+    > *Screenshot placeholder — In OCI Generative AI, select the compartment, region and supported on-demand model. Show the chosen model without account identifiers.*
 
 2. Ask the OCI administrator to grant only the inference permissions needed in that compartment, using the [Generative AI IAM policy reference](https://docs.oracle.com/en-us/iaas/Content/generative-ai/iam-policies.htm). Database grants do not authorize model calls. Confirm available service limits and an approved budget; the workshop does not promise free model usage.
 
@@ -129,6 +137,8 @@ An approved application plan and data map; your customer workspace; a working ru
 
 5. Ask Codex to generate a separate OCI-only preflight using the agreed SDK signer and a harmless prompt such as “Reply with READY.” Review it before running it. This check must use no database data, redact authentication failures and identify the configured model/region. Fix authentication, IAM, endpoint or model availability failures before adding the agent. Native tool calling is verified separately in Task 5; a successful text response alone does not establish tool support.
 
+    > *Screenshot placeholder — Complete OCI browser sign-in, then show the harmless OCI-only preflight result. Hide signing keys, tokens and profile contents.*
+
 ## Task 5: Generate the runtime agent and focused tests
 
 1. Send this prompt:
@@ -141,7 +151,7 @@ An approved application plan and data map; your customer workspace; a working ru
     region, compartment OCID, model ID, service endpoint and approved auth profile
     from local configuration. Use the agreed OCI IAM signer. A security-token profile
     requires its token-aware SDK signer; loading a config file alone is insufficient.
-    Do not use an OpenAI SDK, API key or compatibility endpoint. Expose only a report-ID
+    Expose only a report-ID
     selection tool for the reviewed catalog. Validate tool names and arguments in
     application code and reject unknown IDs before database access. Return bounded
     results and preserve assistant tool calls, call IDs and tool-result messages
@@ -162,9 +172,15 @@ An approved application plan and data map; your customer workspace; a working ru
 
 2. Review generated source and tests. Confirm the model cannot pass SQL to the executor and that application code enforces budgets. Ask Codex to show where each limit is implemented. Run the generated offline test command; correct failures before live testing.
 
+    > *Screenshot placeholder — Run the generated offline tests in the integrated terminal and show the passing results.*
+
 3. Start the app using its generated README. Run both reports locally first. After confirming OCI model approval and access, authenticate locally and ask an approved question. Inspect actual tool activity and compare the answer with trusted SQL evidence. Codex sign-in does not authenticate the app to OCI. OCI model invocation is billed to the configured tenancy and is independent of database access.
 
+    > *Screenshot placeholder — Open the generated Streamlit app in the browser, run a report, ask a question, and expand the real tool-activity panel.*
+
 4. Ask for one focused refinement, such as changing chart labels to the data owner's terminology. Review the diff and rerun relevant checks. Continue to Lab 7; passing generated tests alone does not establish correctness or production readiness.
+
+    > *Screenshot placeholder — Ask Codex for a small UI refinement, review the diff in Visual Studio Code, and confirm the updated app in the browser.*
 
 ## Learn More
 

@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="610" viewBox="0 0 1200 610" role="img" aria-labelledby="title desc"><title id="title">Give the lab only the data it needs</title><desc id="desc">Original instructional illustration. 01 · APPROVE — Customer data owner — Objects + allowed outputs Then 02 · PROVISION — DBA-managed access — CREATE SESSION + SELECT Then 03 · STORE — Local protected wallet — Outside the code project Then 04 · VERIFY — Saved SQLcl connection — Fresh-process reconnect.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="610" viewBox="0 0 1200 610" role="img" aria-labelledby="title desc"><title id="title">Give the lab only the data it needs</title><desc id="desc">Original instructional illustration. 01 · APPROVE — Data owner — Objects + allowed outputs Then 02 · PROVISION — DBA-managed access — CREATE SESSION + SELECT Then 03 · STORE — Local protected wallet — Outside the code project Then 04 · VERIFY — Saved SQLcl connection — Fresh-process reconnect.</desc>
 <rect width="1200" height="610" rx="20" fill="#f6f4ef"/><rect width="1200" height="12" fill="#c74634"/>
 <g font-family="Arial, Helvetica, sans-serif"><text x="48" y="65" font-size="16" font-weight="bold" fill="#9b3b2d">ORACLE LIVELABS · VIBE CODE YOUR AI AGENT</text>
 <text x="48" y="122" font-size="32" font-weight="bold" fill="#252b2d">Give the lab only the data it needs</text>
@@ -6,7 +6,7 @@
 <rect x="48" y="225" width="258" height="224" rx="14" fill="white" stroke="#d9ddd8"/>
 <rect x="48" y="225" width="258" height="7" rx="3" fill="#317568"/>
 <text x="66" y="274" font-size="16" font-weight="bold" fill="#317568">01 · APPROVE</text>
-<text x="66" y="326" font-size="18" font-weight="bold" fill="#252b2d">Customer data owner</text>
+<text x="66" y="326" font-size="18" font-weight="bold" fill="#252b2d">Data owner</text>
 <text x="66" y="365" font-size="15" fill="#606966">Objects + allowed outputs</text>
 <path d="M310 334h15m-6-6 6 6-6 6" fill="none" stroke="#317568" stroke-width="2"/>
 <rect x="330" y="225" width="258" height="224" rx="14" fill="white" stroke="#d9ddd8"/>

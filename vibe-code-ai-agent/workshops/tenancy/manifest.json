@@ -7,9 +7,9 @@
     {"title": "Lab 2: Prepare database access", "description": "Approved account, wallet and saved connection", "filename": "../../database-access/database-access.md"},
     {"title": "Lab 3: Connect the SQLcl MCP server", "description": "Configure Codex and verify database identity", "filename": "../../connect-mcp/connect-mcp.md"},
     {"title": "Lab 4: Discover your data", "description": "Inspect metadata and approve the data contract", "filename": "../../discover-data/discover-data.md"},
-    {"title": "Lab 5: Plan your application", "description": "Approve customer-specific questions and reports", "filename": "../../plan-app/plan-app.md"},
+    {"title": "Lab 5: Plan your application", "description": "Approve tailored questions and reports", "filename": "../../plan-app/plan-app.md"},
     {"title": "Lab 6: Build the Python agent application", "description": "Tailor and run reports and bounded agent tools", "filename": "../../build-app/build-app.md"},
-    {"title": "Lab 7: Validate and clean up", "description": "Customer acceptance, troubleshooting and handoff", "filename": "../../validate-cleanup/validate-cleanup.md"},
-    {"title": "References and facilitator checklist", "description": "Official sources and publication gates", "filename": "../../references/references.md"}
+    {"title": "Lab 7: Validate and clean up", "description": "Application acceptance, troubleshooting and handoff", "filename": "../../validate-cleanup/validate-cleanup.md"},
+    {"title": "References and publication checklist", "description": "Official sources and publication gates", "filename": "../../references/references.md"}
   ]
 }

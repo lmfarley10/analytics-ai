@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="610" viewBox="0 0 1200 610" role="img" aria-labelledby="title desc"><title id="title">Verify the connection before discovering data</title><desc id="desc">Original instructional illustration. 01 · REGISTER — codex mcp add — Absolute SQLcl path + -mcp Then 02 · RESTART — New local Codex session — Inspect active /mcp tools Then 03 · CONNECT — customer_lab_ro — Use approved saved account Then 04 · COMPARE — Account and service — Must match the DBA scope.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="610" viewBox="0 0 1200 610" role="img" aria-labelledby="title desc"><title id="title">Verify the connection before discovering data</title><desc id="desc">Original instructional illustration. 01 · REGISTER — codex mcp add — Absolute SQLcl path + -mcp Then 02 · RESTART — New local Codex session — Inspect active /mcp tools Then 03 · CONNECT — lab_reader — Use approved saved account Then 04 · COMPARE — Account and service — Must match the DBA scope.</desc>
 <rect width="1200" height="610" rx="20" fill="#f6f4ef"/><rect width="1200" height="12" fill="#c74634"/>
 <g font-family="Arial, Helvetica, sans-serif"><text x="48" y="65" font-size="16" font-weight="bold" fill="#9b3b2d">ORACLE LIVELABS · VIBE CODE YOUR AI AGENT</text>
 <text x="48" y="122" font-size="32" font-weight="bold" fill="#252b2d">Verify the connection before discovering data</text>
@@ -18,7 +18,7 @@
 <rect x="612" y="225" width="258" height="224" rx="14" fill="white" stroke="#d9ddd8"/>
 <rect x="612" y="225" width="258" height="7" rx="3" fill="#317568"/>
 <text x="630" y="274" font-size="16" font-weight="bold" fill="#317568">03 · CONNECT</text>
-<text x="630" y="326" font-size="18" font-weight="bold" fill="#252b2d">customer_lab_ro</text>
+<text x="630" y="326" font-size="18" font-weight="bold" fill="#252b2d">lab_reader</text>
 <text x="630" y="365" font-size="15" fill="#606966">Use approved saved account</text>
 <path d="M874 334h15m-6-6 6 6-6 6" fill="none" stroke="#317568" stroke-width="2"/>
 <rect x="894" y="225" width="258" height="224" rx="14" fill="white" stroke="#d9ddd8"/>

@@ -2,19 +2,19 @@
 
 ## Introduction
 
-Agree a small useful application before generating code. The same planning process works for inventory, operations, finance or any other approved dataset because it starts from the verified data map.
+Plan a small, useful application before generating code. Start from your verified data map, whether you are working with inventory, operations, finance or another approved dataset.
 
 Estimated Time: 15 minutes.
 
 ### Objectives
 
-* Turn two customer questions into report tools and screens.
+* Turn two business questions into report tools and screens.
 * Define acceptance criteria and a bounded agent workflow.
 * Approve the implementation plan before building.
 
 ### Prerequisites
 
-An approved customer brief and data map with resolved measure definitions.
+An approved application brief and data map with resolved measure definitions.
 
 ## Task 1: Generate a sample application plan
 
@@ -22,17 +22,19 @@ An approved customer brief and data map with resolved measure definitions.
 
     ```text
     <copy>
-    Read customer-brief.md and data-map.md. Propose three small Python
+    Read app-brief.md and data-map.md. Propose three small Python
     application ideas grounded only in verified objects. Rank by business value,
     access already available, and effort. Recommend one that answers two approved
     questions without new database objects. Use Streamlit, python-oracledb Thin
     mode, the OCI Python SDK and a bounded OCI Generative AI native tool-calling
     loop to be generated locally. Use the approved OCI model/region and IAM
-    authentication profile, not an OpenAI API key. No arbitrary SQL tool.
-    Write app-plan.md using templates/app-plan-template.md. For every proposed
+    authentication profile. No arbitrary SQL tool.
+    Write app-plan.md with these sections: Purpose and scope; Report catalog;
+    Screens and agent behavior; Build milestones; Acceptance checks; Open questions.
+    For every proposed
     report specify the business definition, exact source columns, filters, null
     handling, join assumptions and an independent SQL acceptance check. Identify
-    missing facts and stop for review. Do not build or access customer rows yet.
+    missing facts and stop for review. Do not build or access data rows yet.
     </copy>
     ```
 
@@ -43,7 +45,7 @@ An approved customer brief and data map with resolved measure definitions.
     | Connect | Local database status check | Restricted account and expected service |
     | First report | A current-state aggregate | Matches a trusted SQL result |
     | Second report | A time or category breakdown | Same grain, filters and units as the approved definition |
-    | Interface | Customer terminology, two report views and question input | Data owner recognizes measures and labels |
+    | Interface | Your business terminology, two report views and question input | Data owner recognizes measures and labels |
     | Agent | Select report, run fixed SQL, explain results | Report ID, columns and real tool activity visible |
     | Verification | Supported, unsupported, empty and injection cases | No invented data, writes or secret disclosure |
 
@@ -51,9 +53,11 @@ An approved customer brief and data map with resolved measure definitions.
 
     ![Approved plan progresses through reports, interface and bounded agent validation](images/plan-flow.svg)
 
+    > *Screenshot placeholder — Review the three application ideas in Codex and open app-plan.md with the two proposed reports and screen layout.*
+
 ## Task 2: Approve the application contract
 
-1. Review the proposed screens, two report definitions and excluded questions with the data owner. Limit the first version to two or three reports and approved output columns. Reject sensitive fields and unexplained joins. Record the approval locally without customer identifiers in public files.
+1. Review the proposed screens, two report definitions and excluded questions with the data owner. Limit the first version to two or three reports and approved output columns. Reject sensitive fields and unexplained joins. Record the approval locally without identifying information in public files.
 
 2. Confirm that the model can only choose a registered report ID. The generated app owns SQL, credentials and row limits. Review its code to verify these boundaries before execution. Its agent loop is: receive question, select report tool, observe the returned evidence, and answer with the report source. Display these actions and observations; do not request or display private model reasoning.
 
@@ -61,12 +65,14 @@ An approved customer brief and data map with resolved measure definitions.
 
     ```text
     <copy>
-    The reviewed app-plan.md is approved for its first two customer reports and
+    The reviewed app-plan.md is approved for its first two reports and
     screens. Record that scope and any unverified export-derived assumptions in
     the plan. We will generate the connection, reports, UI, agent and tests in
     stages in Lab 6. Do not implement or install anything until the next prompt.
     </copy>
     ```
+
+    > *Screenshot placeholder — Review the final application scope and record plan approval before generating code.*
 
 ## Acknowledgements
 

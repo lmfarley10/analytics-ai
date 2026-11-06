@@ -1,4 +1,4 @@
-# References and facilitator publication checklist
+# References and publication checklist
 
 ## Introduction
 
@@ -9,7 +9,7 @@ Estimated Time: 10 minutes for reference review; allow additional time for both 
 ### Objectives
 
 * Keep setup guidance linked to current official sources.
-* Rehearse customer adaptation and capture genuine screenshots.
+* Rehearse schema adaptation and capture genuine screenshots.
 * Distinguish offline checks from live acceptance evidence.
 
 ## Official sources
@@ -36,7 +36,9 @@ Documentation reviewed November 6, 2026. Reverify before publication.
 
 ## Images and screenshot capture plan
 
-All current SVGs are original instructional illustrations, explicitly labeled inside the image. They show actions and boundaries rather than imitating a vendor UI. They contain no real accounts or customer data. The file dimensions are at most 1200 × 720 pixels.
+All current SVGs are original instructional illustrations, explicitly labeled inside the image. They show actions and boundaries rather than imitating a vendor UI. They contain no real accounts or application data. The file dimensions are at most 1200 × 720 pixels.
+
+Visible italic screenshot placeholders are included beside the corresponding lab steps. Replace each placeholder with a genuine screenshot during QA; the placeholders are not mock product images.
 
 For a publication-ready screenshot edition, capture the following on a clean supported Mac and Windows machine. Use genuine screenshots from the tested releases, redact locally, keep each dimension at or below 1280 pixels, record product versions/date, and insert the image beside the corresponding task. Do not relabel the current illustrations as screenshots.
 
@@ -46,10 +48,10 @@ For a publication-ready screenshot edition, capture the following on a clean sup
 | Lab 1 Windows | Download, installer completion, local project and terminal version checks | Verify native environment; redact account/path |
 | Lab 2 | OCI Database connection page and successful saved reconnect | Redact database identifiers, wallet location and credentials |
 | Lab 3 | MCP server entry, active tools and identity result | Use a disposable sanitized connection |
-| Lab 4 | Metadata-only discovery and completed data map | Use facilitator-approved metadata |
+| Lab 4 | Metadata-only discovery and completed data map | Use approved metadata |
 | Lab 5 | Reviewed plan and two report definitions | Use sanitized business terminology |
-| Lab 6 | Customer reports, answer and real tool activity | Show only approved aggregate outputs |
-| Lab 7 | Acceptance evidence and disconnect | No customer identifiers or secrets |
+| Lab 6 | Reports, answer and real tool activity | Show only approved aggregate outputs |
+| Lab 7 | Acceptance evidence and disconnect | No identifying information or secrets |
 
 ## Publication gates
 
@@ -57,9 +59,9 @@ For a publication-ready screenshot edition, capture the following on a clean sup
 * Preview the tenancy launcher through HTTP with the Oracle CDN available; check image sizing, task navigation and copy buttons.
 * Rehearse installation, CLI sign-in, SQLcl startup and saved-wallet reconnect on both operating systems. Record exact versions and installer requirements.
 * Confirm the desktop MCP route separately if teaching it; otherwise teach the CLI baseline.
-* Run against at least two different approved schemas, including one cross-schema view-only account. Confirm no hardcoded customer object names remain in reusable files.
-* Confirm the direct Python connection and two customer SQL reports before enabling API calls.
-* Verify OCI IAM access, the selected SDK signer, model/region availability, a harmless OCI-only inference call, and a real native tool-call round trip. Test temporary-session expiry. The runtime must require no OpenAI SDK or API key.
+* Run against at least two different approved schemas, including one cross-schema view-only account. Confirm no hardcoded schema object names remain in reusable files.
+* Confirm the direct Python connection and two report SQL reports before enabling API calls.
+* Verify OCI IAM access, the selected SDK signer, model/region availability, a harmless OCI-only inference call, and a real native tool-call round trip. Test temporary-session expiry. Verify that runtime requests use the approved OCI endpoint.
 * Run Lab 7 with a real approved model and database, checking answer accuracy, empty results, injection, errors and limits.
 * Have learners record tested dependency versions locally. Do not add generated application code, executable tests or dependency locks to the distributed workshop without the applicable publication review.
 * Capture and review the genuine screenshots above. Review acknowledgements, help routing and workshop title with the publishing owner.

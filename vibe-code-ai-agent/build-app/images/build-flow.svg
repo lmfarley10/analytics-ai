@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="610" viewBox="0 0 1200 610" role="img" aria-labelledby="title desc"><title id="title">Build and verify in small steps</title><desc id="desc">Original instructional illustration. 01 · PREFLIGHT — Generate connection check — Local code · no AI call Then 02 · REPORTS — Reviewed customer SQL — Compare with trusted result Then 03 · INTERFACE — Local Streamlit app — Browse reports and charts Then 04 · AGENT — Question → report tool — Observed result → answer.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="610" viewBox="0 0 1200 610" role="img" aria-labelledby="title desc"><title id="title">Build and verify in small steps</title><desc id="desc">Original instructional illustration. 01 · PREFLIGHT — Generate connection check — Local code · no AI call Then 02 · REPORTS — Reviewed report SQL — Compare with trusted result Then 03 · INTERFACE — Local Streamlit app — Browse reports and charts Then 04 · AGENT — Question → report tool — Observed result → answer.</desc>
 <rect width="1200" height="610" rx="20" fill="#f6f4ef"/><rect width="1200" height="12" fill="#c74634"/>
 <g font-family="Arial, Helvetica, sans-serif"><text x="48" y="65" font-size="16" font-weight="bold" fill="#9b3b2d">ORACLE LIVELABS · VIBE CODE YOUR AI AGENT</text>
 <text x="48" y="122" font-size="32" font-weight="bold" fill="#252b2d">Build and verify in small steps</text>
@@ -12,7 +12,7 @@
 <rect x="330" y="225" width="258" height="224" rx="14" fill="white" stroke="#d9ddd8"/>
 <rect x="330" y="225" width="258" height="7" rx="3" fill="#317568"/>
 <text x="348" y="274" font-size="16" font-weight="bold" fill="#317568">02 · REPORTS</text>
-<text x="348" y="326" font-size="18" font-weight="bold" fill="#252b2d">Reviewed customer SQL</text>
+<text x="348" y="326" font-size="18" font-weight="bold" fill="#252b2d">Reviewed report SQL</text>
 <text x="348" y="365" font-size="15" fill="#606966">Compare with trusted result</text>
 <path d="M592 334h15m-6-6 6 6-6 6" fill="none" stroke="#317568" stroke-width="2"/>
 <rect x="612" y="225" width="258" height="224" rx="14" fill="white" stroke="#d9ddd8"/>
