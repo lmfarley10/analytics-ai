@@ -14,7 +14,7 @@ From the repository root, run:
 python3 -m http.server 8000 --bind 127.0.0.1
 ```
 
-Open [the workshop launcher](http://127.0.0.1:8000/vibe-code-ai-agent/workshops/tenancy/index.html). The launcher uses the same Oracle LiveLabs CDN renderer as `ajd-mongo`. Internet access is required. This workshop assumes an existing customer database; no sandbox provisioning is promised.
+Open [the workshop launcher](http://127.0.0.1:8000/vibe-code-ai-agent/workshops/tenancy/index.html). The launcher uses Oracle's standard LiveLabs renderer and template, loading assets from the Oracle LiveLabs `common` GitHub Pages site because the legacy CDN `main.min.js` URL returned 404. Its deferred Markdown, highlighting and FreeSQL loader URLs use that same vendor-hosted source. No library code is bundled. Internet access is required. This workshop assumes an existing customer database; no sandbox provisioning is promised.
 
 ## GitHub Pages preview on the author fork
 
