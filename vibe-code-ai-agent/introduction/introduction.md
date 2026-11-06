@@ -23,7 +23,7 @@ Estimated Workshop Time: 3 hours 15 minutes, plus prerequisite installation and 
 * An existing Autonomous AI Database with approved tables or views, a DBA contact, and a working network route from your client. A private endpoint requires an approved VPN or other private route.
 * Permission to send the selected metadata and aggregate results to the chosen AI service. Use sanitized views or a non-production copy if required by your organization.
 * For the final app: an OCI compartment with permission to call OCI Generative AI, an approved OCI model/region with native tool calling, available service budget, and an approved local OCI authentication profile. Lab 6 covers setup. The local report viewer and database check can run without model calls.
-* Python 3.11 or later, Node.js LTS for the npm CLI installation path, and a supported JDK/SQLcl combination. Lab 1 covers installation.
+* Python 3.11 or later, the standalone Codex CLI, and a supported JDK/SQLcl combination. Lab 1 covers installation.
 
 ## What you will build
 

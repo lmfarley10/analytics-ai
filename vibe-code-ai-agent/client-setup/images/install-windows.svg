@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="610" viewBox="0 0 1200 610" role="img" aria-labelledby="title desc"><title id="title">Install on Windows</title><desc id="desc">Original instructional illustration. 01 · DOWNLOAD — Official Windows guide — Use the vendor installer Then 02 · INSTALL — Complete Windows setup — Launch the desktop client Then 03 · SIGN IN — Approved work account — Choose local project folder Then 04 · VERIFY — PowerShell tool checks — Use npm.cmd + codex.cmd.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="610" viewBox="0 0 1200 610" role="img" aria-labelledby="title desc"><title id="title">Install on Windows</title><desc id="desc">Original instructional illustration. 01 · DOWNLOAD — Official Windows guide — Use the vendor installer Then 02 · INSTALL — Complete Windows setup — Launch the desktop client Then 03 · SIGN IN — Approved work account — Choose local project folder Then 04 · VERIFY — PowerShell tool checks — Use the standalone Codex CLI.</desc>
 <rect width="1200" height="610" rx="20" fill="#f6f4ef"/><rect width="1200" height="12" fill="#c74634"/>
 <g font-family="Arial, Helvetica, sans-serif"><text x="48" y="65" font-size="16" font-weight="bold" fill="#9b3b2d">ORACLE LIVELABS · VIBE CODE YOUR AI AGENT</text>
 <text x="48" y="122" font-size="32" font-weight="bold" fill="#252b2d">Install on Windows</text>
@@ -25,6 +25,6 @@
 <rect x="894" y="225" width="258" height="7" rx="3" fill="#317568"/>
 <text x="912" y="274" font-size="16" font-weight="bold" fill="#317568">04 · VERIFY</text>
 <text x="912" y="326" font-size="18" font-weight="bold" fill="#252b2d">PowerShell tool checks</text>
-<text x="912" y="365" font-size="15" fill="#606966">Use npm.cmd + codex.cmd</text>
+<text x="912" y="365" font-size="15" fill="#606966">Use the standalone Codex CLI</text>
 <text x="48" y="521" font-size="18" fill="#384e46">Native Windows path · reopen PowerShell after installation · avoid mixing WSL stores</text>
 <text x="48" y="565" font-size="14" fill="#69736f">Follow the numbered lab instructions for exact commands and acceptance checks.</text></g></svg>

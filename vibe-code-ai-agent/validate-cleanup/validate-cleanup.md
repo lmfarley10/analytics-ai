@@ -51,7 +51,7 @@ In the metadata-export route, obtain live check evidence from the data owner and
     | Symptom | Check and action |
     | --- | --- |
     | Command not found | Reopen terminal; check actual executable path and install environment |
-    | PowerShell blocks npm scripts | Use `npm.cmd` and `codex.cmd`; use the venv Python executable directly |
+    | Standalone Codex is not found | Reopen the terminal after installation and verify the installer's bin directory is on PATH |
     | Java class/version error | Match the JDK to the installed SQLcl release and check `java -version` |
     | SQLcl connection fails | Test outside Codex; verify wallet ZIP, alias, password and approved route |
     | ORA-01017 | Verify the restricted account password locally; do not print it |
@@ -79,7 +79,7 @@ In the metadata-export route, obtain live check evidence from the data owner and
     </copy>
     ```
 
-    On Windows use `codex.cmd`. Remove a separately configured desktop entry there as well. Keep unrelated MCP entries intact.
+    Use the same command in PowerShell. Remove a separately configured desktop entry there as well. Keep unrelated MCP entries intact.
 
 2. For a disposable lab account, ask the DBA to expire or remove its access under the organization's process. Remove only the lab's saved connection using your SQLcl release's connection manager. Delete wallet copies using the organization's retention rules; never remove the entire shared connection store. Clear any secrets you manually exported or close the terminal.
 

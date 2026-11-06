@@ -176,7 +176,9 @@ An approved application plan and data map; your workspace; a working runtime dat
 
 3. Start the app using its generated README. Run both reports locally first. After confirming OCI model approval and access, authenticate locally and ask an approved question. Inspect actual tool activity and compare the answer with trusted SQL evidence. Codex sign-in does not authenticate the app to OCI. OCI model invocation is billed to the configured tenancy and is independent of database access.
 
-    > *Screenshot placeholder — Open the generated Streamlit app in the browser, run a report, ask a question, and expand the real tool-activity panel.*
+    ![An example generated app answers a question with OCI Generative AI, shows a successful tool call and displays matching report evidence.](images/app-agent-answer.png)
+
+    This example comes from the Mac QA rehearsal. Your app, reports and results will reflect your approved data and plan.
 
 4. Ask for one focused refinement, such as changing chart labels to the data owner's terminology. Review the diff and rerun relevant checks. Continue to Lab 7; passing generated tests alone does not establish correctness or production readiness.
 

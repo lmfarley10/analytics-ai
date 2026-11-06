@@ -6,3 +6,6 @@
 env.sh
 labs/.DS_Store
 .vscode
+
+# Database client wallets contain credentials and must stay local.
+**/Wallet*.zip

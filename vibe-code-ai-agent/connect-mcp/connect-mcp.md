@@ -35,8 +35,8 @@ If client database access is not ready, use Lab 4's metadata-export route for in
 
     ```powershell
     <copy>
-    codex.cmd mcp add lab_db -- "C:\Tools\sqlcl\bin\sql.exe" -mcp
-    codex.cmd mcp list
+    codex mcp add lab_db -- "C:\Tools\sqlcl\bin\sql.exe" -mcp
+    codex mcp list
     </copy>
     ```
 
@@ -44,7 +44,7 @@ If client database access is not ready, use Lab 4's metadata-export route for in
 
     ```toml
     <copy>
-    enabled_tools = ["list-connections", "connect", "disconnect", "run-sql", "schema-information"]
+    enabled_tools = ["connections_list", "connect", "disconnect", "sql_run", "schema_information"]
     startup_timeout_sec = 60
     tool_timeout_sec = 60
     </copy>
@@ -56,12 +56,12 @@ If client database access is not ready, use Lab 4's metadata-export route for in
     [mcp_servers.lab_db]
     command = "/Users/YOUR_USER/tools/sqlcl/bin/sql"
     args = ["-mcp"]
-    enabled_tools = ["list-connections", "connect", "disconnect", "run-sql", "schema-information"]
+    enabled_tools = ["connections_list", "connect", "disconnect", "sql_run", "schema_information"]
     startup_timeout_sec = 60
     tool_timeout_sec = 60
     ```
 
-    For Windows, a TOML literal string avoids backslash escaping: `command = 'C:\Tools\sqlcl\bin\sql.exe'`. Confirm the actual advertised tool names for your SQLcl release. Excluding `run-sqlcl` reduces exposed capabilities, but `run-sql` can still execute writes or PL/SQL if the database permits them. The allowlist is not a read-only security control.
+    For Windows, a TOML literal string avoids backslash escaping: `command = 'C:\Tools\sqlcl\bin\sql.exe'`. Confirm the actual advertised tool names for your SQLcl release. Excluding `sqlcl_run` reduces exposed capabilities, but `sql_run` can still execute writes or PL/SQL if the database permits them. The allowlist is not a read-only security control.
 
 3. Start Codex again in the project. Enter `/mcp` and confirm that `lab_db` is connected and the intended tools are listed. A configured entry alone is not proof of a successful server handshake.
 

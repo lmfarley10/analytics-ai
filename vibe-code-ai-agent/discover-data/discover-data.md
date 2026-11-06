@@ -45,7 +45,9 @@ The data owner has approved a metadata scope. For live discovery, the MCP identi
     </copy>
     ```
 
-    > *Screenshot placeholder — Open Visual Studio Code, open the project folder, and create app-brief.md with the completed outline visible. Redact identifying information.*
+    ![Application brief and project files open in Visual Studio Code before metadata discovery](images/project-brief.png)
+
+    Your brief can retain pending values while you confirm access and model settings. Replace them with verified values as you progress.
 
 2. Save the file, then send this prompt to Codex to create project instructions:
 
@@ -78,7 +80,9 @@ The data owner has approved a metadata scope. For live discovery, the MCP identi
 
 3. Review `app-brief.md`, `AGENTS.md` and `.gitignore` in your editor. Confirm that approved objects and both sharing scopes are correct. Leave unresolved OCI settings marked pending until Lab 6; do not invent values. These files belong to this project, not your global Codex configuration.
 
-    > *Screenshot placeholder — Show the project Explorer with app-brief.md, AGENTS.md and .gitignore, then review the generated project instructions.*
+    ![Review the generated project instructions in Visual Studio Code.](images/project-instructions.png)
+
+    Your generated instructions will reflect your own approved scope.
 
     ![Brief, metadata inspection and data-owner approval produce a data contract](images/discovery-flow.svg)
 

@@ -38,7 +38,7 @@ Documentation reviewed November 6, 2026. Reverify before publication.
 
 All current SVGs are original instructional illustrations, explicitly labeled inside the image. They show actions and boundaries rather than imitating a vendor UI. They contain no real accounts or application data. The file dimensions are at most 1200 × 720 pixels.
 
-Visible italic screenshot placeholders are included beside the corresponding lab steps. Replace each placeholder with a genuine screenshot during QA; the placeholders are not mock product images.
+Genuine screenshots from the isolated Mac rehearsal appear beside selected tasks. Remaining italic screenshot placeholders identify captures still needed; they are not mock product images. Screenshots show one example project, while the prompts remain reusable across approved schemas.
 
 For a publication-ready screenshot edition, capture the following on a clean supported Mac and Windows machine. Use genuine screenshots from the tested releases, redact locally, keep each dimension at or below 1280 pixels, record product versions/date, and insert the image beside the corresponding task. Do not relabel the current illustrations as screenshots.
 
@@ -52,6 +52,16 @@ For a publication-ready screenshot edition, capture the following on a clean sup
 | Lab 5 | Reviewed plan and two report definitions | Use sanitized business terminology |
 | Lab 6 | Reports, answer and real tool activity | Show only approved aggregate outputs |
 | Lab 7 | Acceptance evidence and disconnect | No identifying information or secrets |
+
+## Recorded QA evidence
+
+The November 6, 2026 isolated Mac rehearsal used Codex 0.167.0, SQLcl 26.1.2, Java 17.0.12, Python 3.13.5, python-oracledb 26.1.0, OCI SDK 2.190.0 and Streamlit 1.67.0. Python used a virtual environment on an existing installation; Java and SQLcl were temporary copies. This was a functional rehearsal, not a fresh operating-system installation test.
+
+Verified: saved SQLcl reconnect in a fresh process; actual MCP tool discovery and scoped metadata; Codex-generated project instructions, data map and plan; ten offline app tests; OCI text inference and a native tool-call/result round trip with Llama 4 Scout in Chicago; direct Python wallet connection; and two fixed aggregate reports matching independently written SQL and total counts; and a browser question answered through a real report tool call with matching evidence. Model availability is specific to that rehearsal and must be checked again for each environment.
+
+The rehearsal ended by logging out the isolated Codex profile, terminating the temporary OCI session, stopping QA-owned processes and removing the temporary tools, wallet copy and generated app. Metadata checks (size, modification time and inode) for the normal Codex/OCI configuration, shell startup files and SQLcl store directory were unchanged. The original local wallet remains excluded from Git.
+
+SQLcl releases advertise different tool names. The tested release used underscore names such as `sql_run`. Its schema-information response did not establish nullability or constraints reliably; confirm those facts with bounded, owner/object-filtered dictionary queries. Keep all private logs, credentials, generated application files and dependency locks outside the workshop.
 
 ## Publication gates
 
