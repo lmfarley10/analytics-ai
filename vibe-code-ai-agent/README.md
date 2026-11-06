@@ -16,6 +16,14 @@ python3 -m http.server 8000 --bind 127.0.0.1
 
 Open [the workshop launcher](http://127.0.0.1:8000/vibe-code-ai-agent/workshops/tenancy/index.html). The launcher uses the same Oracle LiveLabs CDN renderer as `ajd-mongo`. Internet access is required. This workshop assumes an existing customer database; no sandbox provisioning is promised.
 
+## GitHub Pages preview on the author fork
+
+The repository is too large to publish in full to GitHub Pages. The fork-specific workflow `.github/workflows/vibe-code-pages.yml` stages only this workshop under `_site/vibe-code-ai-agent`, preserving the existing workshop URL and relative links. It runs only on `lmfarley10/analytics-ai`, branch `adb-vibe-code`; it does not publish the upstream repository or other workshops.
+
+To enable it, open the fork's **Settings → Pages → Build and deployment**, change **Source** to **GitHub Actions**, and save if prompted. Commit and push the workflow and workshop changes to `adb-vibe-code`. Watch **Actions → Publish Vibe Code LiveLab preview**. If environment protection blocks deployment, review the `github-pages` environment's allowed deployment branches and allow `adb-vibe-code` for this preview. Once the workflow exists on the default branch, it can also be run manually with that feature branch selected.
+
+After a successful deployment, open [the hosted workshop](https://lmfarley10.github.io/analytics-ai/vibe-code-ai-agent/workshops/tenancy/index.html). This workflow publishes a workshop-only site, replacing the fork's prior Pages content. Other workshop URLs will not be served by this preview. Use a separate hosting destination if the fork needs to retain a broader published site.
+
 ## Contents
 
 | Section | Outcome | Minutes |

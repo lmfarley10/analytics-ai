@@ -1,0 +1,57 @@
+name: Publish Vibe Code LiveLab preview
+
+on:
+  push:
+    branches: [adb-vibe-code]
+    paths:
+      - vibe-code-ai-agent/**
+      - .github/workflows/vibe-code-pages.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: vibe-code-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    # This preview belongs to the author's fork, not the upstream LiveLabs site.
+    if: github.repository == 'lmfarley10/analytics-ai' && github.ref == 'refs/heads/adb-vibe-code'
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out the workshop
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+          sparse-checkout: vibe-code-ai-agent
+
+      - name: Stage only the workshop, preserving its public URL
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p _site/vibe-code-ai-agent
+          cp -R vibe-code-ai-agent/. _site/vibe-code-ai-agent/
+          test -f _site/vibe-code-ai-agent/workshops/tenancy/index.html
+          test -f _site/vibe-code-ai-agent/workshops/tenancy/manifest.json
+          du -sh _site
+
+      - name: Upload the workshop site
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-24.04
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
