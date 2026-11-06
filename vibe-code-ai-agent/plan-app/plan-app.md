@@ -26,7 +26,9 @@ An approved customer brief and data map with resolved measure definitions.
     application ideas grounded only in verified objects. Rank by business value,
     access already available, and effort. Recommend one that answers two approved
     questions without new database objects. Use Streamlit, python-oracledb Thin
-    mode and a bounded Responses tool loop to be generated locally. No arbitrary SQL tool.
+    mode, the OCI Python SDK and a bounded OCI Generative AI native tool-calling
+    loop to be generated locally. Use the approved OCI model/region and IAM
+    authentication profile, not an OpenAI API key. No arbitrary SQL tool.
     Write app-plan.md using templates/app-plan-template.md. For every proposed
     report specify the business definition, exact source columns, filters, null
     handling, join assumptions and an independent SQL acceptance check. Identify

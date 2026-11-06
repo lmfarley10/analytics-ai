@@ -13,7 +13,12 @@ Generate a fixed report-ID catalog, result limits and agent step/call budgets.
 Review their implementation before running generated code.
 Do not give the model an arbitrary SQL or shell tool in the application.
 Show tool actions and observed evidence, not hidden model reasoning.
-Use Python, Streamlit and python-oracledb Thin mode for this workshop.
+Use Python, Streamlit, python-oracledb Thin mode and the OCI Python SDK.
+Use OCI Generative AI native chat/tool calling for the runtime model.
+Do not require an OpenAI API key or SDK in the generated app.
+Use the approved OCI profile and signer; handle session-token expiry explicitly.
+The generated app may load its approved OCI profile at runtime. The coding agent
+must not inspect .oci configuration, signing keys or token files.
 Ask for missing facts; never substitute invented data for a failed connection.
 Keep customer briefs, metadata, plans, queries and acceptance results private.
 Run focused offline tests and customer SQL acceptance checks after changes.

@@ -28,8 +28,11 @@ Documentation reviewed November 6, 2026. Reverify before publication.
 | Saved connections | [Oracle MCP connections](https://docs.oracle.com/en/database/oracle/sql-developer-vscode/26.3/sqdnx/configuring-database-connections.html) | Saved password and connection store |
 | Wallet connection | [Oracle SQLcl mTLS](https://docs.oracle.com/en/cloud/paas/autonomous-database/serverless/adbsb/connect-sqlcl.html) | SQLcl cloud configuration and wallet ZIP |
 | Python connection | [python-oracledb connection guide](https://python-oracledb.readthedocs.io/en/stable/user_guide/connection_handling.html) | Thin mode, extracted wallet and connection arguments |
-| Runtime tools | [OpenAI function calling](https://developers.openai.com/api/docs/guides/function-calling) | Responses call/result loop |
-| Data handling | [OpenAI API data controls](https://developers.openai.com/api/docs/guides/your-data) | Provider retention and policy review |
+| Runtime model | [OCI Generative AI SDK](https://docs.oracle.com/en-us/iaas/tools/python/latest/api/generative_ai_inference.html) | Native chat and tool request/response classes |
+| Model capability | [GenericChatRequest](https://docs.oracle.com/en-us/iaas/tools/python/latest/api/generative_ai_inference/models/oci.generative_ai_inference.models.GenericChatRequest.html) | Tool definitions for compatible model families; check the chosen family |
+| Region and hosting | [OCI model availability](https://docs.oracle.com/en-us/iaas/Content/generative-ai/model-endpoint-regions.htm) | Approved model, serving mode and processing region |
+| Runtime permissions | [OCI Generative AI IAM](https://docs.oracle.com/en-us/iaas/Content/generative-ai/iam-policies.htm) | Scoped inference access |
+| Local authentication | [OCI CLI sessions](https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/clitoken.htm), [SDK signers](https://docs.oracle.com/en-us/iaas/tools/python/latest/api/signing.html) | Local authentication profile and matching SDK signer |
 
 ## Images and screenshot capture plan
 
@@ -56,6 +59,7 @@ For a publication-ready screenshot edition, capture the following on a clean sup
 * Confirm the desktop MCP route separately if teaching it; otherwise teach the CLI baseline.
 * Run against at least two different approved schemas, including one cross-schema view-only account. Confirm no hardcoded customer object names remain in reusable files.
 * Confirm the direct Python connection and two customer SQL reports before enabling API calls.
+* Verify OCI IAM access, the selected SDK signer, model/region availability, a harmless OCI-only inference call, and a real native tool-call round trip. Test temporary-session expiry. The runtime must require no OpenAI SDK or API key.
 * Run Lab 7 with a real approved model and database, checking answer accuracy, empty results, injection, errors and limits.
 * Have learners record tested dependency versions locally. Do not add generated application code, executable tests or dependency locks to the distributed workshop without the applicable publication review.
 * Capture and review the genuine screenshots above. Review acknowledgements, help routing and workshop title with the publishing owner.

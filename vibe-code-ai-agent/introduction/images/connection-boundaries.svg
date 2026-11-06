@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="610" viewBox="0 0 1200 610" role="img" aria-labelledby="title desc"><title id="title">Two connections, two distinct purposes</title><desc id="desc">Original instructional illustration. DEVELOPMENT — Codex on your client — MCP → SQLcl → database Then DATA CONTRACT — Approved metadata — Questions + reviewed SQL Then RUNTIME — Python application — python-oracledb → database Then ANSWER — OpenAI Responses API — Report result → explanation.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="610" viewBox="0 0 1200 610" role="img" aria-labelledby="title desc"><title id="title">Two connections, two distinct purposes</title><desc id="desc">Original instructional illustration. DEVELOPMENT — Codex on your client — MCP → SQLcl → database Then DATA CONTRACT — Approved metadata — Questions + reviewed SQL Then RUNTIME — Python application — python-oracledb → database Then ANSWER — OCI Generative AI — Report result → explanation.</desc>
 <rect width="1200" height="610" rx="20" fill="#f6f4ef"/><rect width="1200" height="12" fill="#c74634"/>
 <g font-family="Arial, Helvetica, sans-serif"><text x="48" y="65" font-size="16" font-weight="bold" fill="#9b3b2d">ORACLE LIVELABS · VIBE CODE YOUR AI AGENT</text>
 <text x="48" y="122" font-size="32" font-weight="bold" fill="#252b2d">Two connections, two distinct purposes</text>
@@ -24,7 +24,7 @@
 <rect x="894" y="225" width="258" height="224" rx="14" fill="white" stroke="#d9ddd8"/>
 <rect x="894" y="225" width="258" height="7" rx="3" fill="#317568"/>
 <text x="912" y="274" font-size="16" font-weight="bold" fill="#317568">ANSWER</text>
-<text x="912" y="326" font-size="18" font-weight="bold" fill="#252b2d">OpenAI Responses API</text>
+<text x="912" y="326" font-size="18" font-weight="bold" fill="#252b2d">OCI Generative AI</text>
 <text x="912" y="365" font-size="15" fill="#606966">Report result → explanation</text>
 <text x="48" y="521" font-size="18" fill="#384e46">Wallets stay local · model receives only approved metadata/results</text>
 <text x="48" y="565" font-size="14" fill="#69736f">Follow the numbered lab instructions for exact commands and acceptance checks.</text></g></svg>

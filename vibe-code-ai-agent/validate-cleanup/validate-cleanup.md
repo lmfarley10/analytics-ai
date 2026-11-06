@@ -20,7 +20,7 @@ In the metadata-export route, obtain live check evidence from the data owner and
 
 ## Task 1: Run the acceptance checks
 
-1. Complete the following matrix and record evidence in a private local `acceptance-results.md`. Never paste passwords, API keys or raw sensitive results into it.
+1. Complete the following matrix and record evidence in a private local `acceptance-results.md`. Never paste passwords, OCI signing keys, session tokens or raw sensitive results into it.
 
     | Case | Action | Expected evidence |
     | --- | --- | --- |
@@ -28,6 +28,8 @@ In the metadata-export route, obtain live check evidence from the data owner and
     | Supported question 1 | Ask the first approved question | Answer agrees with independently executed trusted SQL |
     | Supported question 2 | Ask the second approved question | Correct grain, filters, null handling and units |
     | Source | Expand activity and inspect local report | Correct report ID, columns and observed values |
+    | OCI tool call | Inspect a live model request/response and tool result | Actual native tool call and matching result ID; approved OCI model/region |
+    | Expired OCI session | Use a test expired profile, then reauthenticate locally | Clear authentication error, no fabricated fallback or secret disclosure |
     | Unsupported question | Ask about a field outside the catalog | Explains limitation or requests an approved report; invents no result |
     | Empty result | Use a temporary reviewed SELECT with a false predicate in a test catalog | Explains no matching rows; no invented total |
     | Truncation | Use a DBA-approved harmless test with over 100 small rows | Only 100 rows returned and truncation flagged |
@@ -58,7 +60,8 @@ In the metadata-export route, obtain live check evidence from the data owner and
     | Desktop has no tools | Verify MCP inside that runtime; use the tested local CLI path if unsupported |
     | Empty metadata | Use owner-filtered ALL_* views; account may own no tables; verify direct grants |
     | Python wallet failure | Use extracted directory and `ewallet.pem`; supply wallet password, not DB password |
-    | API 401 / 403 / quota | Check approved API project/key, model access and budget separately from app sign-in |
+    | OCI authentication / authorization error | Check profile, signer type, token expiry, IAM policy and compartment; Codex sign-in is separate |
+    | OCI model unavailable / throttled | Check region, endpoint, model/serving-mode availability, service limits and budget; use bounded retries |
     | Report unavailable | Run reviewed SQL locally; inspect grants, column names and result size without publishing details |
     | Wrong total | Check row grain, join multiplication, filters, nulls and units against the contract |
 
@@ -77,6 +80,8 @@ In the metadata-export route, obtain live check evidence from the data owner and
     On Windows use `codex.cmd`. Remove a separately configured desktop entry there as well. Keep unrelated MCP entries intact.
 
 2. For a disposable lab account, ask the DBA to expire or remove its access under the customer's process. Remove only the lab's saved connection using your SQLcl release's connection manager. Delete wallet copies using the customer's retention rules; never remove the entire shared connection store. Clear any secrets you manually exported or close the terminal.
+
+    Expire or remove the lab-only OCI authentication session using your organization's approved process. Keep unrelated OCI profiles and signing keys intact. Record OCI model usage against the approved workshop budget.
 
 3. Hand off the code, reviewed query catalog, application plan, data map, acceptance results and tested dependency versions through the customer's approved channel. Before production use, add authentication, user-specific authorization, managed secrets, hosting controls, monitoring, query/resource limits and a model evaluation set. The app generated during this lab is intended for local single-user learning; it is not a reviewed Oracle-distributed sample or a production release.
 

@@ -23,7 +23,11 @@ Define the minimum approved business and data scope. Replace the bracketed value
 * Permitted output: [approved aggregate columns]
 * Sensitive/excluded fields: [explicit list]
 * Row samples: [not approved / approved specific fields and maximum 5 rows]
-* Approved model provider/project and data handling: [local policy reference]
+* OCI Generative AI region, compartment OCID and model ID: [approved non-secret settings]
+* OCI service endpoint and serving mode: [approved values]
+* OCI authentication profile name and method: [session token or approved alternative; no key/token contents]
+* Approved model processing location and data handling: [local policy reference]
+* Codex development metadata-sharing approval: [separate local policy reference]
 * Data-owner review: [approval recorded in approved local system]
 
 ## Acknowledgements

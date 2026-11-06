@@ -1,6 +1,6 @@
 # Vibe code your own AI Agent Application on Autonomous AI Database
 
-Estimated Time: 3 hours, plus prerequisite installation and customer access provisioning.
+Estimated Time: 3 hours 15 minutes, plus prerequisite installation and customer access provisioning.
 
 ### Objectives
 
@@ -34,7 +34,7 @@ After a successful deployment, open [the hosted workshop](https://lmfarley10.git
 | [Lab 3](connect-mcp/connect-mcp.md) | Register and verify SQLcl MCP in Codex | 20 |
 | [Lab 4](discover-data/discover-data.md) | Discover tables and approve a reusable data contract | 25 |
 | [Lab 5](plan-app/plan-app.md) | Approve a customer-specific Python app plan | 15 |
-| [Lab 6](build-app/build-app.md) | Generate and run the tailored application | 35 |
+| [Lab 6](build-app/build-app.md) | Generate and run the tailored application with OCI Generative AI | 50 |
 | [Lab 7](validate-cleanup/validate-cleanup.md) | Validate results, troubleshoot and disconnect | 25 |
 
 ## Customer adaptation
@@ -43,7 +43,7 @@ Keep the workshop prompts, diagrams and planning templates. Each learner generat
 
 No application source, executable tests, dependency manifest or sample query catalog is distributed. Lab 6 supplies staged natural-language prompts with review checkpoints. There is no dependency on a particular customer schema. SQLcl provides the existing MCP server; a custom server is unnecessary. A metadata-export fallback supports initial discovery when a live MCP connection is unavailable.
 
-The runtime design calls for OpenAI Responses function calling and approved report IDs; learners generate and verify that implementation. Codex uses MCP during development; the app uses python-oracledb directly at runtime. Customer query results used by the runtime agent are sent to the configured model provider. Metadata sent through Codex also crosses the model boundary. Confirm customer policy before either activity.
+The runtime design uses OCI Generative AI through the OCI Python SDK, OCI IAM authentication and approved report tools. Learners generate and verify that implementation; no OpenAI API key is required. Codex uses MCP during development, while the generated app connects independently to Autonomous AI Database and OCI Generative AI. Approved report results go to the selected OCI model/processing region. Codex still handles development prompts, metadata and any approved validation results through its own service; choosing OCI for the app does not move Codex itself into OCI. Confirm both data-sharing scopes with the customer.
 
 ## Checks and publication status
 

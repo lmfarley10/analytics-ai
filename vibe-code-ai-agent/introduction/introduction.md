@@ -4,7 +4,7 @@
 
 Build an application around the data you already have. You will give Codex a narrowly scoped Oracle connection, inspect the actual tables and fields, approve a plan, and iteratively create a local Python app. Your final app will answer business questions by choosing approved database reports and explaining the observed results.
 
-Estimated Workshop Time: 3 hours, plus prerequisite installation and DBA provisioning.
+Estimated Workshop Time: 3 hours 15 minutes, plus prerequisite installation and DBA provisioning.
 
 ![Workshop flow from client installation to a customer-specific Python agent](images/workshop-flow.svg)
 
@@ -22,7 +22,7 @@ Estimated Workshop Time: 3 hours, plus prerequisite installation and DBA provisi
 * An organization-approved ChatGPT/Codex account with access enabled. Check current account eligibility; this workshop makes no free-access guarantee.
 * An existing Autonomous AI Database with customer-approved tables or views, a DBA contact, and a working network route from your client. A private endpoint requires an approved VPN or other private route.
 * Permission to send the selected metadata and aggregate results to the chosen AI service. Use sanitized views or a non-production copy if required by your organization.
-* For the final app: an approved OpenAI API project/key, available API budget, and a tool-capable Responses model. Check API access separately from your desktop sign-in. The local report viewer and database check can run without model calls.
+* For the final app: an OCI compartment with permission to call OCI Generative AI, an approved OCI model/region with native tool calling, available service budget, and an approved local OCI authentication profile. Lab 6 covers setup. No OpenAI API key is required. The local report viewer and database check can run without model calls.
 * Python 3.11 or later, Node.js LTS for the npm CLI installation path, and a supported JDK/SQLcl combination. Lab 1 covers installation.
 
 ## What you will build
@@ -31,7 +31,7 @@ Your application contains a report browser, question input, evidence-based answe
 
 ![Development MCP connection and independent runtime database connection](images/connection-boundaries.svg)
 
-The development connection is `Codex → local SQLcl MCP → Autonomous AI Database`. The runtime connection is `Python → python-oracledb → database`, with selected report results passed to the OpenAI API for the answer. Neither local stdio MCP nor a local app URL needs to be published to the internet.
+The development connection is `Codex → local SQLcl MCP → Autonomous AI Database`. The runtime connection is `Python → python-oracledb → database`, with selected report results passed to OCI Generative AI through the OCI Python SDK for the answer. Codex remains the development assistant; its account and data handling are separate from OCI runtime authentication. Neither local stdio MCP nor a local app URL needs to be published to the internet.
 
 ## Workshop choices
 

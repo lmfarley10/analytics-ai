@@ -35,7 +35,9 @@ Agree the app behavior and test evidence before coding. No invented schema, rows
 * Second milestone: reviewed customer catalog, verified SQL and customer screens.
 * Third milestone: bounded agent loop and visible tool activity.
 * Required tests: offline contracts plus Lab 7 live acceptance matrix.
-* Runtime provider/model access and result-sharing approval: [local reference].
+* OCI region, compartment OCID, model ID, serving mode and native tool-call format: [verified settings].
+* OCI authentication profile/method, IAM access and result-sharing approval: [local reference; no credentials].
+* Separate Codex development metadata-sharing approval: [local reference].
 * Open questions and approval: [resolve before building].
 
 ## Acknowledgements
