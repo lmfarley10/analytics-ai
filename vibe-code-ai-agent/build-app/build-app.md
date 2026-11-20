@@ -4,6 +4,8 @@
 
 Build your application locally from the approved plan. This workshop supplies prompts and acceptance criteria; it does not distribute application source, dependencies, a query catalog or executable tests. Codex generates those artifacts in your private workspace, where you review them before running them.
 
+Use the same local desktop project throughout this lab. Review generated files in the desktop client or open that project folder in Visual Studio Code or another editor. For commands you run yourself, open Terminal or PowerShell in the actual project folder recorded in Lab 1 and follow the generated README. You do not need to launch the standalone Codex CLI.
+
 Estimated Time: 50 minutes; allow extra time for generated-code review and corrections.
 
 ### Objectives
@@ -18,7 +20,7 @@ An approved application plan and data map; your workspace; a working runtime dat
 
 ## Task 1: Generate the project and review the proposed files
 
-1. Open Codex in your workspace and send this prompt:
+1. Open the local `vibe-agent-lab` project chat in Codex desktop and send this prompt:
 
     ```text
     <copy>
@@ -65,7 +67,7 @@ An approved application plan and data map; your workspace; a working runtime dat
 
     ![Generate a local connection check, verify reports, then add the interface and agent](images/build-flow.svg)
 
-    > *Screenshot placeholder — Run the database-only preflight in the integrated terminal and show connection success without credentials.*
+    > *Screenshot placeholder — Run the database-only preflight in Terminal or PowerShell opened at the recorded project folder and show connection success without credentials.*
 
 ## Task 3: Generate and validate two reports
 
@@ -172,7 +174,7 @@ An approved application plan and data map; your workspace; a working runtime dat
 
 2. Review generated source and tests. Confirm the model cannot pass SQL to the executor and that application code enforces budgets. Ask Codex to show where each limit is implemented. Run the generated offline test command; correct failures before live testing.
 
-    > *Screenshot placeholder — Run the generated offline tests in the integrated terminal and show the passing results.*
+    > *Screenshot placeholder — Run the generated offline tests in Terminal or PowerShell opened at the recorded project folder and show the passing results.*
 
 3. Start the app using its generated README. Run both reports locally first. After confirming OCI model approval and access, authenticate locally and ask an approved question. Inspect actual tool activity and compare the answer with trusted SQL evidence. Codex sign-in does not authenticate the app to OCI. OCI model invocation is billed to the configured tenancy and is independent of database access.
 

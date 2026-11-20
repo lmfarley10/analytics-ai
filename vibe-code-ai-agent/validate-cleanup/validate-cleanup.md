@@ -51,7 +51,7 @@ In the metadata-export route, obtain live check evidence from the data owner and
     | Symptom | Check and action |
     | --- | --- |
     | Command not found | Reopen terminal; check actual executable path and install environment |
-    | Standalone Codex is not found | Reopen the terminal after installation and verify the installer's bin directory is on PATH |
+    | Wrong project or missing files | Select the local vibe-agent-lab desktop project and verify its recorded folder path |
     | Java class/version error | Match the JDK to the installed SQLcl release and check `java -version` |
     | SQLcl connection fails | Test outside Codex; verify wallet ZIP, alias, password and approved route |
     | ORA-01017 | Verify the restricted account password locally; do not print it |
@@ -59,7 +59,7 @@ In the metadata-export route, obtain live check evidence from the data owner and
     | Timeout / network error | Check database status, ACL egress address or private VPN route with DBA |
     | MCP startup timeout | Check absolute path, `-mcp`, Java and startup logs; no banners on stdio |
     | MCP cannot find connection | Same OS user/store? Was password saved? Does fresh-process reconnect work? |
-    | Desktop has no tools | Verify MCP inside that runtime; use the tested local CLI path if unsupported |
+    | Desktop has no tools | Check Settings → MCP servers, restart lab_db and verify /mcp in the local project chat; check organization policy if local STDIO servers are unavailable |
     | Empty metadata | Use owner-filtered ALL_* views; account may own no tables; verify direct grants |
     | Python wallet failure | Use extracted directory and `ewallet.pem`; supply wallet password, not DB password |
     | OCI authentication / authorization error | Check profile, signer type, token expiry, IAM policy and compartment; Codex sign-in is separate |
@@ -71,15 +71,7 @@ In the metadata-export route, obtain live check evidence from the data owner and
 
 ## Task 3: Disconnect and hand off
 
-1. Stop Streamlit with Ctrl+C. Ask Codex to disconnect the `lab_reader` session, then exit Codex. If this MCP entry was created solely for the lab, remove it:
-
-    ```bash
-    <copy>
-    codex mcp remove lab_db
-    </copy>
-    ```
-
-    Use the same command in PowerShell. Remove a separately configured desktop entry there as well. Keep unrelated MCP entries intact.
+1. Stop Streamlit with Ctrl+C in the terminal running the app, or stop the app process through the desktop task controls if Codex launched it. Ask Codex in the project chat to disconnect the `lab_reader` session. If `lab_db` was created solely for the lab, open **Settings → MCP servers** and disable or remove that entry. If your release does not expose removal, back up `config.toml` and remove only its `[mcp_servers.lab_db]` table and any nested settings, then restart the MCP service. Keep unrelated MCP entries intact. This configuration can also be used by other local Codex clients.
 
 2. For a disposable lab account, ask the DBA to expire or remove its access under the organization's process. Remove only the lab's saved connection using your SQLcl release's connection manager. Delete wallet copies using the organization's retention rules; never remove the entire shared connection store. Clear any secrets you manually exported or close the terminal.
 

@@ -20,27 +20,19 @@ If client database access is not ready, use Lab 4's metadata-export route for in
 
 ## Task 1: Register the local MCP server
 
-1. Close the current Codex terminal session and run one command in a normal terminal, replacing the executable with its absolute path.
+1. In the desktop client, open **Settings → MCP servers → Add server**. Add a local **STDIO** server using the following values. Menu labels may vary by release; see the [official MCP setup guide](https://learn.chatgpt.com/docs/extend/mcp).
 
-    macOS:
+    | Field | Value |
+    | --- | --- |
+    | Name | `lab_db` |
+    | Transport | STDIO |
+    | Command on macOS | `/Users/YOUR_USER/tools/sqlcl/bin/sql` |
+    | Command on Windows | `C:\Tools\sqlcl\bin\sql.exe` |
+    | Arguments | `-mcp` |
 
-    ```bash
-    <copy>
-    codex mcp add lab_db -- /Users/YOUR_USER/tools/sqlcl/bin/sql -mcp
-    codex mcp list
-    </copy>
-    ```
+    Use your actual absolute SQLcl executable path. Enter the command and argument separately; do not include shell quotes in the command field. Save the entry. SQLcl runs locally, so no server URL or API key is needed for this connection. Keep the same OS user and saved-connection store used in Lab 2.
 
-    Windows PowerShell:
-
-    ```powershell
-    <copy>
-    codex mcp add lab_db -- "C:\Tools\sqlcl\bin\sql.exe" -mcp
-    codex mcp list
-    </copy>
-    ```
-
-2. Inspect the generated entry in your user Codex configuration, `~/.codex/config.toml` on Mac or `$env:USERPROFILE\.codex\config.toml` on Windows. Back up existing configuration and merge only this entry; do not overwrite unrelated settings. Add the following options to its existing table:
+2. Open your user Codex configuration in a text editor: `~/.codex/config.toml` on Mac or `%USERPROFILE%\.codex\config.toml` on Windows. Locate the `[mcp_servers.lab_db]` entry created by the desktop settings. If your release offers an **Open config.toml** control, you can use it. Back up existing configuration and merge only this entry; do not overwrite unrelated settings. Add the following options to its existing table:
 
     ```toml
     <copy>
@@ -63,7 +55,7 @@ If client database access is not ready, use Lab 4's metadata-export route for in
 
     For Windows, a TOML literal string avoids backslash escaping: `command = 'C:\Tools\sqlcl\bin\sql.exe'`. Confirm the actual advertised tool names for your SQLcl release. Excluding `sqlcl_run` reduces exposed capabilities, but `sql_run` can still execute writes or PL/SQL if the database permits them. The allowlist is not a read-only security control.
 
-3. Start Codex again in the project. Enter `/mcp` and confirm that `lab_db` is connected and the intended tools are listed. A configured entry alone is not proof of a successful server handshake.
+3. Save the configuration, return to **Settings → MCP servers**, and select **Restart** to apply the changes. Reopen the local `vibe-agent-lab` project chat. Enter `/mcp` in the desktop chat composer and confirm that `lab_db` is connected and the intended tools are listed. A configured entry alone is not proof of a successful server handshake.
 
     ![MCP registration, server handshake and database identity checkpoint](images/mcp-checkpoint.svg)
 
@@ -86,15 +78,15 @@ If client database access is not ready, use Lab 4's metadata-export route for in
 
     > *Screenshot placeholder — Show the approved account/service identity returned by the MCP check, with identifying values redacted.*
 
-## Task 3: Use a desktop workspace if preferred
+## Task 3: Confirm the project checkpoint
 
-1. In desktop releases that expose **Settings → MCP servers**, add a **STDIO** server with the same absolute SQLcl command and `-mcp` argument, then restart the local workspace. Use the CLI route as the workshop baseline if your desktop release or organization policy does not expose this option. Do not assume a separate desktop runtime imports CLI settings.
+1. Stay in the same local `vibe-agent-lab` desktop project for the remaining prompts. Confirm that the MCP tools and the verified `lab_reader` identity are available in this chat before continuing to discovery.
 
-2. Repeat the tool and identity checks in the actual workspace where you will build the app. A successful CLI test does not validate a different app runtime. Never paste this stdio configuration into a hosted chat's remote MCP URL field.
+2. The desktop client, CLI and IDE extension share MCP configuration when they use the same Codex host and configuration directory. You do not need to install the standalone CLI or register the same server a second time. Always verify the connection in the desktop chat used for this workshop. Never paste this local STDIO configuration into a hosted chat's remote MCP URL field.
 
 ## Learn More
 
-* [Codex MCP registration and configuration](https://learn.chatgpt.com/docs/extend/mcp?surface=cli)
+* [Codex MCP registration and configuration](https://learn.chatgpt.com/docs/extend/mcp)
 * [Oracle SQLcl MCP launch configuration](https://docs.oracle.com/en/database/oracle/sql-developer-command-line/25.4/sqcug/starting-and-managing-sqlcl-mcp-server.html)
 * [Oracle SQLcl MCP tool descriptions](https://docs.oracle.com/en/database/oracle/sql-developer-command-line/25.4/sqcug/sqlcl-mcp-server-tools.html)
 

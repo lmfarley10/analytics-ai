@@ -20,8 +20,8 @@ Documentation reviewed November 6, 2026. Reverify before publication.
 | --- | --- | --- |
 | Desktop experience | [OpenAI desktop guide](https://learn.chatgpt.com/docs/app) | Current download and local project entry points |
 | Windows | [OpenAI Windows guide](https://learn.chatgpt.com/docs/windows/windows-app) | Native Windows setup |
-| Codex CLI | [Codex CLI](https://learn.chatgpt.com/docs/codex/cli) | Installation and sign-in |
-| MCP configuration | [OpenAI MCP guide](https://learn.chatgpt.com/docs/extend/mcp?surface=cli) | stdio command, tools and timeouts |
+| Local Codex projects | [Desktop guide](https://learn.chatgpt.com/docs/app) | Project selection, local execution and sign-in |
+| MCP configuration | [OpenAI MCP guide](https://learn.chatgpt.com/docs/extend/mcp) | Desktop STDIO setup, shared configuration, tools and timeouts |
 | SQLcl prerequisites | [Original MCP prerequisites](https://docs.oracle.com/en/database/oracle/sql-developer-command-line/25.2/sqcug/preparing-your-environment.html) | MCP introduced in 25.2; release-specific Java verification needed |
 | SQLcl launch | [Oracle MCP launch](https://docs.oracle.com/en/database/oracle/sql-developer-command-line/25.4/sqcug/starting-and-managing-sqlcl-mcp-server.html) | Local SQLcl process with `-mcp` |
 | SQLcl tools | [Oracle MCP tools](https://docs.oracle.com/en/database/oracle/sql-developer-command-line/25.4/sqcug/sqlcl-mcp-server-tools.html) | Tool names and capabilities |
@@ -55,7 +55,7 @@ For a publication-ready screenshot edition, capture the following on a clean sup
 
 ## Recorded QA evidence
 
-The November 6, 2026 isolated Mac rehearsal used Codex 0.167.0, SQLcl 26.1.2, Java 17.0.12, Python 3.13.5, python-oracledb 26.1.0, OCI SDK 2.190.0 and Streamlit 1.67.0. Python used a virtual environment on an existing installation; Java and SQLcl were temporary copies. This was a functional rehearsal, not a fresh operating-system installation test.
+The November 6, 2026 isolated Mac rehearsal used Codex CLI 0.167.0, SQLcl 26.1.2, Java 17.0.12, Python 3.13.5, python-oracledb 26.1.0, OCI SDK 2.190.0 and Streamlit 1.67.0. Python used a virtual environment on an existing installation; Java and SQLcl were temporary copies. This was a functional rehearsal, not a fresh operating-system installation test.
 
 Verified: saved SQLcl reconnect in a fresh process; actual MCP tool discovery and scoped metadata; Codex-generated project instructions, data map and plan; ten offline app tests; OCI text inference and a native tool-call/result round trip with Llama 4 Scout in Chicago; direct Python wallet connection; and two fixed aggregate reports matching independently written SQL and total counts; and a browser question answered through a real report tool call with matching evidence. Model availability is specific to that rehearsal and must be checked again for each environment.
 
@@ -67,8 +67,8 @@ SQLcl releases advertise different tool names. The tested release used underscor
 
 * Run the repository Markdown validator and check manifest targets, local links, prompt fences, copy tags and SVG dimensions. Confirm that no application source, executable tests or dependency manifests are included in the distributed workshop.
 * Preview the tenancy launcher through HTTP with the Oracle CDN available; check image sizing, task navigation and copy buttons.
-* Rehearse installation, CLI sign-in, SQLcl startup and saved-wallet reconnect on both operating systems. Record exact versions and installer requirements.
-* Confirm the desktop MCP route separately if teaching it; otherwise teach the CLI baseline.
+* Rehearse desktop installation and sign-in, local project creation, SQLcl startup and saved-wallet reconnect on both operating systems. Record exact versions and installer requirements.
+* Verify Settings → MCP servers registration, restart, tool discovery and cleanup in the desktop client on both platforms. The earlier CLI rehearsal does not validate this desktop workflow.
 * Run against at least two different approved schemas, including one cross-schema view-only account. Confirm no hardcoded schema object names remain in reusable files.
 * Confirm the direct Python connection and two report SQL reports before enabling API calls.
 * Verify OCI IAM access, the selected SDK signer, model/region availability, a harmless OCI-only inference call, and a real native tool-call round trip. Test temporary-session expiry. Verify that runtime requests use the approved OCI endpoint.

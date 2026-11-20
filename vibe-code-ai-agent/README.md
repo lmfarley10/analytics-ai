@@ -29,7 +29,7 @@ After a successful deployment, open [the hosted workshop](https://lmfarley10.git
 | Section | Outcome | Minutes |
 | --- | --- | --- |
 | [Introduction](introduction/introduction.md) | Understand scope, prerequisites and data flow | 10 |
-| [Lab 1](client-setup/client-setup.md) | Install desktop client and Codex CLI on Mac or Windows | 25 |
+| [Lab 1](client-setup/client-setup.md) | Install the desktop client and local tools on Mac or Windows | 25 |
 | [Lab 2](database-access/database-access.md) | Prepare a restricted database account and wallet | 25 |
 | [Lab 3](connect-mcp/connect-mcp.md) | Register and verify SQLcl MCP in Codex | 20 |
 | [Lab 4](discover-data/discover-data.md) | Discover tables and approve a reusable data contract | 25 |

@@ -18,7 +18,7 @@ The data owner has approved a metadata scope. For live discovery, the MCP identi
 
 ## Task 1: Create your application brief and project instructions
 
-1. Open your project folder in Visual Studio Code or your preferred editor. Create a file named `app-brief.md` in the project root. Copy the following outline into the file and replace the bracketed values. Everything needed for this task is provided here; no repository download is required.
+1. Keep the local `vibe-agent-lab` project selected in Codex desktop. Open that same project folder in Visual Studio Code or your preferred editor. Create a file named `app-brief.md` in the project root. Copy the following outline into the file and replace the bracketed values. Everything needed for this task is provided here; no repository download is required.
 
     ```text
     <copy>
